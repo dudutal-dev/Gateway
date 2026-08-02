@@ -307,13 +307,38 @@ html[dir="ltr"] footer{text-align:center}
 
 #revModal{position:fixed;inset:0;z-index:160;background:rgba(4,7,18,.82);display:none;align-items:center;justify-content:center;padding:20px}
 #revModal.on{display:flex}
+
+/* ---------- home hero (inviting) ---------- */
+.hero-new{padding:26px 0 8px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
+.hero-new .orb-wrap{margin-bottom:26px}
+.hero-new .orb{width:min(200px,44vw)}
+.hero-title{font-family:var(--font-disp);font-size:clamp(2.1rem,6vw,3.4rem);font-weight:800;line-height:1.12;margin:0}
+.hero-sub{font-size:.86rem;color:var(--ink-faint);margin-top:12px;letter-spacing:.01em}
+.hero-lead{max-width:600px;margin:18px auto 0;color:var(--ink-dim);font-size:1.02rem;line-height:1.85}
+.hero-facts{display:flex;gap:34px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+.hero-facts div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.hero-facts b{font-family:var(--font-disp);font-size:1.55rem;font-weight:800;color:var(--cyan);line-height:1}
+.hero-facts span{font-size:.76rem;color:var(--ink-faint);letter-spacing:.04em}
+.hero-hint{margin-top:34px;font-size:.8rem;color:var(--ink-faint);opacity:.75;animation:hintFloat 3.2s ease-in-out infinite}
+@keyframes hintFloat{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(4px);opacity:.9}}
+.brand{cursor:pointer}
+@media(max-width:640px){
+  .hero-new{padding:14px 0 4px}
+  .hero-new .orb-wrap{margin-bottom:18px}
+  .hero-new .orb{width:min(150px,40vw)}
+  .hero-title{font-size:clamp(1.8rem,9vw,2.3rem)}
+  .hero-lead{font-size:.95rem;margin-top:14px}
+  .hero-facts{gap:24px;margin-top:22px}
+  .hero-facts b{font-size:1.3rem}
+  .hero-hint{margin-top:24px;font-size:.75rem}
+}
 </style>
 </head>
 <body>
 <canvas id="stars"></canvas>
 <div class="app">
 <header>
-<div class="brand">
+<div class="brand" onclick="ui.go('home')" title="חזרה למסך הבית" data-i18n-title="home.brand.title">
 <div class="sigil">
 <svg fill="none" viewbox="0 0 46 46"><circle cx="23" cy="23" opacity=".8" r="21" stroke="#5ee0ce" stroke-width="1.4"></circle><circle cx="23" cy="23" r="13.5" stroke="#8b7bd8" stroke-width="1.4"></circle><circle cx="23" cy="23" fill="#e0b458" opacity=".9" r="5.5"></circle></svg>
 </div>
@@ -326,23 +351,28 @@ html[dir="ltr"] footer{text-align:center}
 </div>
 </header>
 <nav><div class="nav-inner">
-<button class="tab active" data-i18n="a004" data-s="home">הקדמה</button>
+<button class="tab active" data-i18n="a004" data-s="home">בית</button>
 <button class="tab" data-i18n="a005" data-s="journey">המסע · 30 יום</button>
 <button class="tab" data-i18n="a006" data-s="lib">ספריית התרגולים</button>
 <button class="tab" data-i18n="a007" data-s="goal">לפי מטרה</button>
 <button class="tab" data-i18n="a008" data-s="journal">ניתוח</button>
 <button class="tab" data-i18n="a009" data-s="report">ידע ומקורות</button>
+<button class="tab" data-i18n="about.tab" data-s="about">אודות</button>
 <button class="tab" data-i18n="a010" data-s="settings">הגדרות</button>
 </div></nav>
 <!-- ============ HOME ============ -->
 <section class="screen active" id="s-home">
-<div class="hero">
-<div>
-<span class="stamp">◈ APPROVED FOR RELEASE 2003/09/10 · CIA-RDP96-00788R001700210023-7</span>
-<h2 data-i18n="a189" data-i18n-html="1">אני יותר<br/>מגופי <em data-i18n="a011">הפיזי</em></h2>
-<p class="lead mt" data-i18n="a012">מערכת אימון תודעה מובנית, המבוססת על ה-Gateway Intermediate Workbook של מכון מונרו (1977) — מסמך ששוחרר מארכיון ה-CIA — ועל דוח הניתוח הצבאי של סא"ל וויין מקדונל (1983). מהרפיה עמוקה ועד מודעות מורחבת, צעד אחר צעד.</p>
-</div>
-<div class="orb-wrap"><div class="orb"></div></div>
+<div class="hero-new">
+  <div class="orb-wrap"><div class="orb"></div></div>
+  <h2 class="hero-title" data-i18n="a189" data-i18n-html="1">אני יותר<br/>מגופי <em data-i18n="a011">הפיזי</em></h2>
+  <p class="hero-sub" data-i18n="home.hero.sub">שורת הפתיחה של ההצהרה מ-1977 — המשפט שבו נפתח כל תרגול בשיטה.</p>
+  <p class="hero-lead" data-i18n="a012">מערכת אימון תודעה מובנית, המבוססת על ה-Gateway Intermediate Workbook של מכון מונרו (1977) — מסמך ששוחרר מארכיון ה-CIA — ועל דוח הניתוח הצבאי של סא"ל וויין מקדונל (1983). מהרפיה עמוקה ועד מודעות מורחבת, צעד אחר צעד.</p>
+  <div class="hero-facts">
+    <div><b>30</b><span data-i18n="home.fact.days">ימי מסע</span></div>
+    <div><b>28</b><span data-i18n="home.fact.ex">תרגולים</span></div>
+    <div><b>6Hz</b><span data-i18n="home.fact.hz">פרוטוקול מחקרי</span></div>
+  </div>
+  <div class="hero-hint" data-i18n="home.hero.hint">↓ קרא בקצרה מה השיטה — ולמטה תבחר מאיפה להתחיל</div>
 </div>
 <hr class="sep"/>
 <div class="grid g2">
@@ -367,9 +397,7 @@ html[dir="ltr"] footer{text-align:center}
 <p class="muted" data-i18n="a192" data-i18n-html="1" style="font-size:.93rem">כל סשן נפתח בשלושה שלבים קבועים, בסדר שקובע ספר המחקר (פרק 10, יום 5): (1) <b data-i18n="a024" style="color:var(--ink)">ההצהרה</b> — הנוסח המלא של First Affirmation מ-1977, "אני יותר מגופי הפיזי..." — כשה-Workbook מדגיש: "המילים חסרות משמעות ללא התחושה"; (2) <b data-i18n="a025" style="color:var(--ink)">תיבת ההפקדה</b> — הנחת כל הדאגות בצד למשך התרגול; (3) <b data-i18n="a026" style="color:var(--ink)">נשימה רזוננטית</b> — מילוי הגוף ב"אנרגיה חדשה" בשישה שלבים. וכל סשן נסגר בכתיבה ביומן.</p>
 </div>
 </div>
-<div class="notice mt2" data-i18n="a193" data-i18n-html="1">
-<b data-i18n="a027">גילוי נאות והבהרה מדעית:</b> השפעת תדרים בינאורליים על גלי מוח והרפיה מתועדת מחקרית; לעומת זאת, הטענות המרחיקות של השיטה (חוויות חוץ-גופיות, צפייה מרחוק, השפעה על מציאות) הן חלק מהמסמכים ההיסטוריים ואינן מבוססות מדעית. האפליקציה מציגה את השיטה כפי שהיא במקור, ככלי להרפיה, מיקוד והתבוננות — והיא אינה תחליף לטיפול רפואי או נפשי. אין להאזין לתדרים בזמן נהיגה או הפעלת מכונות; במקרה של אפילפסיה, קוצב לב או הריון — יש להיוועץ ברופא. בכל רגע בתרגול, הזזת איבר גוף כלשהו מחזירה אותך מיידית לערנות מלאה.
-  </div>
+
 <hr class="sep"/>
 <div style="text-align:center">
 <div class="eyebrow" data-i18n="home.cta.eyebrow">מכאן מתחילים</div>
@@ -383,6 +411,31 @@ html[dir="ltr"] footer{text-align:center}
 </div>
 </div>
 </section>
+<!-- ============ ABOUT ============ -->
+<section class="screen" id="s-about">
+  <div class="eyebrow" data-i18n="about.eyebrow">רקע, מקורות והבהרות</div>
+  <h2 data-i18n="about.title">אודות</h2>
+  <p class="lead mb" data-i18n="about.lead">מאיפה הגיע החומר שעליו האפליקציה בנויה, מה מבוסס מחקרית ומה לא, ולמי השיטה אינה מתאימה. כדאי לקרוא פעם אחת במלואו לפני התרגול הראשון.</p>
+
+  <div class="card mt2" style="text-align:center">
+    <span class="stamp">◈ APPROVED FOR RELEASE 2003/09/10 · CIA-RDP96-00788R001700210023-7</span>
+    <p class="muted" style="font-size:.9rem;margin-top:8px" data-i18n="about.stamp">המזהה הארכיוני של החוברת המקורית בארכיון הקריאה של ה-CIA. כל התרגולים באפליקציה מתועדים במסמך הזה ובדוח הניתוח שנלווה אליו.</p>
+  </div>
+
+<div class="notice mt2" data-i18n="a193" data-i18n-html="1">
+<b data-i18n="a027">גילוי נאות והבהרה מדעית:</b> השפעת תדרים בינאורליים על גלי מוח והרפיה מתועדת מחקרית; לעומת זאת, הטענות המרחיקות של השיטה (חוויות חוץ-גופיות, צפייה מרחוק, השפעה על מציאות) הן חלק מהמסמכים ההיסטוריים ואינן מבוססות מדעית. האפליקציה מציגה את השיטה כפי שהיא במקור, ככלי להרפיה, מיקוד והתבוננות — והיא אינה תחליף לטיפול רפואי או נפשי. אין להאזין לתדרים בזמן נהיגה או הפעלת מכונות; במקרה של אפילפסיה, קוצב לב או הריון — יש להיוועץ ברופא. בכל רגע בתרגול, הזזת איבר גוף כלשהו מחזירה אותך מיידית לערנות מלאה.
+  </div>
+
+  <div class="card mt2">
+    <div class="eyebrow" data-i18n="about.sources.eyebrow">ביבליוגרפיה</div>
+    <h3 data-i18n="about.sources.title">המקורות שעליהם נשענת האפליקציה</h3>
+    <p class="muted" style="font-size:.9rem" data-i18n="a149">מקורות: Monroe Institute, "Gateway Intermediate Workbook" (1977), שוחרר ע"י ה-CIA ב-2003 (CIA-RDP96-00788R001700210023-7) · McDonnell, "Analysis and Assessment of Gateway Process" (1983) · Oster, "Auditory Beats in the Brain", Scientific American 229 (1973) · Atwater, "Inducing States of Consciousness with a Binaural Beat Technology" (1997) · Amd, PLOS ONE 21(4): e0335580 (2026) — הבסיס לפרוטוקול 6Hz/250Hz · האפליקציה למטרות חינוך, הרפיה והתבוננות. אינה מכשיר רפואי ואינה תחליף לייעוץ מקצועי. הנתונים נשמרים מקומית במכשיר בלבד.</p>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-ghost" style="padding:8px 16px;font-size:.82rem" onclick="ui.go('report')" data-i18n="about.toKnowledge">ידע ומקורות — הפירוט המלא ←</button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ JOURNEY 30 DAYS ============ -->
 <section class="screen" id="s-journey">
 <div class="eyebrow" data-i18n="a028">תוכנית 30 הימים · מתוך ספר המחקר</div>
@@ -615,8 +668,9 @@ html[dir="ltr"] footer{text-align:center}
 <button class="btn btn-danger" data-i18n="set.reset.btn" onclick="appReset()" style="padding:8px 16px;font-size:.82rem">🧹 איפוס מלא של נתוני האפליקציה</button>
 </div>
 </section>
-<footer data-i18n="a149">
-  מקורות: Monroe Institute, "Gateway Intermediate Workbook" (1977), שוחרר ע"י ה-CIA ב-2003 (CIA-RDP96-00788R001700210023-7) · McDonnell, "Analysis and Assessment of Gateway Process" (1983) · Oster, "Auditory Beats in the Brain", Scientific American 229 (1973) · Atwater, "Inducing States of Consciousness with a Binaural Beat Technology" (1997) · Amd, PLOS ONE 21(4): e0335580 (2026) — הבסיס לפרוטוקול 6Hz/250Hz · האפליקציה למטרות חינוך, הרפיה והתבוננות. אינה מכשיר רפואי ואינה תחליף לייעוץ מקצועי. הנתונים נשמרים מקומית במכשיר בלבד.
+<footer>
+<span data-i18n="footer.short">מבוסס על מסמכי Gateway המשוחררים של ה-CIA (1977 · 1983) ועל מחקר עדכני · האפליקציה למטרות חינוך, הרפיה והתבוננות — אינה מכשיר רפואי ואינה תחליף לייעוץ מקצועי · הנתונים נשמרים במכשיר בלבד.</span>
+<div style="margin-top:10px"><button class="btn btn-ghost" style="padding:6px 14px;font-size:.75rem" onclick="ui.go('about')" data-i18n="footer.about">אודות, מקורות והבהרות ←</button></div>
 </footer>
 </div><!-- /app -->
 <!-- ============ PLAYER ============ -->
@@ -1308,10 +1362,28 @@ window.audioEng = audioEng;
 
 /* ---------- מילוני תרגום: ממשק סטטי + תוכן דינמי ---------- */
 const HTML_EN = {
+ "footer.short": "Based on the declassified CIA Gateway documents (1977 · 1983) and on current research · This app is for education, relaxation and self-observation — it is not a medical device and not a substitute for professional advice · Data is stored on your device only.",
+ "footer.about": "About, sources and disclosures →",
+
+ "home.hero.sub": "The opening line of the 1977 affirmation — the sentence that begins every practice in the method.",
+ "home.fact.days": "journey days",
+ "home.fact.ex": "exercises",
+ "home.fact.hz": "research protocol",
+ "home.hero.hint": "↓ A short read on the method — and below, choose where to begin",
+ "home.brand.title": "Back to home",
+ "about.tab": "About",
+ "about.eyebrow": "Background, sources and disclosures",
+ "about.title": "About",
+ "about.lead": "Where the material this app is built on came from, what is research-backed and what is not, and who the method is not suitable for. Worth reading in full once, before your first practice.",
+ "about.stamp": "The archival identifier of the original workbook in the CIA reading room. Every exercise in this app is documented in that file and in the analysis report attached to it.",
+ "about.sources.eyebrow": "Bibliography",
+ "about.sources.title": "The sources this app rests on",
+ "about.toKnowledge": "Knowledge & sources — the full detail →",
+
  "a001": "Systematic consciousness training · based on the declassified CIA documents",
  "a002": "☀️ Day mode",
  "a003": "Ready",
- "a004": "Introduction",
+ "a004": "Home",
  "a005": "The Journey · 30 Days",
  "a006": "Exercise Library",
  "a007": "By Goal",
@@ -3412,7 +3484,7 @@ window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getEleme
 })();
 
 /* ---------- גרסה ורענון כפוי ---------- */
-const APP_VERSION = '2026.08.02-b14';
+const APP_VERSION = '2026.08.02-b15';
 (function(){
   const set = ()=>{ const el=document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; };
   set(); setTimeout(set, 300);
