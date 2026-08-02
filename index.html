@@ -394,7 +394,7 @@ html[dir="ltr"] footer{text-align:center}
 <p class="muted" data-i18n="a191" data-i18n-html="1" style="font-size:.93rem">כשכל אוזן שומעת תדר שונה במעט (למשל 250Hz מול 256Hz), המוח "מייצר" את פעימת ההפרש — 6Hz — צליל שאינו קיים באוויר אלא רק במערכת העצבים. מחקר מבוקר (PLOS ONE, ‏2026, שני ניסויים, 219 משתתפים) מצא שדווקא פעימת תטא של <b style="color:var(--ink)">6Hz</b> שיפרה באופן מובהק גם רוגע וגם מיקוד — וזה הפרוטוקול שהמחולל כאן מכויל אליו: 6Hz על גל נושא 250Hz, עם שכבת רעש ורוד שקטה (‎−12dB). <b data-i18n="a021" style="color:var(--gold)">חובה אוזניות סטריאו — ברמקולים המנגנון פשוט לא מתרחש.</b></p>
 </div>
 <div class="card">
-<div class="eyebrow" data-i18n="a022">שלוש עוגנים לכל תרגול</div>
+<div class="eyebrow" data-i18n="a022">שלושה עוגנים לכל תרגול</div>
 <h3 data-i18n="a023">נשימה · תיבה · אפירמציה</h3>
 <p class="muted" data-i18n="a192" data-i18n-html="1" style="font-size:.93rem">כל סשן נפתח בשלושה שלבים קבועים, בסדר שקובע ספר המחקר (פרק 10, יום 5): (1) <b data-i18n="a024" style="color:var(--ink)">ההצהרה</b> — הנוסח המלא של First Affirmation מ-1977, "אני יותר מגופי הפיזי..." — כשה-Workbook מדגיש: "המילים חסרות משמעות ללא התחושה"; (2) <b data-i18n="a025" style="color:var(--ink)">תיבת ההפקדה</b> — הנחת כל הדאגות בצד למשך התרגול; (3) <b data-i18n="a026" style="color:var(--ink)">נשימה רזוננטית</b> — מילוי הגוף ב"אנרגיה חדשה" בשישה שלבים. וכל סשן נסגר בכתיבה ביומן.</p>
 </div>
@@ -534,6 +534,17 @@ html[dir="ltr"] footer{text-align:center}
 <div class="eyebrow" data-i18n="a092">הגיאוגרפיה של המיינד</div>
 <h2 data-i18n="a093">ידע ומקורות</h2>
 <p class="lead mb" data-i18n="a094">מפת רמות ה-Focus, מה המחקר באמת תומך בו, ועיקרי דוח 1983 — הכול במקום אחד.</p>
+<div class="card mt2" style="border-color:rgba(224,180,88,.42)">
+<div class="eyebrow" data-i18n="book.eyebrow">המקור שעליו בנויה האפליקציה</div>
+<h3 data-i18n="book.title" style="margin-bottom:8px">📖 Gateway Process — ספר המחקר</h3>
+<p class="muted" data-i18n="book.desc" style="font-size:.92rem;line-height:1.85">שלושה־עשר פרקים: מסגרת ובטיחות · המנגנון והמדע · קריאה צמודה בחוברת 1977 ובדוח 1983 · מפת התרגולים המלאה · תוכנית 30 היום · מגבלות, זהירות ואתיקה. כל תרגול, כל תדר וכל יום במסע כאן — נגזרים ממנו.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+<a class="btn btn-cyan" style="text-decoration:none" href="./gateway-research-book.pdf" target="_blank" rel="noopener" data-i18n="book.open">📖 פתיחת הספר (PDF)</a>
+<a class="btn btn-ghost" style="text-decoration:none" href="./gateway-research-book.pdf" download data-i18n="book.dl">⬇️ הורדה למכשיר</a>
+</div>
+<p class="muted" data-i18n="book.note" data-i18n-html="1" style="font-size:.84rem;margin-top:12px">הקובץ יושב לצד האפליקציה במאגר (<code>gateway-research-book.pdf</code>). אם העתקתם רק את <code>index.html</code> — הכפתור לא ימצא אותו.</p>
+</div>
+
 <div class="eyebrow" data-i18n="a095">הגיאוגרפיה של המיינד</div>
 <h2 data-i18n="a096">מפת רמות ה-Focus</h2>
 <p class="lead mb" data-i18n="a097">כל רמה היא "תחנה" עם מאפיינים משלה. לחץ על תחנה לפירוט — כולל דרך הכניסה, דרך היציאה, ותדר השמע המכויל אליה. הכלל מהמסמך: אין לדלג — Focus 10 יציב הוא התנאי לכל השאר.</p>
@@ -629,6 +640,7 @@ html[dir="ltr"] footer{text-align:center}
 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
 <button class="btn btn-cyan" id="introBtn" onclick="intro.toggle()" style="padding:8px 16px;font-size:.82rem">✨ אנימציית פתיחה פעילה</button>
 <button class="btn btn-ghost" onclick="intro.replay()" style="padding:8px 16px;font-size:.82rem">▶ נגן שוב</button>
+<button class="btn btn-ghost" data-i18n="wiz.rerun" onclick="wiz.open()" style="padding:8px 16px;font-size:.82rem">🧭 מדריך הגדרה ראשונה</button>
 </div>
 <p class="faint" style="font-size:.78rem;margin-bottom:12px">גרסה <b id="appVer" style="color:var(--cyan)">—</b> · אם המספר כאן שונה מהגרסה שקיבלת, הדפדפן מגיש עותק שמור.</p>
 <p class="muted" style="font-size:.86rem;margin-bottom:12px">בזמן תרגול העיניים עצומות והמכשיר לא נוגע — ובלי זה המסך ננעל, והתדר, הטיימר וההנחיה הקולית נקטעים באמצע. ההגדרה פועלת רק בזמן סשן ומשוחררת בסיומו, כדי לא לבזבז סוללה.</p>
@@ -817,6 +829,82 @@ html[dir="ltr"] footer{text-align:center}
     </div>
   </div>
 </div>
+<!-- ============ SETUP WIZARD ============ -->
+<div id="wiz" onclick="if(event.target===this)wiz.close()">
+  <div class="wiz-box">
+    <div class="eyebrow" data-i18n="wiz.eyebrow">הגדרה ראשונה · שלוש החלטות</div>
+    <div class="wiz-dots"><span class="wd" data-d="1"></span><span class="wd" data-d="2"></span><span class="wd" data-d="3"></span></div>
+
+    <div class="wiz-step" data-step="1">
+      <h3 data-i18n="wiz.s1.title">🌐 שפת הממשק</h3>
+      <p class="muted" data-i18n="wiz.s1.desc">מחליפה את כל טקסטי האפליקציה — הניווט, התרגולים, המסע והיומן. שפת ההנחיה הקולית נבחרת בנפרד בשלב הבא, כך שאפשר ממשק בעברית עם קול באנגלית, או להפך.</p>
+      <div class="wiz-row">
+        <button class="btn btn-ghost" id="wizLangHe" onclick="wiz.lang('he')">עברית</button>
+        <button class="btn btn-ghost" id="wizLangEn" onclick="wiz.lang('en')">English</button>
+      </div>
+    </div>
+
+    <div class="wiz-step" data-step="2">
+      <h3 data-i18n="wiz.s2.title">🗣️ ההנחיה הקולית</h3>
+      <p class="muted" data-i18n="wiz.s2.desc">רוב התרגולים נעשים בעיניים עצומות. הקול מקריא כל שלב, כדי שלא תצטרך להסתכל במסך. שמע דוגמה ובחר את הקול שנעים לך להקשיב לו — ★ מסמן קול משודרג, שנשמע טבעי הרבה יותר.</p>
+      <div class="wiz-row">
+        <button class="btn btn-ghost" id="wizVoiceBtn" onclick="wiz.voiceToggle()"></button>
+        <select id="wizVoiceLang" onchange="wiz.voiceLang(this.value)">
+          <option data-i18n="wiz.v.he" value="he">קול בעברית</option>
+          <option data-i18n="wiz.v.en" value="en">Soft English voice</option>
+        </select>
+      </div>
+      <div class="wiz-row">
+        <select id="wizVoicePick" onchange="voiceEng.setVoice(this.value)"></select>
+        <button class="btn btn-cyan" data-i18n="wiz.preview" onclick="voiceEng.preview()">▶ השמע דוגמה</button>
+      </div>
+      <p class="faint" data-i18n="wiz.s2.note" style="font-size:.8rem">אין קול מתאים במכשיר? אפשר להמשיך — האפליקציה תסמן כל שלב בצליל מעבר עדין במקום, וגם זה מספיק כדי לתרגל בעיניים עצומות.</p>
+    </div>
+
+    <div class="wiz-step" data-step="3">
+      <h3 data-i18n="wiz.s3.title">🎧 אוזניות והיחס בין הקול לתדר</h3>
+      <p class="muted" data-i18n="wiz.s3.desc" data-i18n-html="1">אוזניות סטריאו הן <b style="color:var(--ink)">דרישה טכנית, לא המלצה</b>: הפעימה הבינאורלית נוצרת רק כשכל אוזן מקבלת תדר שונה. ברמקולים המנגנון פשוט לא מתרחש. בחר מי מוביל במיקס — הבחירה חלה על כל התרגולים.</p>
+      <div class="wiz-row">
+        <button class="btn btn-ghost wizmix" data-m="back" onclick="wiz.mix('back')" data-i18n="wiz.mix.back">🎧 התדר מוביל</button>
+        <button class="btn btn-ghost wizmix" data-m="mid" onclick="wiz.mix('mid')" data-i18n="wiz.mix.mid">מאוזן</button>
+        <button class="btn btn-ghost wizmix" data-m="front" onclick="wiz.mix('front')" data-i18n="wiz.mix.front">🗣️ ההנחיה מובילה</button>
+      </div>
+      <p class="faint" data-i18n="wiz.s3.ios" data-i18n-html="1" style="font-size:.8rem">באייפון, <b style="color:var(--ink)">מתג ההשתקה בצד המכשיר משתיק את התדר</b> — אך לא את ההקראה. אם ההנחיה נשמעת והתדר לא, זו כמעט תמיד הסיבה. הרץ את הבדיקה, ואם אין פעימה — עבור למצב תאימות בהגדרות.</p>
+      <div class="wiz-row">
+        <button class="btn btn-cyan" data-i18n="wiz.test" onclick="soundTest.stereo()">🎧 בדיקת סטריאו ופעימה</button>
+      </div>
+    </div>
+
+    <div class="wiz-foot">
+      <button class="btn btn-ghost" id="wizSkip" data-i18n="wiz.skip" onclick="wiz.close()" style="padding:8px 16px;font-size:.82rem">דלג</button>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" id="wizBack" data-i18n="wiz.back" onclick="wiz.go(-1)" style="padding:8px 18px;font-size:.82rem">חזרה</button>
+        <button class="btn btn-primary" id="wizNext" onclick="wiz.go(1)" style="padding:8px 22px;font-size:.82rem"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+#wiz{position:fixed;inset:0;z-index:320;background:rgba(4,7,18,.86);display:none;align-items:center;justify-content:center;padding:20px}
+#wiz.on{display:flex}
+#wiz .wiz-box{max-width:600px;width:100%;max-height:88vh;overflow-y:auto;background:var(--card-solid);
+  border:1px solid var(--line2);border-radius:var(--r);padding:28px;text-align:start}
+#wiz h3{font-size:1.3rem;margin:4px 0 10px}
+#wiz .muted{font-size:.9rem;line-height:1.85}
+#wiz .wiz-step{display:none}
+#wiz .wiz-step.on{display:block;animation:wizIn .35s ease}
+@keyframes wizIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#wiz .wiz-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+#wiz .wiz-row .btn{padding:9px 18px;font-size:.85rem}
+#wiz select{flex:1;min-width:180px;padding:9px 12px;font-size:.84rem;border-radius:10px;
+  background:var(--card);color:var(--ink);border:1px solid var(--line2)}
+#wiz .wiz-dots{display:flex;gap:7px;margin:10px 0 16px}
+#wiz .wd{width:26px;height:3px;border-radius:99px;background:var(--line2);transition:.3s}
+#wiz .wd.on{background:var(--cyan)}
+#wiz .wiz-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;
+  margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+</style>
+
 <!-- ============ INTRO ============ -->
 <div id="intro" aria-hidden="true">
   <canvas id="introCv"></canvas>
@@ -909,13 +997,94 @@ h2,h3{line-height:1.3}
    שלושה פרקים בתוך אנימציה אחת:
    1. חלקיקים נודדים מהחשכה פנימה   2. שני גלי סינוס נפגשים ויוצרים פעימה
    3. הכול מתכנס לטבעות הסיגיל — ואז נפתח השער                              */
+/* ---------- מדריך הגדרה ראשונה — שלוש ההחלטות שחלות על כל התרגולים ---------- */
+const wiz = {
+  step:1, total:3,
+  L:{
+    he:{ von:'\ud83d\udde3\ufe0f הנחיה קולית פעילה', voff:'\ud83d\udd07 הנחיה קולית כבויה',
+         next:'הבא \u2190', done:'\u2713 סיום והתחלה' },
+    en:{ von:'\ud83d\udde3\ufe0f Voice guidance on', voff:'\ud83d\udd07 Voice guidance off',
+         next:'Next \u2192', done:'\u2713 Finish and begin' }
+  },
+  lbl(k){ const l = (typeof i18n!=='undefined' && i18n.lang==='en') ? 'en' : 'he'; return this.L[l][k]; },
+
+  seen(){ try{ return localStorage.getItem('gw_setup') === '1'; }catch(e){ return true; } },
+  mark(){ try{ localStorage.setItem('gw_setup','1'); }catch(e){} },
+
+  /* נפתח פעם אחת בלבד, אחרי מסך הפתיחה */
+  maybe(){ if(!this.seen()) setTimeout(()=>this.open(), 420); },
+
+  open(){
+    this.step = 1;
+    const el = document.getElementById('wiz'); if(!el) return;
+    el.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    try{ voiceEng.prime(); voiceEng.fillPicker(); }catch(e){}
+    this.render();
+  },
+
+  close(){
+    const el = document.getElementById('wiz'); if(el) el.classList.remove('on');
+    document.body.style.overflow = '';
+    this.mark();
+  },
+
+  go(d){
+    const n = this.step + d;
+    if(n < 1) return;
+    if(n > this.total){ this.close(); return; }
+    this.step = n; this.render();
+  },
+
+  render(){
+    document.querySelectorAll('#wiz .wiz-step').forEach(s=>
+      s.classList.toggle('on', +s.getAttribute('data-step') === this.step));
+    document.querySelectorAll('#wiz .wd').forEach(d=>
+      d.classList.toggle('on', +d.getAttribute('data-d') <= this.step));
+    const back = document.getElementById('wizBack');
+    if(back) back.style.visibility = this.step === 1 ? 'hidden' : 'visible';
+    const next = document.getElementById('wizNext');
+    if(next) next.textContent = this.step === this.total ? this.lbl('done') : this.lbl('next');
+    this.sync();
+  },
+
+  /* משקף את המצב האמיתי של המנועים — המדריך לא מחזיק מצב משלו */
+  sync(){
+    const l = (typeof i18n!=='undefined') ? i18n.lang : 'he';
+    const he = document.getElementById('wizLangHe'), en = document.getElementById('wizLangEn');
+    if(he && en){
+      he.classList.toggle('btn-cyan', l==='he'); he.classList.toggle('btn-ghost', l!=='he');
+      en.classList.toggle('btn-cyan', l==='en'); en.classList.toggle('btn-ghost', l!=='en');
+    }
+    const vb = document.getElementById('wizVoiceBtn');
+    if(vb && typeof voiceEng!=='undefined'){
+      vb.textContent = voiceEng.on ? this.lbl('von') : this.lbl('voff');
+      vb.classList.toggle('btn-cyan', !!voiceEng.on); vb.classList.toggle('btn-ghost', !voiceEng.on);
+    }
+    const vl = document.getElementById('wizVoiceLang');
+    if(vl && typeof voiceEng!=='undefined') vl.value = voiceEng.lang;
+    document.querySelectorAll('#wiz .wizmix').forEach(b=>{
+      const on = (typeof voiceEng!=='undefined') && voiceEng.mix === b.getAttribute('data-m');
+      b.classList.toggle('btn-cyan', on); b.classList.toggle('btn-ghost', !on);
+    });
+    const p = document.getElementById('wizVoicePick');
+    if(p && typeof voiceEng!=='undefined') p.disabled = !voiceEng.on;
+  },
+
+  lang(l){ try{ i18n.set(l); }catch(e){} this.render(); },
+  voiceToggle(){ try{ voiceEng.toggle(); }catch(e){} this.sync(); },
+  voiceLang(l){ try{ voiceEng.setLang(l); voiceEng.fillPicker(); voiceEng.preview(); }catch(e){} this.sync(); },
+  mix(m){ try{ voiceEng.setMix(m); }catch(e){} this.sync(); }
+};
+window.wiz = wiz;
+
 const intro = {
   enabled:true, done:false, raf:null, t0:0, cv:null, x:null, W:0, H:0, DPR:1, parts:[],
 
   init(){
     try{ this.enabled = (localStorage.getItem('gw_intro') ?? '1') === '1'; }catch(e){}
     const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(!this.enabled){ this.render(); return; }
+    if(!this.enabled){ this.render(); try{ wiz.maybe(); }catch(e){} return; }
     const el = document.getElementById('intro');
     el.classList.add('on');
     document.body.style.overflow = 'hidden';
@@ -1070,6 +1239,7 @@ const intro = {
       el.classList.remove('on','out');
       document.body.style.overflow = '';
       if(this.raf) cancelAnimationFrame(this.raf);
+      try{ wiz.maybe(); }catch(e){}
     }, 950);
   },
 
@@ -1786,6 +1956,31 @@ const HTML_EN = {
  "a008": "Analysis",
  "a009": "Knowledge & Sources",
  "a010": "Settings",
+"wiz.eyebrow": "First-time setup \u00b7 three decisions",
+ "wiz.s1.title": "\ud83c\udf10 Interface language",
+ "wiz.s1.desc": "Switches every text in the app \u2014 navigation, exercises, the journey and the journal. The voice-guidance language is chosen separately in the next step, so you can have a Hebrew interface with an English voice, or the other way around.",
+ "wiz.s2.title": "\ud83d\udde3\ufe0f Voice guidance",
+ "wiz.s2.desc": "Most exercises are done with the eyes closed. The voice reads each step aloud so you never need to look at the screen. Play a sample and pick the voice you are comfortable listening to \u2014 \u2605 marks an enhanced voice, which sounds far more natural.",
+ "wiz.s2.note": "No suitable voice on your device? You can continue \u2014 the app will mark each step with a soft transition tone instead, which is enough to practise with the eyes closed.",
+ "wiz.v.he": "Hebrew voice",
+ "wiz.v.en": "Soft English voice",
+ "wiz.preview": "\u25b6 Play a sample",
+ "wiz.s3.title": "\ud83c\udfa7 Headphones and the voice-to-tone balance",
+ "wiz.s3.desc": "Stereo headphones are a <b style=\"color:var(--ink)\">technical requirement, not a recommendation</b>: a binaural beat exists only when each ear receives a slightly different tone. Over speakers the mechanism simply does not occur. Choose which leads the mix \u2014 this applies to every exercise.",
+ "wiz.s3.ios": "On iPhone, <b style=\"color:var(--ink)\">the silent switch on the side of the device mutes the tone</b> \u2014 but not the speech. If you hear the guidance but no tone, that is almost always the reason. Run the test, and if there is no beat, switch to compatibility mode in Settings.",
+ "wiz.mix.back": "\ud83c\udfa7 Tone leads",
+ "wiz.mix.mid": "Balanced",
+ "wiz.mix.front": "\ud83d\udde3\ufe0f Guidance leads",
+ "wiz.test": "\ud83c\udfa7 Stereo and beat test",
+ "wiz.skip": "Skip",
+ "wiz.back": "Back",
+ "wiz.rerun": "\ud83e\udded First-time setup guide",
+  "book.eyebrow": "The source this app is built on",
+ "book.title": "\ud83d\udcd6 Gateway Process \u2014 The Research Book",
+ "book.desc": "Thirteen chapters (in Hebrew): framing and safety \u00b7 the mechanism and the science \u00b7 a close reading of the 1977 workbook and the 1983 report \u00b7 the full exercise map \u00b7 the 30-day program \u00b7 limits, caution and ethics. Every exercise, every frequency and every day of the journey here is derived from it.",
+ "book.open": "\ud83d\udcd6 Open the book (PDF)",
+ "book.dl": "\u2b07\ufe0f Download",
+ "book.note": "The file sits next to the app in the repository (<code>gateway-research-book.pdf</code>). If you copied only <code>index.html</code>, the button will not find it.",
  "a011": "physical",
  "a012": "A structured consciousness-training system, based on the Monroe Institute's Gateway Intermediate Workbook (1977) — a document released from the CIA archive — and on the military analysis report by Lt. Col. Wayne McDonnell (1983). From deep relaxation to expanded awareness, step by step.",
  "a013": "What is Gateway?",
@@ -3139,7 +3334,10 @@ const voiceEng = {
   },
   /* ממלא את רשימת הקולות בהגדרות */
   fillPicker(){
-    const sel = document.getElementById('setVoicePick'); if(!sel) return;
+    ['setVoicePick','wizVoicePick'].forEach(id=>this.fillOne(id));
+  },
+  fillOne(id){
+    const sel = document.getElementById(id); if(!sel) return;
     const pool = this.pool().slice().sort((a,b)=> this.quality(b)-this.quality(a) || a.name.localeCompare(b.name));
     if(!pool.length){ sel.innerHTML = '<option value="">\u2014</option>'; sel.disabled = true; return; }
     sel.disabled = false;
