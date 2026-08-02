@@ -148,9 +148,10 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:26px 0}
 .streak-day.hit{background:rgba(94,224,206,.18);border-color:var(--cyan);color:var(--cyan);font-weight:700}
 
 /* ---------- player overlay ---------- */
-#player{position:fixed;inset:0;z-index:200;background:rgba(4,7,18,.97);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+#player{position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:#040712;display:none;padding:0;text-align:center;overflow:hidden}
+body.light #player{background:#f4f2ea}
 #player.on{display:flex}
-#player .p-pane{display:none;flex-direction:column;align-items:center;width:100%;max-height:100%;overflow-y:auto;padding:70px 4px 12px}
+#player .p-pane{position:absolute;top:0;left:0;right:0;bottom:0;display:none;flex-direction:column;align-items:center;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:96px 18px 24px}
 #player .p-pane.on{display:flex}
 #player .p-orb #pOrbLbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-size:1.05rem;letter-spacing:.22em;color:var(--ink);opacity:.85;transition:opacity .6s}
 .rd-decl{border:1px solid var(--line2);background:var(--card);border-radius:var(--r-sm);padding:18px 22px;max-width:640px;text-align:start;margin-top:18px}
@@ -173,13 +174,14 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:26px 0}
 #player .p-orb.inhale{transform:scale(1.18)}
 #player .p-orb.exhale{transform:scale(.9)}
 #player .p-phase{font-size:.75rem;letter-spacing:.28em;color:var(--cyan);font-weight:600;margin-bottom:14px;min-height:1.2em}
-#player .p-text{font-family:var(--font-disp);font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.7;max-width:620px;min-height:5.2em}
+#player .p-text{font-family:var(--font-disp);font-size:clamp(1.05rem,2.4vw,1.5rem);line-height:1.65;max-width:620px;min-height:4.5em;max-height:42vh;overflow-y:auto;padding:0 4px}
+#player .p-text.long{font-size:clamp(.92rem,2vw,1.12rem);line-height:1.6}
 #player .p-timer{font-variant-numeric:tabular-nums;font-size:2.4rem;font-weight:300;color:var(--ink-dim);margin:20px 0 6px}
 #player .p-progress{width:min(440px,80vw);height:4px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-bottom:26px}
 #player .p-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--cyan));transition:width 1s linear}
 #player .p-ctrl{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-#player .emergency{position:absolute;top:22px;inset-inline-start:22px;font-size:.78rem;color:var(--ink-faint);max-width:210px;text-align:start;border:1px dashed var(--line2);border-radius:10px;padding:10px 14px}
-#player .p-close{position:absolute;top:22px;inset-inline-end:22px}
+#player .emergency{position:absolute;top:14px;inset-inline-start:14px;z-index:3;font-size:.72rem;color:var(--ink-faint);max-width:min(210px,46vw);text-align:start;border:1px dashed var(--line2);border-radius:10px;padding:8px 11px;background:var(--bg);line-height:1.45}
+#player .p-close{position:absolute;top:14px;inset-inline-end:14px;z-index:4}
 #player .p-audio{position:static;margin-top:20px;display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;font-size:.8rem;color:var(--ink-dim);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 16px;max-width:min(600px,94vw)}
 #player .p-audio input[type=range]{width:90px;accent-color:var(--cyan)}
 .beat-badge{font-size:.72rem;color:var(--gold)}
@@ -217,7 +219,7 @@ footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-si
   .grid.g2,.grid.g3{grid-template-columns:1fr}
   .day-slot{flex-wrap:wrap} .day-slot .info{flex-basis:100%}
   .goal-grid{grid-template-columns:1fr 1fr}
-  #player .p-text{font-size:1.05rem;padding:0 14px} #player .p-timer{font-size:1.6rem}
+  #player .p-text{font-size:1rem;padding:0 10px;max-height:38vh} #player .p-timer{font-size:1.6rem}
   .p-ctrl,.p-audio{flex-wrap:wrap;justify-content:center;padding:0 10px}
   .btn{padding:11px 18px;font-size:.9rem;min-height:44px}
   table{display:block;overflow-x:auto}
@@ -259,7 +261,11 @@ html[dir="ltr"] .rd-decl,html[dir="ltr"] .rd-tips,html[dir="ltr"] .rd-desc{text-
 html[dir="ltr"] .p-text{text-align:center}
 html[dir="ltr"] .notice{text-align:left}
 html[dir="ltr"] footer{text-align:center}
-</style>
+
+#player .p-foot{position:sticky;bottom:0;width:100%;display:flex;flex-direction:column;align-items:center;background:var(--bg);padding:10px 0 4px;margin-top:auto;box-shadow:0 -18px 24px -12px var(--bg)}
+#player .p-timer{margin:6px 0 6px!important}
+#player .p-progress{margin-bottom:12px!important}
+@media(max-width:760px){#player .emergency{max-width:44vw;font-size:.66rem;padding:6px 9px}#player .p-pane{padding:88px 12px 16px}#player .p-orb{width:min(150px,34vw);margin-bottom:18px}#player .p-audio{gap:7px;padding:8px 11px;font-size:.75rem}}</style>
 </head>
 <body>
 <canvas id="stars"></canvas>
@@ -521,12 +527,15 @@ html[dir="ltr"] footer{text-align:center}
 <p class="muted" data-i18n="a210" data-i18n-html="1" style="font-size:.86rem;margin-bottom:12px">חלה על <b data-i18n="a146" style="color:var(--ink)">כל התרגולים וכל ימי המסע</b>, ונשמרת למפעם הבא. רוב התרגולים מתבצעים בעיניים עצומות — הקול מאפשר לתרגל בלי להסתכל במסך. באנגלית מושמע נוסח ההנחיות המקורי של ה-Workbook משנת 1977.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
 <button class="btn btn-ghost" data-i18n="a147" id="setVoiceBtn" onclick="voiceEng.toggle()" style="padding:8px 16px;font-size:.82rem">🗣️ הנחיה קולית</button>
+<button class="btn btn-ghost" onclick="voiceEng.test()" style="padding:8px 16px;font-size:.82rem">🔍 בדוק קול במכשיר</button>
 <select id="setVoiceLang" onchange="voiceEng.setLang(this.value)" style="padding:8px 12px;font-size:.82rem;border-radius:10px;background:var(--card);color:var(--ink);border:1px solid var(--line2)">
 <option data-i18n="a148" value="he">🗣️ קול רך בעברית</option>
 <option value="en">🗣️ Soft English voice</option>
 </select>
 <span class="beat-badge" id="setVoiceName" style="opacity:.75"></span>
 </div>
+<p class="faint" id="voiceDiag" style="display:none;font-size:.84rem;margin-top:12px;line-height:1.7;border-inline-start:2px solid var(--cyan);padding-inline-start:12px"></p>
+<p class="faint" style="font-size:.8rem;margin-top:10px">📱 באייפון: Chrome ו-Firefox רצים על מנוע הדפדפן של Safari, והתמיכה בהקראה שם חלקית. אם הקול שותק — פתח את האפליקציה ב-Safari. ודא גם שמתג ההשתקה בצד המכשיר אינו פעיל: הוא משתיק גם את התדר וגם את ההקראה.</p>
 </div>
 <div class="card mt2" style="max-width:620px;margin-inline:auto;text-align:start">
 <h3 data-i18n="set.reset.title" style="margin-bottom:6px">🧹 איפוס נתונים</h3>
@@ -583,6 +592,7 @@ html[dir="ltr"] footer{text-align:center}
 <div class="p-orb" id="pOrb"><span id="pOrbLbl"></span></div>
 <div class="p-phase" id="pPhase"></div>
 <div class="p-text" id="pText"></div>
+<div class="p-foot">
 <div class="p-timer" id="pTimer">0:00</div>
 <div class="p-progress"><i id="pBar"></i></div>
 <div class="p-ctrl">
@@ -597,6 +607,7 @@ html[dir="ltr"] footer{text-align:center}
 <input id="beatVol" max="100" min="0" oninput="audioEng.setVol(this.value/100)" type="range" value="25"/>
 <span class="beat-badge" data-i18n="a171" style="opacity:.7;flex-basis:100%;text-align:center">🎧 אוזניות סטריאו בלבד · ודא ש"מיזוג למונו" כבוי בנגישות</span>
 </div>
+</div><!-- /p-foot -->
 </div>
 <!-- תיעוד מיידי בסיום -->
 <div class="p-pane" id="pDone">
@@ -950,6 +961,8 @@ const ui = {
   }
 };
 document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>ui.go(t.dataset.s));
+/* מונע התנגשות בין אובייקטים גלובליים לבין אלמנטים בעלי id זהה */
+setTimeout(()=>{ try{ ['ui','theme','store'].forEach(n=>{ if(typeof window[n]!=='object' && typeof eval(n)==='object') window[n]=eval(n); }); }catch(e){} },0);
 
 /* ---------- תרגום ההנחיות לאנגלית — לקול האנגלי (ההצהרה בנוסח המקורי של 1977) ---------- */
 const EN_STEPS = {
@@ -1191,6 +1204,7 @@ const audioEng = {
   badge(){ const el=document.getElementById('beatInfo'); if(!el) return;
     el.textContent = this.cur ? `${this.cur.b}Hz beat · גל נושא ${this.cur.c}Hz` : ''; }
 };
+window.audioEng = audioEng;
 
 
 
@@ -2088,6 +2102,7 @@ const i18n = {
     this._obs.observe(document.body, {childList:true, subtree:true});
   }
 };
+window.i18n = i18n;
 
 /* ---------- גיבוי מקומי — בחירת ספרייה, ייצוא, שחזור ---------- */
 const backup = {
@@ -2238,6 +2253,7 @@ const backup = {
     }
   }
 };
+window.backup = backup;
 
 /* ---------- הנחיה קולית — קול רך, רק כשרלוונטי ---------- */
 const voiceEng = {
@@ -2247,6 +2263,18 @@ const voiceEng = {
     he: [/Carmit/i, /Asaf/i, /he[-_]IL/i],
     en: [/Samantha/i, /Ava/i, /Serena/i, /Karen/i, /Moira/i, /Fiona/i, /Daniel/i,
          /Google UK English Female/i, /Google US English/i, /Zira/i, /Hazel/i, /Aria/i, /Jenny/i, /Libby/i]
+  },
+  primed:false,
+  /* iOS/Safari לא מרשים דיבור שלא בתוך אירוע מגע — משחררים את המנוע בלחיצה עצמה */
+  prime(){
+    if(this.primed || !('speechSynthesis' in window)) return;
+    try{
+      const u = new SpeechSynthesisUtterance(' ');
+      u.volume = 0; u.rate = 10;
+      if(this.v) u.voice = this.v;
+      speechSynthesis.speak(u);
+      this.primed = true;
+    }catch(e){}
   },
   init(){
     try{
@@ -2277,7 +2305,7 @@ const voiceEng = {
   setLang(l){
     this.lang = l;
     try{ localStorage.setItem('gw_voice_lang', l); }catch(e){}
-    this.stop(); this.select();
+    this.stop(); this.select(); this.primed=false; this.prime();
   },
   /* טקסט לפי שפת הקול — ההנחיה באנגלית מגיעה מ-EN_STEPS */
   txt(t){ return (this.lang === 'en' && typeof EN_STEPS !== 'undefined' && EN_STEPS[t]) ? EN_STEPS[t] : t; },
@@ -2318,7 +2346,7 @@ const voiceEng = {
   toggle(){
     this.on = !this.on;
     try{ localStorage.setItem('gw_voice', this.on?'1':'0'); }catch(e){}
-    if(!this.on) this.stop();
+    if(!this.on) this.stop(); else this.prime();
     this.badge();
   },
   /* צליל מעבר עדין — פעמון סינוס קצר, גם כשאין קול עברי */
@@ -2346,6 +2374,7 @@ const voiceEng = {
   /* speak: מנקה סימני עיצוב, מדבר לאט ורך, ומנמיך את התדר בזמן הדיבור */
   speak(text, opts={}){
     if(!this.on || !text) return;
+    if(!this.v && 'speechSynthesis' in window){ this.voices = speechSynthesis.getVoices(); if(this.voices.length) this.select(); }
     if(this.chimeOnly || !this.v){ if(!opts.quietChime) this.chime(); return; }
     try{
       speechSynthesis.cancel();
@@ -2364,8 +2393,47 @@ const voiceEng = {
   stop(){
     try{ if('speechSynthesis' in window) speechSynthesis.cancel(); }catch(e){}
     this.speaking = false; this.duck(false);
+  },
+  /* בדיקה עצמית — מדווחת מה באמת קורה במכשיר הזה */
+  test(){
+    const out = document.getElementById('voiceDiag');
+    const say = t => { if(out){ out.style.display=''; out.innerHTML = t; } };
+    if(!('speechSynthesis' in window)){
+      say('\u274C \u05D4\u05D3\u05E4\u05D3\u05E4\u05DF \u05D4\u05D6\u05D4 \u05DC\u05D0 \u05EA\u05D5\u05DE\u05DA \u05D1\u05D4\u05E7\u05E8\u05D0\u05D4 (Web Speech API).');
+      return;
+    }
+    this.prime();
+    const all = speechSynthesis.getVoices() || [];
+    this.voices = all; this.select();
+    const he = all.filter(v=>/^(he|iw)/i.test(v.lang)).length;
+    const en = all.filter(v=>/^en/i.test(v.lang)).length;
+    let started = false;
+    const phrase = this.lang==='en' ? 'Voice guidance is working.' : '\u05D4\u05D4\u05E0\u05D7\u05D9\u05D4 \u05D4\u05E7\u05D5\u05DC\u05D9\u05EA \u05E4\u05D5\u05E2\u05DC\u05EA.';
+    try{
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(phrase);
+      if(this.v){ u.voice = this.v; u.lang = this.v.lang; }
+      u.rate=.9; u.pitch=.95; u.volume=1;
+      u.onstart = ()=>{ started = true; };
+      speechSynthesis.speak(u);
+    }catch(e){}
+    setTimeout(()=>{
+      const L = this.lang==='en';
+      const rows = [
+        (L?'Voices found on this device: ':'\u05E7\u05D5\u05DC\u05D5\u05EA \u05E9\u05E0\u05DE\u05E6\u05D0\u05D5 \u05D1\u05DE\u05DB\u05E9\u05D9\u05E8: ') + '<b>'+all.length+'</b> (HE: '+he+' \u00B7 EN: '+en+')',
+        (L?'Selected voice: ':'\u05D4\u05E7\u05D5\u05DC \u05E9\u05E0\u05D1\u05D7\u05E8: ') + '<b>' + (this.v ? this.v.name+' \u2014 '+this.v.lang : (L?'none':'\u05D0\u05D9\u05DF')) + '</b>',
+        started
+          ? (L?'\u2705 Speech started. If you heard nothing, check the mute switch on the side of the device and the media volume.'
+              :'\u2705 \u05D4\u05D4\u05E7\u05E8\u05D0\u05D4 \u05D9\u05E6\u05D0\u05D4 \u05DC\u05D3\u05E8\u05DA. \u05D0\u05DD \u05DC\u05D0 \u05E9\u05DE\u05E2\u05EA \u2014 \u05D1\u05D3\u05D5\u05E7 \u05D0\u05EA \u05DE\u05EA\u05D2 \u05D4\u05D4\u05E9\u05EA\u05E7\u05D4 \u05D1\u05E6\u05D3 \u05D4\u05DE\u05DB\u05E9\u05D9\u05E8 \u05D5\u05D0\u05EA \u05E2\u05D5\u05E6\u05DE\u05EA \u05D4\u05DE\u05D3\u05D9\u05D4.')
+          : (L?'\u26A0\uFE0F The browser did not start speech. On iPhone, Chrome and Firefox run on Safari\u2019s engine and speech support there is partial \u2014 try opening the app in Safari itself.'
+              :'\u26A0\uFE0F \u05D4\u05D3\u05E4\u05D3\u05E4\u05DF \u05DC\u05D0 \u05D4\u05E4\u05E2\u05D9\u05DC \u05D0\u05EA \u05D4\u05D4\u05E7\u05E8\u05D0\u05D4. \u05D1\u05D0\u05D9\u05D9\u05E4\u05D5\u05DF, Chrome \u05D5-Firefox \u05E8\u05E6\u05D9\u05DD \u05E2\u05DC \u05D4\u05DE\u05E0\u05D5\u05E2 \u05E9\u05DC Safari \u05D5\u05D4\u05EA\u05DE\u05D9\u05DB\u05D4 \u05E9\u05DD \u05D7\u05DC\u05E7\u05D9\u05EA \u2014 \u05E0\u05E1\u05D4 \u05DC\u05E4\u05EA\u05D5\u05D7 \u05D0\u05EA \u05D4\u05D0\u05E4\u05DC\u05D9\u05E7\u05E6\u05D9\u05D4 \u05D1-Safari.')
+      ];
+      if(!he && this.lang==='he') rows.push('\u2139\uFE0F \u05DC\u05D0 \u05E0\u05DE\u05E6\u05D0 \u05E7\u05D5\u05DC \u05E2\u05D1\u05E8\u05D9 \u2014 \u05D0\u05E4\u05E9\u05E8 \u05DC\u05D1\u05D7\u05D5\u05E8 \u05D0\u05E0\u05D2\u05DC\u05D9\u05EA \u05DE\u05E2\u05DC\u05D4.');
+      say(rows.join('<br>'));
+    }, 1400);
   }
 };
+window.voiceEng = voiceEng;
 
 /* ---------- guided session player ---------- */
 const player = {
@@ -2391,20 +2459,24 @@ const player = {
   pane(id){ ['pReady','pSession','pDone'].forEach(p=>document.getElementById(p).classList.toggle('on', p===id)); },
   begin(){
     this.state='run'; this.pane('pSession');
-    voiceEng.init(); voiceEng.badge();
+    voiceEng.init(); voiceEng.badge(); voiceEng.prime();
     if(audioEng.cur && !audioEng.on){ audioEng.start(audioEng.cur.c, audioEng.cur.b); document.getElementById('beatBtn').textContent='⏸ השתק תדר'; }
     this.show();
   },
   show(){
     const s = this.steps[this.idx];
     document.getElementById('pPhase').textContent = `${this.exName} · ${s.ph} · שלב ${this.idx+1}/${this.steps.length}`;
-    document.getElementById('pText').textContent = s.t;
+    const pt = document.getElementById('pText');
+    pt.textContent = s.t;
+    pt.classList.toggle('long', (s.t||'').length > 240);
+    pt.scrollTop = 0;
     this.left = s.s;
     if(s.beat && audioEng.on) audioEng.retune(s.beat.c, s.beat.b);
     else if(s.beat){ audioEng.cur={c:s.beat.c,b:s.beat.b}; audioEng.badge(); }
     const orb = document.getElementById('pOrb');
     orb.classList.remove('inhale','exhale');
     const lbl=document.getElementById('pOrbLbl');
+    const pane=document.getElementById('pSession'); if(pane) pane.scrollTop=0;
     if(s.br){ this.breathe(orb, s.brSec); } else { this.brTimer && clearInterval(this.brTimer); lbl.textContent=''; }
     /* הנחיה קולית: צליל מעבר עדין → השהיה קצרה → קריאת ההנחיה בקול רך */
     voiceEng.stop();
@@ -2430,8 +2502,9 @@ const player = {
         voiceEng.speak(voiceEng.lang==='en' ? (ph===0?'Inhale':'Exhale') : (ph===0?'שאיפה':'נשיפה'), {rate:.75, volume:.55, quietChime:true, raw:true});
       cycles++; ph=1-ph; };
     this.brTimer && clearInterval(this.brTimer);
-    /* המחזור מתחיל רק אחרי שההנחיה המדוברת הסתיימה */
-    setTimeout(()=>{ if(document.getElementById('player').classList.contains('on')) cyc(); }, 300);
+    /* המחזור הוויזואלי מתחיל מיד; הרמז הקולי ממתין להנחיה המדוברת */
+    const firstDelay = voiceEng.on && !voiceEng.chimeOnly ? 2600 : 300;
+    setTimeout(()=>{ if(document.getElementById('player').classList.contains('on')) cyc(); }, firstDelay);
     this.brTimer = setInterval(cyc, (sec||4.5)*1000);
   },
   tick(first){
@@ -2485,6 +2558,7 @@ const player = {
   },
   qskip(){ this.state='idle'; document.getElementById('player').classList.remove('on'); }
 };
+window.player = player;   /* id="player" של האלמנט לא יסתיר את האובייקט */
 
 /* ---------- modal ---------- */
 function modal(title, body, actionLabel, actionFn){
@@ -2653,6 +2727,7 @@ const journey = {
     box.innerHTML = html;
   }
 };
+window.journey = journey;
 
 journey.render();
 
@@ -2808,6 +2883,7 @@ const journal = {
     btn.disabled=false; btn.textContent='🤖 ניתוח AI לפי המחקר';
   }
 };
+window.journal = journal;
 journal.render();
 (function(){ const d=new Date();
   document.getElementById('jDate').value=d.toISOString().slice(0,10);
