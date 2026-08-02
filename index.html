@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#090d1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gateway">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20512%20512%27%3E%3Crect%20width=%27512%27%20height=%27512%27%20rx=%2796%27%20fill=%27%23090d1a%27/%3E%3Ccircle%20cx=%27256%27%20cy=%27256%27%20r=%27190%27%20stroke=%27%235ee0ce%27%20stroke-width=%2716%27%20fill=%27none%27%20opacity=%27.85%27/%3E%3Ccircle%20cx=%27256%27%20cy=%27256%27%20r=%27120%27%20stroke=%27%238b7bd8%27%20stroke-width=%2716%27%20fill=%27none%27/%3E%3Ccircle%20cx=%27256%27%20cy=%27256%27%20r=%2750%27%20fill=%27%23e0b458%27/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20512%20512%27%3E%3Crect%20width=%27512%27%20height=%27512%27%20rx=%2796%27%20fill=%27%23090d1a%27/%3E%3Ccircle%20cx=%27256%27%20cy=%27256%27%20r=%27190%27%20stroke=%27%235ee0ce%27%20stroke-width=%2716%27%20fill=%27none%27%20opacity=%27.85%27/%3E%3Ccircle%20cx=%27256%27%20cy=%27256%27%20r=%27120%27%20stroke=%27%238b7bd8%27%20stroke-width=%2716%27%20fill=%27none%27/%3E%3Ccircle%20cx=%27256%27%20cy=%27256%27%20r=%2750%27%20fill=%27%23e0b458%27/%3E%3C/svg%3E">
+<link rel="manifest" href='data:application/manifest+json,%7B%22name%22%3A%20%22Gateway%20%E2%80%94%20%D7%90%D7%99%D7%9E%D7%95%D7%9F%20%D7%AA%D7%95%D7%93%D7%A2%D7%94%20%D7%A9%D7%99%D7%98%D7%AA%D7%99%22%2C%20%22short_name%22%3A%20%22Gateway%22%2C%20%22lang%22%3A%20%22he%22%2C%20%22dir%22%3A%20%22rtl%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22start_url%22%3A%20%22.%22%2C%20%22background_color%22%3A%20%22%23090d1a%22%2C%20%22theme_color%22%3A%20%22%23090d1a%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/svg%2Bxml%2C%253Csvg%2520xmlns%3D%2527http%3A//www.w3.org/2000/svg%2527%2520viewBox%3D%25270%25200%2520512%2520512%2527%253E%253Crect%2520width%3D%2527512%2527%2520height%3D%2527512%2527%2520rx%3D%252796%2527%2520fill%3D%2527%2523090d1a%2527/%253E%253Ccircle%2520cx%3D%2527256%2527%2520cy%3D%2527256%2527%2520r%3D%2527190%2527%2520stroke%3D%2527%25235ee0ce%2527%2520stroke-width%3D%252716%2527%2520fill%3D%2527none%2527%2520opacity%3D%2527.85%2527/%253E%253Ccircle%2520cx%3D%2527256%2527%2520cy%3D%2527256%2527%2520r%3D%2527120%2527%2520stroke%3D%2527%25238b7bd8%2527%2520stroke-width%3D%252716%2527%2520fill%3D%2527none%2527/%253E%253Ccircle%2520cx%3D%2527256%2527%2520cy%3D%2527256%2527%2520r%3D%252750%2527%2520fill%3D%2527%2523e0b458%2527/%253E%253C/svg%253E%22%2C%20%22sizes%22%3A%20%22192x192%20512x512%22%2C%20%22type%22%3A%20%22image/svg%2Bxml%22%2C%20%22purpose%22%3A%20%22any%22%7D%5D%7D'>
+<title>GATEWAY — אימון תודעה שיטתי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;600;800&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060a18; --bg2:#0a1024; --bg3:#101832;
+  --card:rgba(20,28,56,.72); --card-solid:#131c3a;
+  --line:rgba(130,150,220,.16); --line2:rgba(130,150,220,.30);
+  --ink:#e8ecfa; --ink-dim:#9aa6cc; --ink-faint:#5f6b94;
+  --violet:#8b7bd8; --violet-deep:#5b4bb0;
+  --cyan:#5ee0ce; --gold:#e0b458; --rose:#e07a9a; --green:#6fd598;
+  --danger:#e0645e;
+  --r:18px; --r-sm:12px;
+  --shadow:0 10px 40px rgba(0,0,0,.45);
+  --font-body:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif; --font-disp:'Frank Ruhl Libre','Times New Roman',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body); background:var(--bg); color:var(--ink);
+  min-height:100vh; line-height:1.65; overflow-x:hidden;
+  background-image:
+    radial-gradient(1200px 800px at 85% -10%, rgba(91,75,176,.22), transparent 60%),
+    radial-gradient(900px 700px at -10% 30%, rgba(94,224,206,.07), transparent 55%),
+    radial-gradient(700px 500px at 50% 110%, rgba(224,180,88,.06), transparent 60%);
+  background-attachment:fixed;
+}
+/* starfield */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6}
+.app{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 120px}
+
+/* ---------- header ---------- */
+header{padding:34px 0 10px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .sigil{width:46px;height:46px;position:relative;flex:none}
+.brand .sigil svg{width:100%;height:100%}
+.brand h1{font-family:var(--font-disp);font-weight:800;font-size:1.7rem;letter-spacing:.06em;line-height:1.1}
+.brand h1 span{color:var(--cyan)}
+.brand small{display:block;font-family:var(--font-body);font-weight:400;font-size:.72rem;color:var(--ink-dim);letter-spacing:.14em;margin-top:2px}
+.save-chip{font-size:.72rem;color:var(--ink-faint);border:1px solid var(--line);border-radius:99px;padding:4px 12px;transition:.3s}
+.save-chip.saved{color:var(--green);border-color:rgba(111,213,152,.4)}
+
+/* ---------- nav ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(6,10,24,.82);backdrop-filter:blur(14px);margin:14px -20px 26px;padding:10px 20px;border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.tab{flex:none;border:1px solid transparent;background:transparent;color:var(--ink-dim);font-family:var(--font-body);font-size:.88rem;font-weight:500;padding:8px 16px;border-radius:99px;cursor:pointer;transition:.25s;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab.active{background:linear-gradient(135deg,rgba(139,123,216,.22),rgba(94,224,206,.12));border-color:var(--line2);color:var(--ink)}
+.tab .dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-inline-start:7px;vertical-align:2px}
+
+/* ---------- generic ---------- */
+.screen{display:none;animation:fadeUp .45s ease}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;backdrop-filter:blur(8px)}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;color:var(--cyan);font-weight:600;margin-bottom:10px}
+h2{font-family:var(--font-disp);font-weight:600;font-size:1.85rem;line-height:1.25;margin-bottom:14px}
+h3{font-family:var(--font-disp);font-weight:600;font-size:1.2rem;margin-bottom:8px}
+p.lead{color:var(--ink-dim);font-size:1.02rem;max-width:64ch}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:var(--font-body);font-weight:600;font-size:.95rem;padding:12px 24px;border-radius:99px;transition:.25s}
+.btn-primary{background:linear-gradient(135deg,var(--violet-deep),var(--violet));color:#fff;box-shadow:0 6px 24px rgba(91,75,176,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(91,75,176,.55)}
+.btn-ghost{background:transparent;color:var(--ink-dim);border:1px solid var(--line2)}
+.btn-ghost:hover{color:var(--ink);border-color:var(--violet)}
+.btn-cyan{background:linear-gradient(135deg,#2a9d8f,var(--cyan));color:#05221e}
+.btn-danger{background:transparent;color:var(--danger);border:1px solid rgba(224,100,94,.4)}
+.pill{display:inline-block;font-size:.72rem;font-weight:600;padding:3px 12px;border-radius:99px;border:1px solid var(--line2);color:var(--ink-dim)}
+.mt{margin-top:18px}.mt2{margin-top:30px}.mb{margin-bottom:18px}
+.muted{color:var(--ink-dim)}.faint{color:var(--ink-faint);font-size:.85rem}
+hr.sep{border:none;border-top:1px solid var(--line);margin:26px 0}
+
+/* ---------- hero ---------- */
+.hero{padding:44px 0 10px;display:grid;grid-template-columns:1.25fr .9fr;gap:36px;align-items:center}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.hero h2{font-size:clamp(2rem,4.6vw,3.1rem);font-weight:800}
+.hero h2 em{font-style:normal;background:linear-gradient(120deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .stamp{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;letter-spacing:.12em;color:var(--gold);border:1px solid rgba(224,180,88,.35);border-radius:6px;padding:5px 12px;margin-bottom:18px;font-weight:600}
+.orb-wrap{display:flex;justify-content:center}
+.orb{width:min(270px,60vw);aspect-ratio:1;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 38% 32%, rgba(94,224,206,.55), rgba(139,123,216,.35) 45%, rgba(10,16,36,.9) 75%);
+  box-shadow:0 0 80px rgba(139,123,216,.35), inset 0 0 60px rgba(94,224,206,.15);
+  animation:breathe 9s ease-in-out infinite}
+.orb::after{content:"";position:absolute;inset:-14%;border-radius:50%;border:1px solid rgba(94,224,206,.25);animation:breathe 9s ease-in-out infinite reverse}
+@keyframes breathe{0%,100%{transform:scale(.94)}50%{transform:scale(1.05)}}
+
+/* ---------- focus map ---------- */
+.fmap{display:flex;flex-direction:column;gap:0;position:relative;padding-inline-start:34px}
+.fmap::before{content:"";position:absolute;right:12px;top:14px;bottom:14px;width:2px;background:linear-gradient(180deg,var(--gold),var(--violet),var(--cyan))}
+.fnode{position:relative;padding:16px 0 16px}
+.fnode::before{content:"";position:absolute;right:-28px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--nc,var(--cyan));box-shadow:0 0 14px var(--nc,var(--cyan))}
+.fnode .fcard{cursor:pointer;transition:.25s;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;background:var(--card)}
+.fnode .fcard:hover{border-color:var(--nc,var(--cyan));transform:translateX(-4px)}
+.fnode h4{font-family:var(--font-disp);font-size:1.1rem;display:flex;align-items:baseline;gap:10px}
+.fnode h4 .code{color:var(--nc,var(--cyan));font-weight:800;letter-spacing:.04em}
+.fnode .fdetail{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--ink-dim);font-size:.92rem}
+.fnode.open .fdetail{max-height:400px;padding-top:10px}
+
+/* ---------- exercise cards ---------- */
+.ex-card{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:var(--r);padding:22px;background:var(--card);transition:.25s;position:relative;overflow:hidden}
+.ex-card::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--ac,var(--violet))}
+.ex-card:hover{border-color:var(--line2);transform:translateY(-3px);box-shadow:var(--shadow)}
+.ex-card .ex-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ex-card h3{margin:0}
+.ex-card .meta{display:flex;gap:8px;flex-wrap:wrap}
+.ex-card p{color:var(--ink-dim);font-size:.9rem;flex:1}
+.ex-card .btn{align-self:flex-start;padding:9px 20px;font-size:.87rem}
+
+/* ---------- goal wizard ---------- */
+.goal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.goal{border:1px solid var(--line);border-radius:var(--r);padding:22px;background:var(--card);cursor:pointer;transition:.25s;text-align:center}
+.goal:hover,.goal.sel{border-color:var(--cyan);box-shadow:0 0 24px rgba(94,224,206,.15);transform:translateY(-3px)}
+.goal .gi{font-size:1.9rem;margin-bottom:8px}
+.goal h3{font-size:1.05rem}
+.goal p{font-size:.82rem;color:var(--ink-dim)}
+.protocol-view{border:1px solid var(--line2);border-radius:var(--r);padding:26px;background:linear-gradient(160deg,rgba(91,75,176,.14),rgba(94,224,206,.05))}
+.proto-step{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.proto-step:last-child{border-bottom:none}
+.proto-step .n{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(139,123,216,.2);border:1px solid var(--violet);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--violet)}
+.proto-step .t{font-size:.78rem;color:var(--gold);white-space:nowrap;margin-inline-start:auto}
+
+/* ---------- daily ---------- */
+.day-slot{display:flex;align-items:center;gap:16px;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;background:var(--card);margin-bottom:12px}
+.day-slot .ic{font-size:1.5rem;flex:none}
+.day-slot .info{flex:1}
+.day-slot .info b{display:block}
+.day-slot .info span{font-size:.83rem;color:var(--ink-dim)}
+.day-slot.done{border-color:rgba(111,213,152,.45);background:rgba(111,213,152,.06)}
+.streak-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.streak-day{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--ink-faint)}
+.streak-day.hit{background:rgba(94,224,206,.18);border-color:var(--cyan);color:var(--cyan);font-weight:700}
+
+/* ---------- player overlay ---------- */
+#player{position:fixed;inset:0;z-index:200;background:rgba(4,7,18,.97);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+#player.on{display:flex}
+#player .p-pane{display:none;flex-direction:column;align-items:center;width:100%;max-height:100%;overflow-y:auto;padding:70px 4px 12px}
+#player .p-pane.on{display:flex}
+#player .p-orb #pOrbLbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-size:1.05rem;letter-spacing:.22em;color:var(--ink);opacity:.85;transition:opacity .6s}
+.rd-decl{border:1px solid var(--line2);background:var(--card);border-radius:var(--r-sm);padding:18px 22px;max-width:640px;text-align:start;margin-top:18px}
+.rd-desc{max-width:640px;text-align:start;margin-top:14px;color:var(--ink-dim);font-size:.92rem;line-height:1.7}
+.rd-tips{border:1px solid var(--line2);background:var(--card);border-radius:var(--r-sm);padding:16px 20px;max-width:640px;text-align:start;margin-top:14px;font-size:.88rem}
+.rd-tips ul{margin:8px 0 0;padding-inline-start:18px;display:grid;gap:6px}
+.rd-tips li{color:var(--ink-dim);line-height:1.6}
+.rd-tips li::marker{color:var(--cyan)}
+.rd-decl b{color:var(--gold)}
+.rd-decl .d{margin-top:8px;line-height:1.8;font-size:.95rem}
+.rd-meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.q-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;max-width:680px;width:100%;text-align:start;margin-top:16px}
+.q-form label{display:block;font-size:.72rem;color:var(--ink-dim);letter-spacing:.06em;margin-bottom:4px}
+.q-form input,.q-form select,.q-form textarea{width:100%;background:var(--bg3);border:1px solid var(--line2);border-radius:10px;color:var(--ink);padding:9px 12px;font-family:var(--font-body);font-size:.9rem}
+.q-form .full{grid-column:1/-1}
+.q-form textarea{min-height:64px;resize:vertical}
+#player .p-orb{width:min(230px,50vw);aspect-ratio:1;border-radius:50%;margin-bottom:34px;position:relative;
+  background:radial-gradient(circle at 38% 32%, rgba(94,224,206,.6), rgba(139,123,216,.4) 45%, rgba(10,16,36,.95) 78%);
+  box-shadow:0 0 90px rgba(139,123,216,.45);transition:transform 4s ease-in-out}
+#player .p-orb.inhale{transform:scale(1.18)}
+#player .p-orb.exhale{transform:scale(.9)}
+#player .p-phase{font-size:.75rem;letter-spacing:.28em;color:var(--cyan);font-weight:600;margin-bottom:14px;min-height:1.2em}
+#player .p-text{font-family:var(--font-disp);font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.7;max-width:620px;min-height:5.2em}
+#player .p-timer{font-variant-numeric:tabular-nums;font-size:2.4rem;font-weight:300;color:var(--ink-dim);margin:20px 0 6px}
+#player .p-progress{width:min(440px,80vw);height:4px;background:var(--bg3);border-radius:99px;overflow:hidden;margin-bottom:26px}
+#player .p-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--cyan));transition:width 1s linear}
+#player .p-ctrl{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+#player .emergency{position:absolute;top:22px;inset-inline-start:22px;font-size:.78rem;color:var(--ink-faint);max-width:210px;text-align:start;border:1px dashed var(--line2);border-radius:10px;padding:10px 14px}
+#player .p-close{position:absolute;top:22px;inset-inline-end:22px}
+#player .p-audio{position:static;margin-top:20px;display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px;font-size:.8rem;color:var(--ink-dim);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 16px;max-width:min(600px,94vw)}
+#player .p-audio input[type=range]{width:90px;accent-color:var(--cyan)}
+.beat-badge{font-size:.72rem;color:var(--gold)}
+
+/* ---------- journal ---------- */
+.j-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.j-form .full{grid-column:1/-1}
+label{display:block;font-size:.8rem;color:var(--ink-dim);margin-bottom:5px;font-weight:500}
+input,select,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r-sm);padding:11px 14px;color:var(--ink);font-family:var(--font-body);font-size:.92rem;transition:.2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--violet)}
+textarea{min-height:96px;resize:vertical}
+.j-entry{border:1px solid var(--line);border-radius:var(--r-sm);padding:18px 20px;background:var(--card);margin-bottom:12px}
+.j-entry .j-head{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.j-entry .j-head b{color:var(--cyan)}
+.j-entry p{font-size:.88rem;color:var(--ink-dim);white-space:pre-wrap}
+
+/* ---------- modal ---------- */
+#modal{position:fixed;inset:0;z-index:150;background:rgba(4,7,18,.8);display:none;align-items:center;justify-content:center;padding:20px}
+#modal.on{display:flex}
+#modal .m-box{max-width:640px;width:100%;max-height:84vh;overflow-y:auto;background:var(--card-solid);border:1px solid var(--line2);border-radius:var(--r);padding:30px}
+#modal .m-box h3{font-size:1.4rem}
+#modal .m-box .m-body{color:var(--ink-dim);font-size:.94rem;margin-top:12px;white-space:pre-line}
+
+.notice{border:1px solid rgba(224,180,88,.35);background:rgba(224,180,88,.07);border-radius:var(--r-sm);padding:16px 20px;font-size:.87rem;color:var(--ink-dim)}
+.notice b{color:var(--gold)}
+footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-faint);line-height:1.8}
+@media(max-width:640px){
+  .card{padding:18px} h2{font-size:1.45rem} h3{font-size:1.05rem}
+  header{padding:14px 16px} .brand h1{font-size:1.3rem}
+  .nav-inner{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-inline:12px}
+  .nav-inner::-webkit-scrollbar{display:none}
+  .app{padding:0 14px 60px}
+  .j-form{grid-template-columns:1fr 1fr} .j-form .full{grid-column:1/-1}
+  .j-form textarea{min-height:70px}
+  .grid.g2,.grid.g3{grid-template-columns:1fr}
+  .day-slot{flex-wrap:wrap} .day-slot .info{flex-basis:100%}
+  .goal-grid{grid-template-columns:1fr 1fr}
+  #player .p-text{font-size:1.05rem;padding:0 14px} #player .p-timer{font-size:1.6rem}
+  .p-ctrl,.p-audio{flex-wrap:wrap;justify-content:center;padding:0 10px}
+  .btn{padding:11px 18px;font-size:.9rem;min-height:44px}
+  table{display:block;overflow-x:auto}
+}
+@supports(padding:env(safe-area-inset-bottom)){ body{padding-bottom:env(safe-area-inset-bottom)} }
+
+/* ---------- accordion ---------- */
+details.acc{border:1px solid var(--line);border-radius:var(--r-sm);background:var(--card);margin-bottom:12px;overflow:hidden}
+details.acc summary{cursor:pointer;padding:16px 20px;font-weight:600;font-family:var(--font-disp);font-size:1.05rem;list-style:none;display:flex;gap:10px;align-items:center}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";margin-inline-start:auto;color:var(--cyan);font-size:1.25rem;font-family:var(--font-body)}
+details.acc[open] summary::after{content:"–"}
+details.acc .acc-body{padding:0 20px 18px;color:var(--ink-dim);font-size:.92rem;line-height:1.75}
+details.acc .acc-body b{color:var(--ink)}
+
+/* ---------- light theme ---------- */
+body.light{
+  --bg:#f4f2ea; --bg2:#ebe8dc; --bg3:#dfdccc;
+  --card:rgba(255,255,255,.78); --card-solid:#ffffff;
+  --line:rgba(55,65,115,.15); --line2:rgba(55,65,115,.30);
+  --ink:#20263f; --ink-dim:#555e82; --ink-faint:#8a91ad;
+  --violet:#6a58c8; --violet-deep:#5b4bb0;
+  --cyan:#0e8f80; --gold:#a97c1f; --rose:#c0507a; --green:#2f9c62;
+  --shadow:0 10px 30px rgba(40,50,90,.12);
+  background-image:
+    radial-gradient(1200px 800px at 85% -10%, rgba(106,88,200,.12), transparent 60%),
+    radial-gradient(900px 700px at -10% 30%, rgba(14,143,128,.08), transparent 55%),
+    radial-gradient(700px 500px at 50% 110%, rgba(169,124,31,.07), transparent 60%);
+}
+body.light #stars{opacity:.12}
+body.light nav{background:rgba(244,242,234,.86)}
+body.light #player{background:rgba(244,242,234,.98)}
+body.light .orb, body.light #player .p-orb{box-shadow:0 0 70px rgba(106,88,200,.30), inset 0 0 60px rgba(14,143,128,.12)}
+body.light .btn-cyan{color:#04302a}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<div class="app">
+
+<header>
+  <div class="brand">
+    <div class="sigil">
+      <svg viewBox="0 0 46 46" fill="none"><circle cx="23" cy="23" r="21" stroke="#5ee0ce" stroke-width="1.4" opacity=".8"/><circle cx="23" cy="23" r="13.5" stroke="#8b7bd8" stroke-width="1.4"/><circle cx="23" cy="23" r="5.5" fill="#e0b458" opacity=".9"/></svg>
+    </div>
+    <h1>GATE<span>WAY</span><small>אימון תודעה שיטתי · על בסיס מסמכי ה-CIA המשוחררים</small></h1>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="btn btn-ghost" id="themeBtn" style="padding:8px 16px;font-size:.8rem" onclick="theme.toggle()">☀️ מצב יום</button>
+    <span class="save-chip" id="saveChip">מוכן</span>
+  </div>
+</header>
+
+<nav><div class="nav-inner">
+  <button class="tab active" data-s="home">הקדמה</button>
+  <button class="tab" data-s="journey">המסע · 30 יום</button>
+  <button class="tab" data-s="lib">ספריית התרגולים</button>
+  <button class="tab" data-s="goal">לפי מטרה</button>
+  <button class="tab" data-s="journal">ניתוח</button>
+  <button class="tab" data-s="report">ידע ומקורות</button>
+</div></nav>
+
+<!-- ============ HOME ============ -->
+<section class="screen active" id="s-home">
+  <div class="hero">
+    <div>
+      <span class="stamp">◈ APPROVED FOR RELEASE 2003/09/10 · CIA-RDP96-00788R001700210023-7</span>
+      <h2>אני יותר<br>מגופי <em>הפיזי</em></h2>
+      <p class="lead mt">מערכת אימון תודעה מובנית, המבוססת על ה-Gateway Intermediate Workbook של מכון מונרו (1977) — מסמך ששוחרר מארכיון ה-CIA — ועל דוח הניתוח הצבאי של סא"ל וויין מקדונל (1983). מהרפיה עמוקה ועד מודעות מורחבת, צעד אחר צעד.</p>
+      <div class="mt2" style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="ui.go('journey')">התחל את המסע · 30 יום ←</button>
+        <button class="btn btn-ghost" onclick="ui.go('lib')">כל התרגולים</button>
+      </div>
+    </div>
+    <div class="orb-wrap"><div class="orb"></div></div>
+  </div>
+
+  <hr class="sep">
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="eyebrow">מה זה Gateway?</div>
+      <h3>מערכת, לא מדיטציה</h3>
+      <p class="muted" style="font-size:.93rem">Gateway היא תוכנית אימון שפיתח רוברט מונרו במכון מונרו למדעים יישומיים בווירג'יניה. בניגוד למדיטציה חופשית, זו מערכת מדורגת עם "מפה" של מצבי תודעה (רמות Focus), פרוטוקולי כניסה ויציאה מדויקים, ארגז כלים מנטלי (מוט אנרגיה, מפות גוף, בלון אנרגיה), ותיעוד שיטתי ביומן. העיקרון המרכזי: <b style="color:var(--ink)">Focus 10 — "הגוף ישן, המוח ער" — הוא המפתח לכל המערכת.</b></p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">למה ה-CIA התעניינה?</div>
+      <h3>ההקשר ההיסטורי</h3>
+      <p class="muted" style="font-size:.93rem">בשנות ה-70 וה-80, על רקע חשש ממחקר פסיכוטרוני סובייטי, הקהילה המודיעינית האמריקאית בחנה שיטות לא-שגרתיות (תוכנית Stargate). ב-1983 נכתב דוח "Analysis and Assessment of Gateway Process" שניתח את המנגנון — סנכרון המיספרות המוח (Hemi-Sync) באמצעות תדרים בינאורליים — ואת מסגרתו התיאורטית. הדוח והחוברות שוחררו לציבור ב-2003, והמסמכים שבבסיס אפליקציה זו הם חלק מאותו ארכיון.</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">איך זה עובד?</div>
+      <h3>Hemi-Sync ותדרים בינאורליים</h3>
+      <p class="muted" style="font-size:.93rem">כשכל אוזן שומעת תדר שונה במעט (למשל 250Hz מול 256Hz), המוח "מייצר" את פעימת ההפרש — 6Hz — צליל שאינו קיים באוויר אלא רק במערכת העצבים. מחקר מבוקר (PLOS ONE, ‏2026, שני ניסויים, 219 משתתפים) מצא שדווקא פעימת תטא של <b style="color:var(--ink)">6Hz</b> שיפרה באופן מובהק גם רוגע וגם מיקוד — וזה הפרוטוקול שהמחולל כאן מכויל אליו: 6Hz על גל נושא 250Hz, עם שכבת רעש ורוד שקטה (‎−12dB). <b style="color:var(--gold)">חובה אוזניות סטריאו — ברמקולים המנגנון פשוט לא מתרחש.</b></p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">שלוש עוגנים לכל תרגול</div>
+      <h3>נשימה · תיבה · אפירמציה</h3>
+      <p class="muted" style="font-size:.93rem">כל סשן נפתח בשלושה שלבים קבועים, בסדר שקובע ספר המחקר (פרק 10, יום 5): (1) <b style="color:var(--ink)">ההצהרה</b> — הנוסח המלא של First Affirmation מ-1977, "אני יותר מגופי הפיזי..." — כשה-Workbook מדגיש: "המילים חסרות משמעות ללא התחושה"; (2) <b style="color:var(--ink)">תיבת ההפקדה</b> — הנחת כל הדאגות בצד למשך התרגול; (3) <b style="color:var(--ink)">נשימה רזוננטית</b> — מילוי הגוף ב"אנרגיה חדשה" בשישה שלבים. וכל סשן נסגר בכתיבה ביומן.</p>
+    </div>
+  </div>
+
+  <div class="notice mt2">
+    <b>גילוי נאות והבהרה מדעית:</b> השפעת תדרים בינאורליים על גלי מוח והרפיה מתועדת מחקרית; לעומת זאת, הטענות המרחיקות של השיטה (חוויות חוץ-גופיות, צפייה מרחוק, השפעה על מציאות) הן חלק מהמסמכים ההיסטוריים ואינן מבוססות מדעית. האפליקציה מציגה את השיטה כפי שהיא במקור, ככלי להרפיה, מיקוד והתבוננות — והיא אינה תחליף לטיפול רפואי או נפשי. אין להאזין לתדרים בזמן נהיגה או הפעלת מכונות; במקרה של אפילפסיה, קוצב לב או הריון — יש להיוועץ ברופא. בכל רגע בתרגול, הזזת איבר גוף כלשהו מחזירה אותך מיידית לערנות מלאה.
+  </div>
+</section>
+
+<!-- ============ JOURNEY 30 DAYS ============ -->
+<section class="screen" id="s-journey">
+  <div class="eyebrow">תוכנית 30 הימים · מתוך ספר המחקר</div>
+  <h2>המסע</h2>
+  <p class="lead mb">מסלול מדורג של ארבעה שבועות, הבנוי על סדר החוברת המקורית (1977) ועל הפרוטוקול המחקרי העדכני (6Hz על נשא 250Hz). כל יום — משימה אחת ברורה. הכלל מהספר: <b style="color:var(--ink)">אל תדלגו</b> — כל תרגיל מניח מיומנות שנרכשה קודם; אם שבוע לא "התיישב", חוזרים עליו.</p>
+  <div id="journeyBox"></div>
+  <hr class="sep">
+  <div class="eyebrow">במקביל למסע</div>
+  <h3 style="margin-bottom:6px">השגרה היומית</h3>
+  <p class="muted mb" style="font-size:.9rem">הכלים הקצרים בעיניים פתוחות — הם מה שהופך את המסע מחצי שעה ביום לאורח חיים. סמן כל משבצת שהשלמת, ועקוב אחרי הרצף.</p>
+  <div id="dailySlots"></div>
+  <div class="card mt">
+    <h3>הרצף שלך · <span id="streakCount" style="color:var(--cyan)">0</span> ימים</h3>
+    <p class="faint">14 הימים האחרונים:</p>
+    <div class="streak-bar" id="streakBar"></div>
+  </div>
+
+</section>
+
+
+<!-- ============ LIBRARY ============ -->
+<section class="screen" id="s-lib">
+  <div class="eyebrow">ארגז הכלים המלא</div>
+  <h2>ספריית התרגולים</h2>
+  <p class="lead mb">כל התרגולים מה-Workbook המקורי, מסודרים מהיסוד אל המתקדם. כל תרגול נפתח כסשן מודרך עם טיימר, הנחיות ותדר מותאם.</p>
+  <div id="lib-groups"></div>
+</section>
+
+<!-- ============ GOAL ============ -->
+<section class="screen" id="s-goal">
+  <div class="eyebrow">תרגול ממוקד</div>
+  <h2>מה המטרה שלך עכשיו?</h2>
+  <p class="lead mb">בחר מטרה — והאפליקציה תרכיב עבורך פרוטוקול מלא מתוך כלי השיטה, בסדר הנכון ועם התדר הנכון.</p>
+  <div class="goal-grid" id="goalGrid"></div>
+  <div id="protoBox" class="mt2" style="display:none"></div>
+</section>
+
+<!-- ============ JOURNAL ============ -->
+<section class="screen" id="s-journal">
+  <div class="eyebrow">"Then immediately write down your experiences"</div>
+  <h2>ניתוח המסע והתרגולים</h2>
+  <p class="lead mb">התיעוד הוא חלק מהשיטה, לא תוספת: החוויה מתפוגגת מהר, והזיכרון משכתב אותה לפי הציפיות. הטופס משלב את טופס 1977 המקורי עם תבנית המדידה מספר המחקר — שלושה מדדים לאורך זמן: זמן כניסה, דלתא של מתח, ואחוז הירדמות. פעם בשבוע קרא את שבע הרשומות האחרונות ושאל: מה חזר על עצמו? מה היה שונה במפגשים הטובים? הכל נשמר במכשיר שלך בלבד.</p>
+  <div id="jStats"></div>
+  <div class="card" style="margin-bottom:16px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <div style="flex:1;min-width:180px"><label style="display:block;font-size:.72rem;color:var(--ink-dim);letter-spacing:.06em;margin-bottom:4px">ניתוח לפי</label>
+        <select id="jFilter" onchange="journal.render()" style="width:100%;background:var(--bg3);border:1px solid var(--line2);border-radius:10px;color:var(--ink);padding:9px 12px;font-family:var(--font-body)"></select></div>
+      <button class="btn btn-cyan" id="aiBtn" onclick="journal.analyze()">🤖 ניתוח AI לפי המחקר</button>
+      <button class="btn btn-danger" onclick="journal.clearAll()">🗑 נקה יומן</button>
+    </div>
+    <p class="faint" style="margin-top:8px">המדדים, הרשימה והניתוח מתייחסים לסינון שבחרת — כך רואים את המסע לבד, או תרגול אחד לאורך זמן.</p>
+  </div>
+  <details class="acc" style="margin-bottom:16px"><summary>📝 רישום ידני מלא — הטופס המקורי (1977)</summary><div class="acc-body">
+  <div class="card">
+    <div class="notice" style="margin-bottom:16px"><b>כלל הזהב — תיאור לפני פרשנות:</b> כתוב מה קרה, לא מה זה אומר. "ראיתי אור סגול בשדה הראייה, נמשך כדקה" — תיאור. "נפתחה לי הצ'קרה" — פרשנות. פרשנויות ישנות משנות את מה שתזכור; תיאורים גולמיים לא.</div>
+    <div class="j-form">
+      <div><label>תאריך</label><input type="date" id="jDate"></div>
+      <div><label>שעה</label><input type="time" id="jTime"></div>
+      <div><label>התרגול שבוצע</label><input id="jEx" placeholder="Focus 10, REBAL..."></div>
+      <div><label>מתח לפני (1–10)</label><input type="number" min="1" max="10" id="jTenseB"></div>
+      <div><label>בהירות מנטלית לפני (1–10)</label><input type="number" min="1" max="10" id="jClearB"></div>
+      <div><label>זמן כניסה (דקות עד הרפיה מורגשת)</label><input type="number" min="0" step="0.5" id="jEntry"></div>
+      <div><label>הירדמות</label><select id="jSleep"><option value=""></option><option>לא</option><option>חלקית</option><option>כן</option></select></div>
+      <div class="full"><label>Game Plan — מה תכננתי להשיג ואיך</label><textarea id="jPlan"></textarea></div>
+      <div class="full"><label>מה קרה בפועל — תיאור בלבד (3–6 שורות, בלי פרשנות)</label><textarea id="jActual"></textarea></div>
+      <div><label>תחושות גופניות</label><input id="jBody" placeholder="חום, כובד, עקצוץ, ריחוף..."></div>
+      <div><label>דימויים</label><input id="jImg" placeholder="צבעים, תמונות, גיאומטריה..."></div>
+      <div><label>הפרעות</label><input id="jDistract" placeholder="רעש, מחשבות, אי-נוחות..."></div>
+      <div><label>מתח אחרי (1–10)</label><input type="number" min="1" max="10" id="jTenseA"></div>
+      <div><label>בהירות אחרי (1–10)</label><input type="number" min="1" max="10" id="jClearA"></div>
+      <div class="full"><label>תובנה ← פעולה — משפט אחד: מה לוקחים ליום</label><input id="jInsight" placeholder="תובנה שלא מתורגמת לפעולה קטנה — מתפוגגת"></div>
+    </div>
+    <details class="acc mt"><summary style="font-size:.92rem">שדות אופציונליים — מהטופס המקורי (1977)</summary><div class="acc-body"><div class="j-form">
+      <div><label>תנוחה</label><select id="jPos"><option value=""></option><option>שכיבה על הגב</option><option>שכיבה על הצד</option><option>ישיבה</option><option>אחר</option></select></div>
+      <div><label>שעות מאז הארוחה האחרונה</label><input type="number" min="0" step="0.5" id="jMeal"></div>
+      <div><label>כיוון הראש / הגוף</label><select id="jDir"><option value=""></option><option>צפון</option><option>צפון-מזרח</option><option>מזרח</option><option>דרום-מזרח</option><option>דרום</option><option>דרום-מערב</option><option>מערב</option><option>צפון-מערב</option></select></div>
+      <div><label>לבוש</label><select id="jCloth"><option value=""></option><option>מלא</option><option>קל</option><option>ללא</option></select></div>
+      <div><label>טמפרטורת החדר</label><input id="jTemp" placeholder="נעים / חם / 22°"></div>
+      <div><label>מזג אוויר בחוץ</label><input id="jWeather"></div>
+      <div><label>שלב הירח</label><input id="jMoon" placeholder="מלא / מתמלא / חסר..."></div>
+      <div><label>הפרעות פיזיות</label><input id="jPhys" placeholder="כאב ראש, עייפות..."></div>
+    </div></div></details>
+    <div class="mt"><button class="btn btn-primary" onclick="journal.add()">שמור רישום ידני</button></div>
+  </div>
+  </div></details>
+  <div class="mt2" id="aiBox" style="display:none"></div>
+  <div class="mt2" id="jList"></div>
+</section>
+
+<!-- ============ KNOWLEDGE ============ -->
+<section class="screen" id="s-report">
+  <div class="eyebrow">הגיאוגרפיה של המיינד</div>
+  <h2>ידע ומקורות</h2>
+  <p class="lead mb">מפת רמות ה-Focus, מה המחקר באמת תומך בו, ועיקרי דוח 1983 — הכול במקום אחד.</p>
+
+  <div class="eyebrow">הגיאוגרפיה של המיינד</div>
+  <h2>מפת רמות ה-Focus</h2>
+  <p class="lead mb">כל רמה היא "תחנה" עם מאפיינים משלה. לחץ על תחנה לפירוט — כולל דרך הכניסה, דרך היציאה, ותדר השמע המכויל אליה. הכלל מהמסמך: אין לדלג — Focus 10 יציב הוא התנאי לכל השאר.</p>
+  <div class="fmap" id="fmap"></div>
+  <div class="card mt2">
+    <h3>⚡ חזרת חירום — בכל רמה, בכל רגע</h3>
+    <p class="muted" style="font-size:.92rem">חשוב על איבר גוף פיזי כלשהו והזז אותו — אצבע, כף רגל, לשון. תנועה פיזית מחזירה מיידית ל-C-1 (ערות מלאה). זהו מנגנון הבטיחות המקורי מהמסמך, והוא זמין תמיד — גם בתוך הנגן.</p>
+  </div>
+
+  <hr class="sep">
+  <div class="eyebrow">מתוך ספר המחקר · פרק 7</div>
+  <h2 style="font-size:1.5rem">מה נתמך — ומה לא</h2>
+  <p class="muted mb" style="font-size:.92rem">שלוש רמות ודאות. העמדה המדויקת: <b style="color:var(--ink)">הפרקטיקה עשויה להועיל; ההסברים שניתנו לה ברובם עדיין לא נבדקו או שהופרכו.</b></p>
+  <div class="grid g3">
+    <div class="card" style="border-color:rgba(94,224,206,.35)">
+      <div class="eyebrow" style="color:var(--cyan)">רמה א · נתמך</div>
+      <p class="muted" style="font-size:.88rem">שיפור מדווח ברוגע ובמיקוד אחרי פעימות תטא (PLOS ONE ‏2026: ‏6Hz שיפר <b style="color:var(--ink)">גם רוגע וגם מיקוד</b>, ‏g&gt;0.74, כבר בחמש דקות); אפקטים פיזיולוגיים מדידים של נשימה איטית (~6 נשימות/דקה); ערך של הרפיה מובנית וסריקת גוף.</p>
+    </div>
+    <div class="card" style="border-color:rgba(224,180,88,.35)">
+      <div class="eyebrow" style="color:var(--gold)">רמה ב · סביר, לא מבוסס</div>
+      <p class="muted" style="font-size:.88rem">סנכרון המיספרי גלובלי; "מעבר" מדיד של המוח לתדר היעד (מדידות EEG — תוצאות מעורבות); יתרון של Hemi-Sync על פני פעימות גנריות. עבודת Atwater (‏1997) — תיעוד מייסד מגורם פנימי, לא הוכחה.</p>
+    </div>
+    <div class="card" style="border-color:rgba(224,120,140,.35)">
+      <div class="eyebrow" style="color:var(--rose)">רמה ג · לא מאומת</div>
+      <p class="muted" style="font-size:.88rem">יציאה מהגוף כתופעה לא-מקומית; תפיסה מרחוק (תוכנית Stargate נסגרה ב-1995 ללא ערך מבצעי); קבלת מידע ממקור חיצוני; המסגרת הקוונטית-הולוגרפית של מקדונל. החוויות אמיתיות <i>כחוויות</i> — לא כראיה על העולם.</p>
+    </div>
+  </div>
+  <hr class="sep">
+  <div class="eyebrow">CIA-RDP96-00788R001700210016-5 · שוחרר 2003</div>
+  <h2 style="font-size:1.5rem">דוח הניתוח — "Analysis and Assessment of Gateway Process"</h2>
+  <p class="lead mb">ב-9 ביוני 1983 הגיש סא"ל וויין מ. מקדונל, מפקד יחידה במודיעין הצבאי האמריקאי (USAINSCOM, פורט מיד), דוח בן 28 עמודים שמנסה להסביר <b style="color:var(--ink)">איך ולמה</b> השיטה עובדת. הוא כותב שנדרש לצלול לביו-רפואה, למכניקת קוונטים ולפיזיקה תיאורטית — ומצטט את נילס בוהר: "אתה לא חושב, אתה רק לוגי" — כלומר, חלק מהמושגים דורשים גם אינטואיציה ולא רק ניתוח. להלן עיקרי הדוח, פרק אחר פרק.</p>
+
+  <details class="acc" open><summary>🧲 שלוש השיטות שהדוח משווה אליהן</summary><div class="acc-body">
+    <b>היפנוזה:</b> לפי המודל שמצוטט בדוח, ההמיספרה השמאלית — הרכיב המילולי, הליניארי, ה"מסנן" — מוסחת או מורדמת, וכך גירויים והצעות עוברים ללא ביקורת אל ההמיספרה הימנית, שמקבלת אותם "ללא שאלות" ומגיבה דרך קליפת המוח החושית-מוטורית (ה"הומונקולוס").<br><br>
+    <b>מדיטציה טרנסצנדנטלית:</b> ריכוז חד-נקודתי ממושך יוצר, לפי המודל של בנטוב, גלים אקוסטיים עומדים בחדרי המוח, ש"מקטבים" את הקורטקס — התקדמות איטית שדורשת שנים.<br><br>
+    <b>ביופידבק:</b> בכיוון ההפוך — ההמיספרה השמאלית לומדת, בעזרת מכשור מדידה, "להזמין" גישה מודעת לאזורים בהמיספרה הימנית (חום עור, כאב, מרכזי עונג).<br><br>
+    <b>Gateway,</b> לפי הדוח, שואב מכל השלוש — אבל עושה זאת דרך שמע, מהר יותר, וללא מכשור: "משמעת שגם הפרגמטיסט הסקפטי וחסר הסבלנות של החברה שלנו יכול לעמוד בה".
+  </div></details>
+
+  <details class="acc"><summary>🎧 המנגנון: FFR ופעימות בינאורליות</summary><div class="acc-body">
+    <b>Frequency Following Response:</b> כשהמוח שומע תדר שמזכיר תדרי פעולה שלו — הוא מנסה לחקות אותו ומכוונן את פלט גלי המוח שלו אליו. אבל תדרי גלי מוח (2–14Hz) נמוכים מסף השמיעה. הפתרון: <b>פעימות</b> — תדר אחד לאוזן שמאל, תדר גבוה ממנו במעט לאוזן ימין; המוח "בוחר לשמוע" את ההפרש ביניהם. הדוח מדגיש שהתדרים מושמעים ברמה "כמעט תת-סיפית, בקושי שמיעה" — ולעיתים מוסווים ברעש ורוד ולבן או בצליל גלי ים. המטרה המשולשת: להרגיע את ההמיספרה השמאלית, להביא את הגוף למצב שינה וירטואלי, ולסנכרן את שתי ההמיספרות. <b>זו בדיוק הסיבה שהאפליקציה משתמשת במחולל תדרים שקט ולא במוזיקה.</b>
+  </div></details>
+
+  <details class="acc"><summary>💓 תהודה: הד ההתפצלות ו-7 הרץ</summary><div class="acc-body">
+    לפי המודל הביו-רפואי של איציק בנטוב שהדוח מאמץ: בכל פעימה, גל לחץ יורד באאורטה, מוחזר מנקודת ההתפצלות בבטן התחתונה, ופוגש את הגל הבא — "הד ההתפצלות" שיוצר דפוס הפרעה כאוטי. בהרפיה עמוקה מאוד הלב מרפה, ההד דועך, ונוצר גל סינוס סדור שמהדהד בכל הגוף — <b>בסביבות 7–7.5 מחזורים בשנייה</b> — ומרעיד את המוח בתנועה זעירה (כ-0.005–0.010 מ"מ) דרך נוזל החדרים. הדוח מוסיף את טענת בנטוב שהתדר הזה קרוב לתהודת החלל היונוספרי של כדור הארץ. זהו הבסיס לתדר 7Hz של Focus 12 באפליקציה — עוגן התהודה של השיטה.
+  </div></details>
+
+  <details class="acc"><summary>🔦 מנורה מול לייזר</summary><div class="acc-body">
+    המטאפורה של מליסה ג'אגר, מדריכת המכון, שהדוח מצטט: המיינד הרגיל הוא כמו מנורה — מפזר אנרגיה באופן כאוטי ולא-קוהרנטי על שטח רחב ורדוד. תחת Hemi-Sync הוא פועל כקרן לייזר — זרם ממושמע וקוהרנטי בתדר ובמשרעת. ד"ר סטיוארט טוומלו, פסיכיאטר וחוקר במכון, מדווח שהקלטות "מעודדות מיקוד של אנרגיית המוח לרצועת תדר צרה והולכת" — מקבילה מערבית ל"חד-נקודתיות" של היוגה — ושמעבר ל-Focus 3 נמדדת עלייה הדרגתית בעוצמת גלי המוח.
+  </div></details>
+
+  <details class="acc"><summary>🌌 היקום ההולוגרפי ומטריצת התודעה</summary><div class="acc-body">
+    החלק השאפתני של הדוח: הוא נשען על בנטוב, על הפיזיקאי דיוויד בוהם ועל חוקר המוח קרל פריברם כדי לטעון ש"חומר מוצק, במובן המחמיר, אינו קיים" — הכל רשתות אנרגיה מתנודדות (גרעין האטום ~10²² הרץ, מולקולה ~10⁹, תא חי ~10³). היקום כולו מתואר כהולוגרמה אחת ענקית, שבה — כמו בכל הולוגרמה — <b>כל חלק מקודד את השלם</b>. המיינד האנושי הוא גם הוא הולוגרמה שמכווננת את עצמה להולוגרמה האוניברסלית; ההמיספרה הימנית קולטת את הקלט ההוליסטי, והשמאלית מצמצמת אותו להחלטות בינאריות "כן/לא". הדוח מצטט את הפסיכולוג קית' פלויד: אולי לא המוח מייצר תודעה, אלא התודעה יוצרת את מראית המוח. <b>חשוב:</b> זו מסגרת ספקולטיבית מ-1983 — פיזיקאים כיום אינם מקבלים את הקפיצות הללו — אבל זו הצורה שבה הדוח הרשמי בחר להסביר את החוויות.
+  </div></details>
+
+  <details class="acc"><summary>⏳ זמן-מרחב ו"קליק החוצה"</summary><div class="acc-body">
+    הדוח מגדיר זמן כמדידת שינוי של אנרגיה בתנועה, וטוען שכל תנודה (כולל גל מוח) מגיעה פעמיים בכל מחזור לנקודת מנוחה מוחלטת — ושבאותו רגע אינפיניטסימלי, כשהמהירות יורדת מתחת ל"מרחק פלאנק" (10⁻³³ ס"מ), האנרגיה "מקליקה החוצה" מהזמן-מרחב אל "האינסוף המוחלט". תודעה בתדר גבוה מספיק, לפי הטענה, הופכת את דפוס ה"קליקים" לרציף כמעט — וכך "עוברת דרך מראת הזמן-מרחב כמו אליס". זהו ההסבר התיאורטי של הדוח ל-Focus 15 (גישה לעבר) ו-21 (עתיד). שוב — ספקולציה פיזיקלית-פילוסופית, לא מדע מבוסס; מוצגת כאן כנאמנות למסמך.
+  </div></details>
+
+  <details class="acc"><summary>🌠 החוויה החוץ-גופית: שלושה תנאים ותפקיד שנת REM</summary><div class="acc-body">
+    הדוח מציין שמכון מונרו הדגיש שהתוכנית לא נבנתה סביב OBE — רק קלטת אחת מוקדשת לה — ומביא את שלושת התנאים: <b>(1)</b> שקט גופני עמוק עד דעיכת הד-ההתפצלות ותהודה ב~7Hz; <b>(2)</b> סנכרון גלי שתי ההמיספרות; <b>(3)</b> גירוי ההמיספרה הימנית לערנות מוגברת. טכניקות ההפרדה עצמן פשוטות: התגלגלות החוצה, "התרוממות כעמוד טלפון", החלקה דרך קצה הגוף. פרק מרתק במיוחד: הקשר לשנת REM — שבה המוטוריקה מנותקת מהצוואר ומטה וההמיספרה השמאלית מדוכאת כמעט לגמרי; מאמן-לשעבר טען שאפשר "להבטיח" OBE בהורדת המשתתף ל-REM ואז הפעלת ההקלטות. הדוח אף מציין ניסוי מפוכח: אנשים במצב חוץ-גופי נשלחו "לקרוא" עשרה מספרים במעבדה מרוחקת — רובם קלטו חלק מהספרות, <b>אף אחד מעולם לא קלט את כל העשר</b>. עדות יפה לכך שהדוח עצמו שמר על עין ביקורתית.
+  </div></details>
+
+  <details class="acc"><summary>🚀 תוכנית ההאצה של מקדונל (סעיף 38)</summary><div class="acc-body">
+    בסיכום, מקדונל מציע לארגון מסלול מואץ: להתחיל בהקלטות ה-Hemi-Sync לסנכרון; להוסיף תדרי REM להרגעת ההמיספרה השמאלית; לשלב סוגסטיה היפנוטית עצמית; להאיץ דרך תרגילי Focus 12; לחזור על המחזור עם כוונה ל-OBE; ובהמשך — צוותי תצפית משולשים (הווה/עבר/עתיד) והשוואת נתונים, קבוצות Focus 12 שבונות "מגן הולוגרפי" סביב אתרים רגישים, ומתרגלים ותיקים שבונים "דפוסי הצלחה" עבור המתקדמים אחריהם. שווה לקרוא את זה כפי שזה: מסמך צבאי אופטימי מ-1983, על גבול המדע הבדיוני — וחלון מרתק לרוח התקופה.
+  </div></details>
+
+  <details class="acc"><summary>🧭 מוטיבציה: מה באמת קובע את קצב ההתקדמות</summary><div class="acc-body">
+    אחת השורות המעשיות ביותר בדוח (סעיף 37): קצב ההתקדמות תלוי פחות במספר שעות התרגול — ויותר <b>במהירות שבה המתרגל משתמש בתובנות כדי לשחרר חרדות ומתחים</b> במיינד ובגוף. "ככל שאדם קומפולסיבי ו'מכווץ' יותר בתחילת הדרך — כך יותר מחסומים יפגוש". חסימות האנרגיה הן המחסום העיקרי; כשהן מתמוססות, הדרך מתבהרת. במילים אחרות: היומן, הכנות, והעדינות עם עצמך — הם לא קישוט. הם המנוע.
+  </div></details>
+
+  <details class="acc"><summary>📚 הביבליוגרפיה המקורית + עמדה ביקורתית</summary><div class="acc-body">
+    הדוח נשען על: בנטוב — Stalking the Wild Pendulum ‏(1977); מונרו — Journeys Out of the Body ‏(1971); טארט — Altered States of Consciousness ‏(1969); פרגוסון על פריברם; גלידמן על ויכוח הקוונטים; ג'אגר — "The Lamp Turn Laser"; סאנלה — Kundalini; פרס — The Mystic Spiral.<br><br>
+    <b>ומה אומר המחקר כיום?</b> מבוסס: פעימות בינאורליות משפיעות באופן מדיד על EEG ותומכות בהרפיה; מדיטציה עקבית משנה מבנה ותפקוד מוחי; טכניקות דמיון מודרך מסייעות בהפחתת מתח וכאב נתפס. לא מבוסס: סנכרון המיספרות כמנגנון-על, המודל ההולוגרפי כפיזיקה, OBE כתנועה ממשית מחוץ לגוף, צפייה מרחוק (תוכנית Stargate נסגרה ב-1995 בקביעה שלא הופק מודיעין שמיש). האפליקציה מגישה לך את השיטה במלואה — ואת ההבחנה הזו יחד איתה.
+  </div></details>
+</section>
+
+<footer>
+  מקורות: Monroe Institute, "Gateway Intermediate Workbook" (1977), שוחרר ע"י ה-CIA ב-2003 (CIA-RDP96-00788R001700210023-7) · McDonnell, "Analysis and Assessment of Gateway Process" (1983) · Oster, "Auditory Beats in the Brain", Scientific American 229 (1973) · Atwater, "Inducing States of Consciousness with a Binaural Beat Technology" (1997) · Amd, PLOS ONE 21(4): e0335580 (2026) — הבסיס לפרוטוקול 6Hz/250Hz · האפליקציה למטרות חינוך, הרפיה והתבוננות. אינה מכשיר רפואי ואינה תחליף לייעוץ מקצועי. הנתונים נשמרים מקומית במכשיר בלבד.
+  <div class="mt"><button class="btn btn-ghost" style="padding:6px 14px;font-size:.75rem" onclick="appReset()">🧹 איפוס מלא של נתוני האפליקציה</button></div>
+</footer>
+</div><!-- /app -->
+
+<!-- ============ PLAYER ============ -->
+<div id="player">
+  <div class="emergency">⚡ <b>חזרת חירום:</b> הזז אצבע, כף רגל או לשון — וחזרת מיידית לערות מלאה.</div>
+  <button class="btn btn-danger p-close" onclick="player.stop()">✕ סיום</button>
+
+  <!-- מסך מוכנות — התרגול לא מתחיל אוטומטית -->
+  <div class="p-pane" id="pReady">
+    <div class="eyebrow" style="color:var(--cyan)">מוכנים?</div>
+    <h2 id="rdName" style="margin-bottom:4px"></h2>
+    <div class="rd-meta" id="rdMeta"></div>
+    <p class="rd-desc" id="rdDesc"></p>
+    <div class="rd-tips" id="rdTips"></div>
+    <p class="muted mt" style="font-size:.9rem;max-width:560px">🎧 אוזניות סטריאו · מקום שקט ל-20–45 דקות · שמיכה קלה (הגוף מתקרר בהרפיה) · הטלפון על שקט</p>
+    <p class="faint" style="font-size:.8rem;max-width:560px;margin-inline:auto">⚠️ שתי מלכודות טכניות (ספר המחקר, פרק 9): ודא שהמכשיר <b>אינו ממזג לְמוֹנוֹ</b> (בהגדרות הנגישות) — מיזוג מבטל את הפעימה הבינאורלית לחלוטין; והימנע מרמקולי בלוטות' חלשים או דחיסה אבדנית שפוגעים ביחסי הפאזה. המחולל כאן חי ולא-דחוס — חבר אוזניות ישירות.</p>
+    <div class="rd-decl">
+      <b>ההצהרה הראשונה — הנוסח המלא (First Affirmation · Workbook 1977):</b>
+      <p class="d" style="margin-top:8px;line-height:1.75">„אני יותר מגופי הפיזי. מפני שאני יותר מחומר פיזי, ביכולתי לתפוס את מה שגדול מן העולם הפיזי. לכן, בתרגולים אלה, אני חפץ עמוקות <b style="color:var(--ink)">להתרחב, להתנסות; לדעת, להבין; לשלוט, להשתמש</b> — באנרגיות ובמערכות אנרגיה גדולות יותר אלה, ככל שיהיו מיטיבות ובונות עבורי ועבור הבאים אחריי. כמו כן, במהלך תרגולים אלה, אני חפץ עמוקות בעזרתם ובשיתוף פעולתם, בסיועם ובהבנתם של אותם יחידים אשר חוכמתם, התפתחותם וניסיונם שווים לשלי או גדולים משלי. אני מבקש את הדרכתם ואת הגנתם מפני כל השפעה או כל מקור שעלולים לספק לי פחות ממשאלותיי המוצהרות. אני מגן כעת על עצמי, ככל שיידרש, מפני השפעה כזו — ודוחה כל מקור שעלול לרסן אותי ממשאלותיי המוצהרות.“</p>
+      <details style="margin-top:10px"><summary style="cursor:pointer;color:var(--cyan)">ההצהרה השנייה — פתיחת ערוץ (Second Affirmation)</summary>
+        <p class="d" style="margin-top:8px;line-height:1.75">„אני פותח ערוץ תקשורת זה <b style="color:var(--ink)">אך ורק</b> לאלה שהידע, החוכמה, ההתפתחות והניסיון שלהם שווים לשלי או גדולים משלי. אני מגביל מגע ותקשורת כאלה למטרה <b style="color:var(--ink)">בונה</b> בלבד — ודוחה כל אחר. אני פותח ערוץ זה רק כאשר אני חפץ בכך במודע; בכל זמן אחר, הוא יישאר סגור.“</p>
+      </details>
+      <details style="margin-top:6px"><summary style="cursor:pointer;color:var(--ink-dim)">English original (as declassified)</summary>
+        <p class="faint" style="margin-top:8px;direction:ltr;text-align:left;line-height:1.6">"I am more than my physical body. Because I am more than physical matter, I can perceive that which is greater than the Physical world. Therefore, in these exercises, I deeply desire to Expand, to Experience; to Know, to Understand; to Control, to Use such greater energies and energy systems as may be beneficial and constructive to me and to those who follow me. Also during these exercises, I deeply desire the help and cooperation, the assistance, the understanding of those individuals whose wisdom, development and experience is equal or greater than my own. I ask their guidance and protection from any influence or any source that might provide me with less than my stated desires. I now protect myself as may be needed from such influence and reject any source that may restrain me from my stated desires."</p>
+        <p class="faint" style="margin-top:8px;direction:ltr;text-align:left;line-height:1.6">"I open this channel of communication only to those whose knowledge, wisdom, development and experience is equal or greater than my own. I restrict such contact and communication to constructive purpose, and reject all other. I open such channel only when I so consciously desire; at all other times, it will remain closed."</p>
+      </details>
+      <p class="faint" style="margin-top:10px">כפי שמדגיש ה-Workbook: „המילים חסרות משמעות ללא התחושה“. ההצהרה מגדירה גבול זמן, ממקדת כוונה, ומייצרת עקביות טקסית שמקצרת את זמן הכניסה בכל מפגש.</p>
+    </div>
+    <div class="mt2" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <button class="btn btn-primary" style="font-size:1.05rem;padding:14px 34px" onclick="player.begin()">▶ התחל את התרגול</button>
+      <button class="btn btn-ghost" onclick="player.stop()">ביטול</button>
+    </div>
+    <p class="faint mt" id="rdBeatNote"></p>
+  </div>
+
+  <!-- הסשן עצמו -->
+  <div class="p-pane" id="pSession">
+    <div class="p-orb" id="pOrb"><span id="pOrbLbl"></span></div>
+    <div class="p-phase" id="pPhase"></div>
+    <div class="p-text" id="pText"></div>
+    <div class="p-timer" id="pTimer">0:00</div>
+    <div class="p-progress"><i id="pBar"></i></div>
+    <div class="p-ctrl">
+      <button class="btn btn-ghost" id="pPause" onclick="player.togglePause()">השהה</button>
+      <button class="btn btn-primary" id="pNext" onclick="player.next()">השלב הבא ←</button>
+    </div>
+    <div class="p-audio">
+      <button class="btn btn-cyan" id="beatBtn" style="padding:7px 16px;font-size:.8rem" title="הפעימה הבינאורלית עצמה: סינוס לכל אוזן בנפרד (Δ=תדר הפעימה) + רעש ורוד. המנגנון של השיטה — מחייב אוזניות." onclick="audioEng.toggle()">🎧 הפעל תדר</button>
+      <button class="btn btn-ghost" id="droneBtn" style="padding:7px 16px;font-size:.8rem" title="שכבת אווירה אופציונלית: פד הרמוני סטטי (קווינטה A–E), ללא התקדמות, ‎~11dB- מתחת לפעימה — לפי פרק 9. חמימות בלבד, לא חלק מהמנגנון." onclick="audioEng.toggleDrone()">🎼 דרון</button>
+      <span class="beat-badge" id="beatInfo"></span>
+      <input type="range" id="beatVol" min="0" max="100" value="25" oninput="audioEng.setVol(this.value/100)">
+      <span class="beat-badge" style="opacity:.7;flex-basis:100%;text-align:center">🎧 אוזניות סטריאו בלבד · ודא ש"מיזוג למונו" כבוי בנגישות</span>
+    </div>
+  </div>
+
+  <!-- תיעוד מיידי בסיום -->
+  <div class="p-pane" id="pDone">
+    <div style="font-size:2rem">✓</div>
+    <h2 style="margin:6px 0 2px">התרגול הושלם</h2>
+    <p class="muted" style="font-size:.92rem;max-width:540px">עכשיו — לפני שהחוויה מתפוגגת. שלוש שורות מספיקות. <b style="color:var(--ink)">תיאור לפני פרשנות.</b></p>
+    <div class="q-form">
+      <div><label>מתח לפני (1–10)</label><input type="number" min="1" max="10" id="qTb"></div>
+      <div><label>מתח אחרי (1–10)</label><input type="number" min="1" max="10" id="qTa"></div>
+      <div><label>בהירות לפני (1–10)</label><input type="number" min="1" max="10" id="qCb"></div>
+      <div><label>בהירות אחרי (1–10)</label><input type="number" min="1" max="10" id="qCa"></div>
+      <div><label>זמן כניסה (דק')</label><input type="number" min="0" step="0.5" id="qEntry"></div>
+      <div><label>הירדמות</label><select id="qSleep"><option value=""></option><option>לא</option><option>חלקית</option><option>כן</option></select></div>
+      <div class="full"><label>מה קרה בפועל — תיאור בלבד</label><textarea id="qActual" placeholder="תחושות, דימויים, מה שעלה..."></textarea></div>
+      <div class="full"><label>תובנה ← פעולה (משפט אחד)</label><input id="qInsight"></div>
+    </div>
+    <div class="mt2" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+      <button class="btn btn-primary" onclick="player.qsave()">שמור ועבור לניתוח ←</button>
+      <button class="btn btn-ghost" onclick="player.qskip()">דלג הפעם</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div id="modal" onclick="if(event.target===this)this.classList.remove('on')">
+  <div class="m-box">
+    <h3 id="mTitle"></h3>
+    <div class="m-body" id="mBody"></div>
+    <div class="mt" style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" id="mAction" style="display:none"></button>
+      <button class="btn btn-ghost" onclick="document.getElementById('modal').classList.remove('on')">סגור</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   GATEWAY — data layer
+   Sources: Monroe Institute Gateway Intermediate Workbook (1977, CIA release)
+            McDonnell, "Analysis and Assessment of Gateway Process" (1983)
+   ===================================================== */
+
+const FOCUS = [
+ {code:"C-1", name:"תודעה רגילה", color:"var(--gold)", beat:null, carrier:null,
+  desc:"ערות פיזית מלאה — נקודת המוצא והחזרה של כל תרגול. כאן מנסחים כוונות ושאלות (בפתרון בעיות: 'ככל שהשאלה ספציפית יותר, כך טוב יותר'), וכאן כותבים ביומן מיד בסיום.",
+  how:"אין צורך בכניסה — זה המצב הנוכחי שלך. חזרה לכאן מכל רמה: ספירה איטית מהמספר הנוכחי אל 1, או בחירום — הזזת איבר גוף."},
+ {code:"F-10", name:"הגוף ישן, המוח ער", color:"var(--cyan)", beat:6, carrier:250,
+  desc:"מצב הבסיס: הרפיה גופנית עמוקה עם מיינד צלול. \"Focus 10 הוא המפתח לכל המערכת\" — כל הכלים (EBT, מפות גוף, REBAL) נבנים כאן. לפי דוח 1983, המצב מושג כשההמיספרה השמאלית נרגעת והגוף יורד אל סף שינה — בעוד המודעות נשארת ערה.",
+  how:"כניסה: הרפיה עמוקה בשכיבה, וכשאי אפשר 'לצלול' עוד — אומרים בנשיפה \"שתיים\", מרגישים צלילה נוספת, וכך עד \"עשר\". אפשר לשייך מספרים לאזורי גוף מהראש לרגליים. יציאה: ספירה 10→1."},
+ {code:"F-12", name:"מודעות מורחבת", color:"var(--violet)", beat:7, carrier:200,
+  desc:"\"התחושה הטעונה\" — המיינד ער יותר, אבל אחרת. כאן מבוצעים היישומים: פתרון בעיות, תרגיל השעון, יצירת דפוסים, נשימת צבעים. לפי הדוח — לרמה זו מתווספים רעש ורוד ולבן להרגעת ההמיספרה השמאלית תוך עוררות הימנית.",
+  how:"כניסה: רק מתוך F-10 יציב. כשמתחילה תחושת ה'טעינה' — אומרים \"אחת-עשרה\", וכשהיא מתחזקת \"שתים-עשרה\". אם היא לא מגיעה — חוזרים לתרגל F-10. יציאה: 12→10, ואז 10→1."},
+ {code:"F-15", name:"מעבר לזמן · העבר", color:"var(--rose)", beat:3, carrier:150,
+  desc:"מצב מתקדם מאוד. בדוח 1983 מוגדר \"מסע אל העבר\": הזמן מדומיין כגלגל ענק שכל חישור בו פותח חלק אחר של העבר. הדוח מציין שפחות מ-5% מהמשתתפים מגיעים לרמה זו בשבוע אימון מלא — נדרשת סבלנות של חודשים.",
+  how:"כניסה: מתוך F-12 עמוק, לרוב בעזרת ה-REBAL כ'רכב'. אל תנסה לפני שליטה מלאה ב-F-12. יציאה: 15→12→10→1, בסבלנות."},
+ {code:"F-21", name:"הסף · העתיד", color:"#e0b458", beat:2, carrier:120,
+  desc:"המצב המתקדם ביותר בתוכנית לפי דוח 1983 — \"מחוץ לגבולות הזמן-מרחב, עם תשומת לב לעתיד\". הדוח: כמעט בלתי-מושג ללא שנים של מדיטציה או חודשים-שנים של תרגול עקבי. באפליקציה — לידיעה והשראה, לא כיעד מעשי.",
+  how:"נכלל כאן לשלמות המפה. העבודה המעשית של רוב המתרגלים היא ב-F-10 וב-F-12 — ושם רוב הערך."}
+];
+
+/* ===== ההצהרות — הנוסח המלא, Gateway Intermediate Workbook 1977 (CIA-RDP96-00788R001700210023-7 / 210067-9) ===== */
+const AFFIRMATION = "אני יותר מגופי הפיזי. מפני שאני יותר מחומר פיזי, ביכולתי לתפוס את מה שגדול מן העולם הפיזי. לכן, בתרגולים אלה, אני חפץ עמוקות להתרחב, להתנסות; לדעת, להבין; לשלוט, להשתמש — באנרגיות ובמערכות אנרגיה גדולות יותר אלה, ככל שיהיו מיטיבות ובונות עבורי ועבור הבאים אחריי. כמו כן, במהלך תרגולים אלה, אני חפץ עמוקות בעזרתם ובשיתוף פעולתם, בסיועם ובהבנתם של אותם יחידים אשר חוכמתם, התפתחותם וניסיונם שווים לשלי או גדולים משלי. אני מבקש את הדרכתם ואת הגנתם מפני כל השפעה או כל מקור שעלולים לספק לי פחות ממשאלותיי המוצהרות. אני מגן כעת על עצמי, ככל שיידרש, מפני השפעה כזו — ודוחה כל מקור שעלול לרסן אותי ממשאלותיי המוצהרות.";
+const AFFIRMATION_EN = "I am more than my physical body. Because I am more than physical matter, I can perceive that which is greater than the Physical world. Therefore, in these exercises, I deeply desire to Expand, to Experience; to Know, to Understand; to Control, to Use such greater energies and energy systems as may be beneficial and constructive to me and to those who follow me. Also during these exercises, I deeply desire the help and cooperation, the assistance, the understanding of those individuals whose wisdom, development and experience is equal or greater than my own. I ask their guidance and protection from any influence or any source that might provide me with less than my stated desires. I now protect myself as may be needed from such influence and reject any source that may restrain me from my stated desires.";
+const AFFIRMATION2 = "אני פותח ערוץ תקשורת זה אך ורק לאלה שהידע, החוכמה, ההתפתחות והניסיון שלהם שווים לשלי או גדולים משלי. אני מגביל מגע ותקשורת כאלה למטרה בונה בלבד — ודוחה כל אחר. אני פותח ערוץ זה רק כאשר אני חפץ בכך במודע; בכל זמן אחר, הוא יישאר סגור.";
+const AFFIRMATION2_EN = "I open this channel of communication only to those whose knowledge, wisdom, development and experience is equal or greater than my own. I restrict such contact and communication to constructive purpose, and reject all other. I open such channel only when I so consciously desire; at all other times, it will remain closed.";
+
+/* step: {ph:phase label, t:text, s:seconds, br:breathing? , beat:{c,b} override}
+   סדר טקס הפתיחה — לפי ספר המחקר, פרק 10 יום 5: הצהרה → תיבה → נשימה */
+const STEP_PREP = {ph:"הכנה", t:"שכב או שב בנוחות. עצום עיניים. הנח לגוף להתמקם — אין לאן למהר.", s:25};
+const STEP_AFFIRM = {ph:"ההצהרה הראשונה · הנוסח המלא (1977)", t:AFFIRMATION, s:95};
+const STEP_BOX = {ph:"תיבת ההפקדה", t:"דמיין תיבה חזקה ובטוחה — תיבת ההמרה של האנרגיה. הנח בתוכה, אחת-אחת, את כל הדאגות, המטלות וההסחות. הן שמורות שם. תאסוף אותן בסוף — נקיות יותר.", s:40};
+const BREATH_STEPS = [
+ {ph:"נשימה רזוננטית · 1/6", t:"שאף עמוק — משוך אנרגיה מכל חלקי הגוף אל הראש. החזק בנוחות, ערבל אותה סביב המוח... ועכשיו נשוף לאט דרך הפה, כמו מכבה נר, ופלוט אנרגיה משומשת דרך כפות הרגליים.", s:30, br:1},
+ {ph:"נשימה רזוננטית · 2/6", t:"שאיפה שנייה — הבא אנרגיה חדשה ורעננה אל החזה העליון והזרועות. בנשיפה — פלוט את הישן מהבטן ומטה.", s:25, br:1},
+ {ph:"נשימה רזוננטית · 3/6", t:"שאיפה שלישית — אנרגיה חדשה אל הבטן.", s:20, br:1},
+ {ph:"נשימה רזוננטית · 4/6", t:"רביעית — אל אזור האגן.", s:20, br:1},
+ {ph:"נשימה רזוננטית · 5/6", t:"חמישית — אל הירכיים והברכיים.", s:20, br:1},
+ {ph:"נשימה רזוננטית · 6/6", t:"שישית — אל השוקיים וכפות הרגליים. מילאת צנצנת הפוכה באנרגיה חדשה, בשישה שלבים.", s:25, br:1},
+];
+const OPEN_STEPS = [STEP_PREP, STEP_AFFIRM, STEP_BOX, ...BREATH_STEPS];
+const F10_ENTRY = {ph:"כניסה ל-Focus 10", t:"הרפה עמוק... כשאינך יכול לצלול עוד — אמור בנשיפה \"שתיים\" והרגש צלילה קטנה נוספת. \"שלוש\"... \"ארבע\"... המשך בקצב שלך עד \"עשר\". הגוף ישן — המוח ער.", s:90, beat:{c:250,b:6}};
+const CLOSE_STEPS = [
+ {ph:"סיום · ניקוי", t:"פתח את תיבת ההפקדה. הוצא את הענינים שהנחת בה, ושטוף כל אחד מהם באנרגיה ירוקה, מרגיעה ומנקה, מהמוט שלך. מה שאפשר לפעול לגביו — יחכה לך נקי.", s:35},
+ {ph:"חזרה ל-C-1", t:"ספור לאט בתוך עצמך: עשר... תשע... שמונה... שבע... שש... חמש... ארבע... שלוש... שתיים... אחת. פקח עיניים בהדרגה.", s:45},
+ {ph:"עיגון", t:"שב. מתח ידיים ורגליים. נשום עמוק כמה פעמים, וקום לאט. ועכשיו — כתוב מיד ביומן: מה תכננת, מה קרה בפועל, מה הרגשת. הכתיבה היא חלק מהתרגול.", s:30},
+];
+function seq(...parts){return [].concat(...parts);}
+
+const EXERCISES = [
+ /* --- יסודות --- */
+ {id:"rbx", grp:"היסודות", name:"נשימה רזוננטית (RBX)", icon:"🌬️", ac:"var(--cyan)", min:6, lvl:"C-1", beat:null,
+  desc:"תרגיל הפתיחה של כל סשן: מילוי הגוף ב'אנרגיה חדשה' בשישה שלבים ופליטת ה'משומשת' — גרסת Gateway להנשמה מודעת.",
+  steps: seq([STEP_PREP], BREATH_STEPS, [{ph:"סיום", t:"שים לב לתחושה בגוף — ערני ורגוע בו-זמנית. אפשר להמשיך מכאן לכל תרגול, או לפקוח עיניים ולחזור ליום.", s:20}])},
+ {id:"f10", grp:"היסודות", name:"Focus 10 — הגוף ישן, המוח ער", icon:"🌗", ac:"var(--cyan)", min:20, lvl:"F-10", beat:{c:250,b:6},
+  desc:"תרגול הליבה של השיטה כולה. כניסה מדורגת בספירה 1–10, שהייה שקטה במצב, וחזרה מלאה. שבועיים ראשונים — רק זה.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"שהייה ב-F-10", t:"אתה כאן. אל תעשה דבר. הנח למחשבות לעבור כעננים. אם צצה תחושה חדשה — פשוט התבונן בה. הגוף רדום לגמרי, ואתה ער בתוכו.", s:480, beat:{c:250,b:6}},
+   {ph:"העמקה", t:"אם הרפיון אינו מספק — חזור ל\"חמש\" וספור שוב עד \"עשר\". \"עשר\" לא חייב להרגיש אותו דבר בכל פעם.", s:120, beat:{c:250,b:6}}], CLOSE_STEPS)},
+ {id:"ebt", grp:"היסודות", name:"מוט האנרגיה (EBT)", icon:"✨", ac:"var(--gold)", min:15, lvl:"F-10", beat:{c:250,b:6},
+  desc:"הכלי הרב-תכליתי: נקודת אור שנמתחת למוט, נטענת, ולומדת להידלק ולכבות בפקודתך — עד קצב סטרובוסקופי. דוח 1983 מכנה אותו 'צינור אנרגיה נוצץ ורוטט'.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"יצירת המוט", t:"דמיין נקודת אור. מתח אותה למוט, וטען אותו באור לבן מסנוור. תן לו צורה נוחה לאחיזה — שרביט, שפופרת זוהרת, מה שמתאים לך.", s:60, beat:{c:250,b:6}},
+   {ph:"הדלקה וכיבוי", t:"אמור בתוכך \"נדלק\" — המוט מאיר ומתעבה בידיך. \"כבה\" — האור דועך והמוט נעשה דק. לאט מאוד. נתק את הנשימה ואת המילים מהתהליך — רק כוונה.", s:120, beat:{c:250,b:6}},
+   {ph:"האצה", t:"האץ בהדרגה: פעם בשנייה... מהר יותר... שים לב לתחושה עדינה במקלעת השמש, פועמת יחד עם ההבהובים. האץ עד שהמוט נראה דולק ברציפות — והתחושה נעשית חשמלית, חמימה, טעונה.", s:150, beat:{c:250,b:6}},
+   {ph:"אחסון", t:"החזר את המוט למקום הקבוע שלו — שם הוא יחכה, טעון ומוכן, לפעם הבאה.", s:30, beat:{c:250,b:6}}], CLOSE_STEPS)},
+
+ /* --- מפות ואיזון --- */
+ {id:"lbm", grp:"מפות ואיזון", name:"מפת הגוף החי (LBM)", icon:"🫧", ac:"var(--green)", min:20, lvl:"F-10", beat:{c:250,b:6},
+  desc:"סריקת צללית זוהרת של הגוף לאיתור אזורים 'עמומים או מהבהבים', ואיזונם באנרגיה ירוקה וסגולה. שלוש מתודות במקור — כאן: מתודת הצללית.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"הטענת המוט", t:"קח את מוט האנרגיה שלך והטען אותו — לבן בוהק.", s:30, beat:{c:250,b:6}},
+   {ph:"הצללית", t:"הוצא מאחוריך צללית לבנה של גופך — כמו גזיר נייר. הצב את גופך מאחוריה: האור שלך זורח דרכה והיא נוצצת.", s:45, beat:{c:250,b:6}},
+   {ph:"סריקה", t:"עבור לאט מהראש לרגליים. חפש נקודות עמומות או מהבהבות — אלה אזורי חוסר איזון. אל תשפוט. רק סמן.", s:90, beat:{c:250,b:6}},
+   {ph:"איזון", t:"כוון מהמוט אנרגיה ירוקה אל כל נקודה עמומה — לאיזון. ואז סגול עז — להטענה ולחיזוק. ראה את הנקודה מתבהרת.", s:120, beat:{c:250,b:6}},
+   {ph:"מערכות", t:"צבע את הצללית אדום — מערכת הדם. סרוק. כחול — עצבים. כתום — שריר ושלד. צהוב — איברים ובלוטות. בכל צבע — אתר ואזן.", s:150, beat:{c:250,b:6}},
+   {ph:"סיום המפה", t:"החזר ללבן, והצף את הצללית כולה בסגול מטעין. היא בהירה, לבנה, רוטטת יותר. אחסן אותה — וגם את המוט.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
+ {id:"ebm", grp:"הרחבת תודעה", name:"תנועת בלון האנרגיה (EBM)", icon:"🫧", ac:"var(--violet)", min:13, lvl:"F-10", beat:{c:250,b:6},
+  desc:"מפרק 8 בספר המחקר: עבודה עם דימוי של שדה סביב הגוף — הרחבה, כיווץ, הזזה. אימון השליטה בשדה, כהכנה ישירה ל-REBAL.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"השדה", t:"דמיין שדה עדין של אנרגיה העוטף את גופך — כמה סנטימטרים מעל העור, מכל הכיוונים. אל תבנה אותו — רק שים לב אליו, כאילו תמיד היה שם.", s:60, beat:{c:250,b:6}},
+   {ph:"הרחבה", t:"בשאיפה — תן לשדה להתרחב לאט: חצי מטר... מטר... מלוא החדר. הרגש את הנפח גדל סביבך, גם מאחוריך ומתחתיך.", s:90, beat:{c:250,b:6}},
+   {ph:"כיווץ", t:"בנשיפה — כווץ אותו בחזרה, לאט, עד צמוד לעור. שים לב לתחושת הדחיסות, האסופה. חזור על הרחבה-כיווץ עוד שלושה מחזורים, בקצב הנשימה.", s:120, beat:{c:250,b:6}},
+   {ph:"הזזה", t:"עכשיו — הזז את השדה: מעט ימינה... בחזרה למרכז... מעט שמאלה... למעלה... למטה. אתה הקובע את המקום ואת הצורה. זה השריר שייבנה ממנו ה-REBAL.", s:120, beat:{c:250,b:6}},
+   {ph:"איסוף", t:"החזר את השדה לצמוד לגוף, ותן לו להיספג פנימה. האנרגיה שלך — זמינה לך שוב, מתי שתרצה.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
+ {id:"emap", grp:"מפות ואיזון", name:"מפת הגוף הרגשי (Emotional Body Map)", icon:"💠", ac:"var(--green)", min:18, lvl:"F-10", beat:{c:250,b:6},
+  desc:"מה-Workbook 1977: מאחורי מפת הגוף נמצאת מפה שנייה — דקה ועדינה יותר: המבנה הרגשי. כאן מאזנים גם נקודות כבויות וגם נקודות בוהקות מדי.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"המפה הרגשית", t:"מאחורי מפת הגוף החי שלך נמצאת צללית שנייה, עשויה חומר דק ועדין יותר. אם אין לה צורה משלה — התחל מצורת גופך; היא עשויה להשתנות עם הזמן.", s:50, beat:{c:250,b:6}},
+   {ph:"סריקה כפולה", t:"חפש נקודות עמומות ומהבהבות — וגם נקודות בוהקות באופן חריג. רגש כבוי ורגש סוער — שניהם מבקשים איזון.", s:90, beat:{c:250,b:6}},
+   {ph:"איזון", t:"ירוק ואז סגול מהמוט על כל נקודה — עד בהירות אחידה, שקטה. המפה כולה: רגועה, חזקה, שלווה.", s:120, beat:{c:250,b:6}},
+   {ph:"טאטוא", t:"העבר אור סגול עז לאורך כל המפה, מהראש לרגליים, באיטיות. כשהיא נקייה ובהירה — אחסן אותה מאחורי מפת הגוף.", s:60, beat:{c:250,b:6}}], CLOSE_STEPS)},
+
+ /* --- הרחבה --- */
+ {id:"rebal", grp:"הרחבת תודעה", name:"בלון האנרגיה (REBAL)", icon:"🔮", ac:"var(--violet)", min:15, lvl:"F-10", beat:{c:250,b:6},
+  desc:"שדה אנרגיה מגן וצף סביב הגוף — 'הרכב' של השיטה למצבים מורחבים. דוח 1983: הבלון גם מגן וגם מאיץ את מצב התהודה.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"בניית השדה", t:"שאף עמוק — אנרגיה עולה מכפות הרגליים והידיים דרך הגוף אל הראש. החזק... ונשוף כמו דרך נר — האנרגיה יורדת ומסתחררת עד הבהונות. חזור, ובכל נשיפה עגל את זווית הזרימה יותר ויותר.", s:120, br:1, beat:{c:250,b:6}},
+   {ph:"עיגול", t:"האנרגיה כבר לא רק יורדת — היא עוטפת. ביצה של אור נבנית סביבך. המשך לנשום אל תוכה. ודא שאתה חש אותה גם מאחוריך.", s:90, br:1, beat:{c:250,b:6}},
+   {ph:"סחרור צידי", t:"עכשיו שנה כיוון: שאף אנרגיה מימין... ונשוף אותה שמאלה, אל תוך הכדור. מהר יותר, בהיר יותר, קל יותר — עד בלון אור מושלם סביבך.", s:90, beat:{c:250,b:6}},
+   {ph:"ציפה", t:"הבלון קל. תן לו לשאת אותך מעלה — בלי מאמץ, לא בעולם החומר, אלא אל מצב הוויה קל ומורחב. עלה מעט... עצור... התבונן במה שסביבך... ורד חזרה. חזור כך, גבוה מעט יותר בכל פעם.", s:180, beat:{c:200,b:7}},
+   {ph:"ספיגה", t:"חזור לנקודת ההתחלה. תן לבלון לנוע פנימה — להיספג בחזרה אל תוכך. זו האנרגיה שלך.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
+ {id:"f12", grp:"הרחבת תודעה", name:"מעבר ל-Focus 12", icon:"🌌", ac:"var(--violet)", min:25, lvl:"F-12", beat:{c:200,b:7},
+  desc:"מ-F-10 יציב אל 'התחושה הטעונה' של מודעות מורחבת. השער לכל התרגולים היישומיים.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"התייצבות", t:"שהה ב-Focus 10 עד שהוא עמוק ויציב. אל תמהר — היציבות כאן היא כל הסוד.", s:150, beat:{c:250,b:6}},
+   {ph:"אחת-עשרה", t:"שים לב לתחושה חדשה שמתחילה — 'טעונה', ערנית אחרת. כשאתה מרגיש אותה מתחילה — אמור בתוכך: \"אחת-עשרה\".", s:90, beat:{c:225,b:6.5}},
+   {ph:"שתים-עשרה", t:"התחושה מתחזקת... המיינד ער יותר, אך בדרך שונה. אמור: \"שתים-עשרה\". אתה ב-Focus 12. ככל שתתרגל — המצב יתחזק.", s:150, beat:{c:200,b:7}},
+   {ph:"שהייה", t:"פשוט היה כאן. מודעות פתוחה, רחבה, בלי מושא. אם המצב לא הגיע היום — זה בסדר גמור: חזור ל-F-10 ותרגל אותו עוד. הוא המפתח.", s:390, beat:{c:200,b:7}},
+   {ph:"ירידה", t:"הנח את הרצון לחזור. ספור לאט: שתים-עשרה... אחת-עשרה... עשר. אתה שוב ב-Focus 10.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
+
+ /* --- יישומים --- */
+ {id:"prob", grp:"יישומים", name:"פתרון בעיות ב-F-12", icon:"🧩", ac:"var(--rose)", min:22, lvl:"F-12", beat:{c:200,b:7},
+  desc:"ניסוח שאלה חדה בערות, העלאתה למודעות המורחבת, שחרור — וקליטה. דוח 1983: התשובה מגיעה לעיתים מיד, ולעיתים כאינטואיציה במהלך 2–3 הימים הבאים, לפעמים כתובנה הוליסטית פתאומית.",
+  ask:"מה השאלה או הבעיה? נסח אותה במדויק — ככל שתהיה ספציפית יותר, כך טוב יותר:",
+  steps: seq([{ph:"ניסוח ב-C-1", t:"חשוב על השאלה שהגדרת. חדד אותה למשפט אחד ברור. זהו — הנח לה.", s:30}], OPEN_STEPS, [F10_ENTRY,
+   {ph:"עלייה ל-F-12", t:"מ-Focus 10 היציב — תן לתחושה הטעונה לעלות. \"אחת-עשרה\"... \"שתים-עשרה\".", s:90, beat:{c:200,b:7}},
+   {ph:"ריכוז", t:"מלא את המודעות המורחבת בשאלה שלך וברצון העמוק לתשובה. החזק אותה — ברורה, בוערת בשקט.", s:90, beat:{c:200,b:7}},
+   {ph:"שחרור", t:"עכשיו — שחרר. הרפה מהריכוז לגמרי. אל תחפש. רק שים לב: דימויים, מילים, תחושות, צורות מחשבה שמגיעות מעצמן.", s:180, beat:{c:200,b:7}},
+   {ph:"קליטה", t:"מה שהגיע — הגיע. גם אם נדמה שלא הגיע דבר, ייתכן שהתשובה תבשיל בימים הקרובים כאינטואיציה. רשום הכל ביומן בסיום.", s:60, beat:{c:200,b:7}}], CLOSE_STEPS)},
+ {id:"clock", grp:"יישומים", name:"תרגיל השעון — התמצאות מרחבית", icon:"🕰️", ac:"var(--rose)", min:15, lvl:"F-12", beat:{c:200,b:7},
+  desc:"אימון 'שרירי הניווט' של המודעות: שליחת תשומת הלב לכיווני שעון מדומיין, כולל סיבובו ב-90 מעלות.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"עלייה ל-F-12", t:"\"אחת-עשרה\"... \"שתים-עשרה\". המודעות מורחבת.", s:75, beat:{c:200,b:7}},
+   {ph:"השעון", t:"דמיין שעון ענק, והתודעה שלך במרכזו. ה-3 מימינך, ה-9 משמאלך, ה-12 מעליך, ה-6 מתחתיך.", s:45, beat:{c:200,b:7}},
+   {ph:"שליחה", t:"שלח את תשומת לבך אל ה-12... שהה... מה אתה קולט שם? עכשיו אל ה-3... ה-6... ה-9. התבונן היטב בכל נקודה.", s:150, beat:{c:200,b:7}},
+   {ph:"סיבוב", t:"סובב את השעון 90 מעלות — ה-3 עכשיו מולך, ה-9 מאחוריך. חקור שוב לפי הספרות. 8–10 סבבים בסך הכל, בקצב שלך.", s:180, beat:{c:200,b:7}}], CLOSE_STEPS)},
+ {id:"pattern", grp:"יישומים", name:"יצירת דפוסים (Patterning)", icon:"🌱", ac:"var(--rose)", min:20, lvl:"F-12", beat:{c:200,b:7},
+  desc:"בניית דפוס-החיים הרצוי במודעות מורחבת ושחרורו 'לכל קצוות המודעות'. תנאי המקור: רק אם הדפוס בונה ומיטיב. אזהרת המאמנים בדוח: לא לכפות את הקצב.",
+  ask:"מהו הדפוס, המצב או היעד שברצונך לבנות? (נסח בחיוב, בהווה):",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"עלייה ל-F-12", t:"\"אחת-עשרה\"... \"שתים-עשרה\".", s:75, beat:{c:200,b:7}},
+   {ph:"בנייה", t:"בנה בקפידה במיינד את הדפוס או המצב שהגדרת. ראה אותו שלם, חי, מפורט — כאילו כבר קיים. הרגש איך זה מרגיש כשהוא מציאות.", s:150, beat:{c:200,b:7}},
+   {ph:"שחרור החוצה", t:"שחרר את תבנית המחשבה והנע אותה בעוצמה החוצה — אל כל אזורי המודעות המורחבת שלך. תן לה לזרום עד הנקודות הרחוקות ביותר.", s:120, beat:{c:200,b:7}},
+   {ph:"אישור", t:"הדפוס יחל מיד להתהוות ולהתפתח — ויימשך עד שיהיה מציאות שלמה, בתנאי שהוא בונה ומיטיב למכלול. אל תדחף. שחרר ובטח.", s:75, beat:{c:200,b:7}}], CLOSE_STEPS)},
+ {id:"rv", grp:"יישומים", name:"תפיסה מרחוק (המתודה ההיסטורית)", icon:"📡", ac:"var(--rose)", min:22, lvl:"F-12+", beat:{c:200,b:7},
+  desc:"התרגול שסביבו נבנה העניין המודיעיני: מתיחת מוט האנרגיה אל אדם או מקום וקליטת 'הזרימה' חזרה. מוצג כאן כתרגול דמיון-תפיסה היסטורי מהמסמכים — לא כיכולת מוכחת.",
+  ask:"על מי או על מה תרצה 'לכוון' את התרגול? (אדם קרוב, מקום מוכר):",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"עלייה ל-F-12", t:"מ-Focus 10 היציב — \"אחת-עשרה\"... \"שתים-עשרה\". המודעות מורחבת. משם התרגיל הזה מבוצע (ספר המחקר, פרק 8).", s:75, beat:{c:200,b:7}},
+   {ph:"הטענה", t:"קח את מוט האנרגיה והטען אותו באנרגיה חדשה ובהירה.", s:45, beat:{c:200,b:7}},
+   {ph:"עיגון", t:"הצב קצה אחד של המוט קרוב למרכז התודעה שלך — לאו דווקא במצח. החזק אותו שם.", s:45, beat:{c:200,b:7}},
+   {ph:"מתיחה", t:"מתח את הקצה השני של המוט — רחוק, רחוק — עד האדם או המקום שבחרת.", s:75, beat:{c:200,b:7}},
+   {ph:"קליטה", t:"תן לאנרגיה מהקצה הרחוק לזרום דרך המוט — אל תוך המודעות שלך. אל תנתח. רק קלוט: תמונות, תחושות, רשמים.", s:180, beat:{c:200,b:7}},
+   {ph:"ניתוק", t:"משוך את המוט בחזרה, נתק בעדינות, ואחסן אותו. את הרשמים תרשום ביומן — בלי לשפוט אותם.", s:45, beat:{c:200,b:7}}], CLOSE_STEPS)},
+ {id:"colors", grp:"יישומים", name:"נשימת צבעים (Color Breathing)", icon:"🎨", ac:"var(--rose)", min:10, lvl:"F-10", beat:{c:250,b:6},
+  desc:"לפי מפת התרגולים בספר (פרק 8): נשימה בשילוב דימוי צבע הנכנס וממלא אזורי גוף — מעמיק הרפיה וקישור חושי. ביום 9 של המסע: צבע אחד, אזור אחד.",
+  ask:"בחר צבע אחד (למשל: ירוק מרגיע / סגול מרפא / לבן מרענן) ואזור אחד בגוף:",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"הצבע", t:"העלה בדמיונך את הצבע שבחרת — עז, חי, מוחשי. ראה אותו מרחף מולך כענן רך של אור.", s:45, beat:{c:250,b:6}},
+   {ph:"מילוי", t:"בשאיפה — הצבע נכנס עם האוויר וזורם אל האזור שבחרת. בנשיפה — הוא מתפשט וממלא אותו, עוד ועוד, שכבה על שכבה. הרגש את האזור מתחמם, מתרכך.", s:150, br:1, beat:{c:250,b:6}},
+   {ph:"התפשטות", t:"אם זה מרגיש טבעי — תן לצבע לגלוש בעדינות גם לאזורים סמוכים. אל תדחף. הוא יודע לאן לזרום.", s:90, br:1, beat:{c:250,b:6}},
+   {ph:"קיבוע", t:"ראה את האזור כולו זוהר בצבע — מלא, מאוזן, שקט. שאיפה אחרונה של הצבע... ונשיפה ארוכה.", s:60, beat:{c:250,b:6}}], CLOSE_STEPS)},
+
+ /* --- כלים יומיים --- */
+ {id:"sleep", grp:"כלים יומיים", name:"כניסה לשינה", icon:"😴", ac:"var(--ink-dim)", min:4, lvl:"C-1", beat:{c:150,b:2.5},
+  desc:"הכלי המקורי: 5 נשימות עמוקות וספירה 1–20 — 'לפני שתגיע ל-20, תיכנס לשינה טבעית ורגועה'. בלי שלב חזרה, כמובן.",
+  steps:[{ph:"הכנה", t:"שכב בתנוחת השינה שלך. חמש נשימות עמוקות ואיטיות.", s:50, br:1, beat:{c:150,b:2.5}},
+   {ph:"ספירה", t:"התחל לספור לאט בתוכך: אחת... שתיים... שלוש... כל מספר — צעד עמוק יותר אל תוך רוך. לפני שתגיע לעשרים — תהיה כבר בדרך פנימה. לילה טוב.", s:180, beat:{c:150,b:2.5}}]},
+ {id:"emo", grp:"כלים יומיים", name:"פריקת מטען רגשי", icon:"🍃", ac:"var(--green)", min:3, lvl:"C-1", beat:null,
+  desc:"כלי-בזק לרגעי עומס: נשימה, ירוק מרגיע, ופריקה דרך כפות הרגליים. אפשר בכל מקום — גם במשרד.",
+  steps:[{ph:"עצירה", t:"עצום עיניים היכן שאתה. שאף עמוק והחזק לרגע.", s:15, br:1},
+   {ph:"ירוק", t:"חשוב על ירוק — צבע מרגיע, מנקה. בנשיפה האיטית, האנרגיה הירוקה דוחפת כל מטען רגשי עודף ומזיק — מטה דרך הגוף, החוצה דרך כפות הרגליים.", s:60, br:1},
+   {ph:"חזרה", t:"עוד שתי נשיפות ירוקות כאלה... המערכת כולה שקטה, בטוחה, חזקה ושלווה. פקח עיניים.", s:45, br:1}]},
+ {id:"energy", grp:"כלים יומיים", name:"אנרגיה חדשה למערכת", icon:"☀️", ac:"var(--gold)", min:3, lvl:"C-1", beat:null,
+  desc:"טעינה מהירה: כפות ידיים פתוחות מעלה, אור לבן קורן מלמעלה — דרך הזרועות אל כל המערכת.",
+  steps:[{ph:"תנוחה", t:"עצום עיניים, הושט ידיים קדימה, כפות פתוחות כלפי מעלה. שאף עמוק והחזק.", s:20, br:1},
+   {ph:"לבן", t:"חשוב על אנרגיה לבנה, טהורה וקורנת, ממוקדת מלמעלה ויורדת היישר אל מרכז כפות ידיך... זורמת במעלה הזרועות... מתפשטת בכל הישות — מרעננת, ממריצה, משביעה.", s:60, br:1},
+   {ph:"סיום", t:"נשוף, פקח עיניים. רענן ומחודש.", s:15}]},
+ {id:"speed", grp:"כלים יומיים", name:"כוח ומהירות לפעולה", icon:"⚡", ac:"var(--danger)", min:2, lvl:"C-1", beat:null,
+  desc:"לפני מאמץ פיזי או משימה תובענית: דמיון הפעולה + אנרגיית אדום — ואז ביצוע מיידי.",
+  steps:[{ph:"כוונון", t:"עצום עיניים. שאף עמוק והחזק. ראה בבירור את הפעולה שאתה עומד לבצע.", s:25, br:1},
+   {ph:"אדום", t:"עכשיו — צבע האנרגיה החזק של אדום. תן לו למלא את התמונה ואת הגוף.", s:25},
+   {ph:"ביצוע", t:"בנשיפה — פקח עיניים ובצע את הפעולה. עכשיו.", s:10}]},
+ {id:"memory", grp:"כלים יומיים", name:"עוגן הזיכרון", icon:"🔑", ac:"var(--ink-dim)", min:2, lvl:"C-1", beat:null,
+  desc:"הכלי המקורי לשליפת זיכרון: מגע אצבעות יד ימין במרכז המצח.",
+  steps:[{ph:"עיגון", t:"עצום עיניים. גע ברכות באצבעות יד ימין במרכז המצח.", s:20},
+   {ph:"שליפה", t:"החזק את המגע, והנח לזיכרון שאתה מבקש לעלות מעצמו — בלי לחפור. הוא יגיע, עכשיו או בדקות הקרובות.", s:40}]},
+ {id:"balance", grp:"כלים יומיים", name:"איזון אזור בגוף", icon:"🩹", ac:"var(--violet)", min:3, lvl:"C-1", beat:null,
+  desc:"סגול מרפא לאזור שמבקש עזרה, עם ההנחיה המקורית: \"רפא. אזן\". תזכורת: כלי הרגעה — לא תחליף לרופא.",
+  steps:[{ph:"מיקוד", t:"עצום עיניים, שאף עמוק והחזק. 'הבט' בעיניים עצומות אל האזור בגוף שמבקש עזרה.", s:25, br:1},
+   {ph:"סגול", t:"חשוב על אנרגיית הסגול הקרירה והמרפאת. שלח את זרימתה אל האזור, ואמור בתוכך: \"רפא. אזן\".", s:60},
+   {ph:"סיום", t:"נשוף ופקח עיניים. אם יש כאב מתמשך או חריג — פנה לרופא. הכלי הזה מרגיע, הוא לא מאבחן.", s:20}]},
+ {id:"pain", grp:"כלים יומיים", name:"הפחתת אותות כאב (55515)", icon:"🕊️", ac:"var(--ink-dim)", min:4, lvl:"C-1", beat:null,
+  desc:"הכלי המקורי מה-Workbook: מבט פנימי אל מקור הכאב + חזרה על הרצף 55515 — 'עד שהאותות כבר אינם חשובים'. כלי הרגעה בלבד — כאב חדש, חד או מתמשך מחייב רופא.",
+  steps:[{ph:"מיקוד", t:"עצום עיניים. 'הבט' בעיניים עצומות אל האזור בגוף שממנו מגיעים אותות הכאב. בלי להילחם בו — רק להתבונן.", s:30},
+   {ph:"55515", t:"תוך כדי ההתבוננות, חזור בתוכך על המספר: חמש-חמש-חמש-אחת-חמש... 55515... שוב ושוב, בקצב רגוע.", s:120},
+   {ph:"דעיכה", t:"כשאתה עושה את שני הדברים יחד, האותות פוחתים לאט — עד שהם כבר אינם חשובים. המשך עוד קצת, ופקח עיניים.", s:60},
+   {ph:"תזכורת", t:"חשוב: זהו כלי להקלה רגעית. כאב הוא מידע — אם הוא חדש, חד, חוזר או מדאיג, פנה לרופא. הכלי אינו מאבחן ואינו מרפא.", s:15}]},
+ {id:"tuning", grp:"היסודות", name:"כוונון תהודה (Resonant Tuning)", icon:"🎵", ac:"var(--cyan)", min:8, lvl:"C-1 → F-10", beat:{c:250,b:6},
+  desc:"מדוח 1983: זמזום ממושך ומונוטוני שיוצר תחושת רטט בראש ומכין את מצב התהודה של הגוף — 'resonate tuning' במקור. חוליית החיבור בין הנשימה לכניסה ל-Focus 10.",
+  steps:[{ph:"הכנה", t:"שב או שכב בנוחות. שלוש נשימות עמוקות ואיטיות.", s:25, br:1},
+   {ph:"הזמזום הראשון", t:"שאף עמוק... ובנשיפה — זמזם צליל אחד, מונוטוני, ממושך: הממממ... תן לו להימשך עד סוף הנשיפה. שים לב לרטט שנוצר בראש.", s:40, br:1},
+   {ph:"העמקה", t:"המשך: שאיפה שקטה — ונשיפת זמזום. אותו צליל, אחיד וארוך. הרטט מתפשט מהראש אל החזה. אל תכוון לצליל 'יפה' — כוון לרטט.", s:120, br:1},
+   {ph:"תהודה", t:"עוד כמה מחזורים... הגוף כולו מתחיל להרגיש כמו תיבת תהודה אחת. זהו המצב שהשיטה מכנה 'כוונון' — הכנה מושלמת לצלילה ל-Focus 10.", s:90, br:1},
+   {ph:"שקט", t:"הפסק לזמזם. שב בשקט המלא שנשאר אחרי הצליל, והקשב לו. מכאן אפשר להמשיך לכל תרגול — או לפקוח עיניים רענן.", s:45}]},
+ {id:"ebal", grp:"מפות ואיזון", name:"איזון אנרגיה יומי (Energy Balance)", icon:"⚖️", ac:"var(--green)", min:14, lvl:"F-10", beat:{c:250,b:6},
+  desc:"התרגול המשולב מה-Workbook: סגול מרפא על שתי המפות — ואז הוצאת הבעיות מתיבת ההפקדה וניקוין באנרגיה קרירה ומרגיעה, לפני שחוזרים אליהן.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"סגול על המפות", t:"קח את המוט הטעון. העבר אור סגול, בהיר ומרפא, על מפת הגוף החי שלך — מהראש לרגליים... ואז על המפה הרגשית שמאחוריה. ריפוי, ניקוי, הטענה.", s:150, beat:{c:250,b:6}},
+   {ph:"הוצאת הבעיות", t:"עכשיו פתח את תיבת ההפקדה. הוצא ממנה את הבעיות שאתה כן יכול לפעול לגביהן — אחת אחת.", s:60, beat:{c:250,b:6}},
+   {ph:"ניקוי המטען", t:"על כל בעיה, הזרם מהמוט אנרגיה קרירה ומרגיעה — ושטוף ממנה כל מטען רגשי שלילי עודף. הבעיה נשארת; הכובד מתאדה. מה שנשאר — ניתן לטיפול בראש צלול.", s:120, beat:{c:250,b:6}}], CLOSE_STEPS)},
+ {id:"free", grp:"מתקדם", name:"תרגילי תנועה חופשית (Free Movement)", icon:"🌠", ac:"var(--gold)", min:26, lvl:"F-10 + REBAL", beat:{c:250,b:6},
+  desc:"חמש טכניקות ה'יציאה' מה-Workbook, בתוך הגנת ה-REBAL. מוצג כתרגול דמיון-תחושה היסטורי מהמסמכים — עבור מתרגלים עם F-10 יציב בלבד.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"בניית REBAL", t:"בנה את בלון האנרגיה שלך: נשימות עמוקות, אנרגיה עולה ומסתחררת סביבך, עד כדור אור מגן, קל וצף. אתה בתוכו — בטוח.", s:150, br:1, beat:{c:250,b:6}},
+   {ph:"1 · גלגול", t:"הטכניקה הראשונה: דמיין שאתה מתגלגל הצידה ברכות — כמו בול עץ מתגלגל במים. בלי מאמץ שרירים. רק תחושת הגלגול. ואז — חזור למרכז.", s:90, beat:{c:250,b:6}},
+   {ph:"2 · עמוד", t:"השנייה: תחושת התרוממות ישרה וקשיחה — כמו מוט שמתרומם מקצהו. עלה מעט... ורד חזרה.", s:90, beat:{c:250,b:6}},
+   {ph:"3 · נסיגה", t:"השלישית: תחושת החלקה אחורה ומטה, כמו נסוג בעדינות מתוך מקומך... וחזרה פנימה.", s:90, beat:{c:250,b:6}},
+   {ph:"4 · כגז", t:"הרביעית: תחושת התפשטות קלה מעלה דרך קצה הראש — כמו אד חם ועדין... ושוב, התכנסות בחזרה.", s:90, beat:{c:250,b:6}},
+   {ph:"5 · ריחוף", t:"והחמישית: פשוט ריחוף — קל, אופקי, מעט מעל נקודת המוצא. שהה... התבונן... ושוב למטה, הביתה.", s:100, beat:{c:250,b:6}},
+   {ph:"ספיגת הבלון", t:"סיימת. תן ל-REBAL לנוע פנימה ולהיספג בחזרה אל תוכך. כל התחושות הללו — שלך, בשליטתך, וזמינות לך שוב מתי שתרצה.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
+ {id:"f15", grp:"מתקדם", name:"Focus 15 — גלגל הזמן", icon:"⏳", ac:"var(--rose)", min:30, lvl:"F-15", beat:{c:150,b:3},
+  desc:"המצב שדוח 1983 מכנה 'מסע אל העבר': הזמן כגלגל ענק שכל חישור בו פותח פרק אחר. פחות מ-5% מגיעים לזה בשבוע אימון — גש לזה כתרגול התבוננות בזיכרון, בסבלנות אינסופית.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"עלייה ל-F-12", t:"מ-Focus 10 יציב — \"אחת-עשרה\"... \"שתים-עשרה\". המודעות מורחבת ושקטה.", s:90, beat:{c:200,b:7}},
+   {ph:"הרכב", t:"בנה את ה-REBAL סביבך — הוא יהיה הרכב שלך. תן לו לשאת אותך עוד מעלה, קל ואיטי, אל שקט עמוק עוד יותר.", s:120, br:1, beat:{c:200,b:7}},
+   {ph:"חמש-עשרה", t:"המקום הזה שקט מאוד. כמעט ללא תנועה. אמור בתוכך: \"שלוש-עשרה... ארבע-עשרה... חמש-עשרה\". אל תצפה לדבר — רוב הערך הוא בעומק עצמו.", s:120, beat:{c:150,b:3}},
+   {ph:"גלגל הזמן", t:"דמיין גלגל ענק, שקט, תלוי בחלל. כל חישור בו — פרק מחייך. בחר חישור אחד שמושך אותך... והנח לזיכרון שהוא נושא לעלות: תמונה, ריח, תחושה. רק התבונן. בלי לערוך, בלי לשפוט.", s:210, beat:{c:150,b:3}},
+   {ph:"חישור נוסף", t:"אם תרצה — חישור אחד נוסף. זיכרון אחר, אולי רחוק יותר. התבונן בו כפי שהוא. הזיכרונות האלה שלך; המבט השקט הזה עליהם — הוא המתנה של המצב הזה.", s:180, beat:{c:150,b:3}},
+   {ph:"ירידה", t:"עזוב את הגלגל בעדינות. חמש-עשרה... ארבע-עשרה... שלוש-עשרה... שתים-עשרה. הבלון נושא אותך מטה... אחת-עשרה... עשר. אתה ב-Focus 10, בגוף, בנשימה. ספוג את הבלון פנימה.", s:90, beat:{c:250,b:6}}], CLOSE_STEPS)},
+
+ /* --- תרגילי המסע (מספר המחקר) --- */
+ {id:"listen", grp:"היסודות", name:"האזנה חופשית — 6Hz", icon:"🎧", ac:"var(--cyan)", min:11, lvl:"C-1", beat:{c:250,b:6},
+  desc:"התרגול הבסיסי מתוכנית 30 הימים: היכרות עם הצליל בלבד. פעימת תטא של 6Hz על נשא 250Hz — הפרוטוקול שנמצא במחקר 2026 כמשפר רוגע ומיקוד כאחד. בלי משימה, בלי ציפייה.",
+  steps:[{ph:"הכנה", t:"שכב או שב בנוחות, אוזניות על הראש, עיניים עצומות. הפעל את התדר. אין מה להשיג — רק להכיר את הצליל.", s:30},
+   {ph:"האזנה", t:"הקשב לפעימה העדינה — עולה ויורדת שש פעמים בשנייה. כשמחשבה מושכת אותך — חזור בעדינות אל הצליל. הוא העוגן.", s:600, beat:{c:250,b:6}},
+   {ph:"סיום", t:"הצליל דועך. שים לב איך הגוף מרגיש עכשיו לעומת ההתחלה — ורשום שורה ביומן.", s:30}]},
+ {id:"box", grp:"היסודות", name:"תיבת ההפקדה — תרגול ממוקד", icon:"📦", ac:"var(--gold)", min:5, lvl:"C-1", beat:null,
+  desc:"בניית התיבה בפירוט מלא — חומר, גודל, מנעול — והנחת שלוש דאגות בתוכה. יישום מדויק של טכניקת containment: לא לדחוק, אלא להניח בצד לזמן קצוב.",
+  steps:[{ph:"בנייה", t:"עצום עיניים ובנה את התיבה שלך בפירוט: ממה היא עשויה? מה גודלה? איך נראה המנעול? ככל שהיא מוחשית יותר — היא עובדת טוב יותר.", s:90},
+   {ph:"הפקדה", t:"בחר שלוש דאגות או מחשבות טורדניות. הנח אותן בתיבה, אחת-אחת. הן לא נעלמות — הן ממתינות, ויהיו זמינות בסיום.", s:120},
+   {ph:"סגירה", t:"סגור את המכסה. נעל. שים לב לתחושה: המרחב שהתפנה בראש. פקח עיניים — התיבה תישאר במקומה עד שתחזור אליה.", s:60}]},
+ {id:"openseq", grp:"היסודות", name:"טקס הפתיחה המלא", icon:"🔑", ac:"var(--cyan)", min:15, lvl:"C-1", beat:{c:250,b:6},
+  desc:"הרצף הקבוע שפותח כל סשן מעתה: הצהרה → תיבה → נשימה רזוננטית → האזנה שקטה. יום 5 בתוכנית — והשלד של כל מה שיבוא אחריו.",
+  steps:[{ph:"הכוונה", t:"שכב בנוחות. זהו הטקס שיפתח מעתה כל תרגול — והעקביות שלו היא מה שמקצר את זמן הכניסה למצב בכל מפגש.", s:20},
+   {ph:"ההצהרה הראשונה · הנוסח המלא", t:AFFIRMATION, s:95},
+   {ph:"תיבה", t:"פתח את תיבת ההפקדה. הנח בה את הדאגות של הרגע — אחת-אחת. סגור.", s:60},
+   {ph:"נשימה", t:"שש נשימות איטיות — כארבע וחצי שניות פנימה, ארבע וחצי החוצה — עם צליל המהום עדין בנשיפה. הרגש את הרטט בחזה.", s:90, br:1},
+   {ph:"האזנה", t:"ועכשיו — רק הצליל. שהה איתו. בלי משימה.", s:480, beat:{c:250,b:6}},
+   {ph:"חזרה", t:"ספור לאט חמש... ארבע... שלוש... שתיים... אחת. פקח עיניים ורשום ביומן: כמה זמן לקח עד ההרפיה?", s:40}]},
+ {id:"flow", grp:"מתקדם", name:"Free Flow — חקירה פתוחה", icon:"🌠", ac:"var(--violet)", min:32, lvl:"F-12", beat:{c:200,b:7},
+  desc:"השלב הפחות מובנה בתוכנית: כניסה מלאה עד Focus 12 — ואז ההדרכה מוסרת ונשאר רק הצליל, לפרק זמן ארוך. אין משימה. כאן מרוכזים רוב הדיווחים על החוויות החריגות — התייחס אליהן בסקרנות, ותעד הכול בסיום.",
+  steps: seq(OPEN_STEPS, [F10_ENTRY,
+   {ph:"עלייה ל-F-12", t:"מ-Focus 10 יציב — \"אחת-עשרה\"... \"שתים-עשרה\". המודעות מורחבת ושקטה.", s:90, beat:{c:200,b:7}},
+   {ph:"Free Flow", t:"מכאן — אין הדרכה. רק הצליל, ואתה. תן למה שעולה — לעלות. אל תנווט, אל תשפוט, אל תיאחז. אם דבר לא קורה — גם זה בסדר גמור.", s:1200, beat:{c:200,b:7}},
+   {ph:"איסוף", t:"התחל לחזור בעדינות. אסוף את מה שחווית — תמונות, תחושות, מחשבות — כדי לרשום מיד ביומן. תיאור לפני פרשנות.", s:60, beat:{c:250,b:6}}], CLOSE_STEPS)},
+];
+
+const GOALS = [
+ {id:"relax", icon:"🌊", name:"הרפיה והורדת מתח", d:"שחרור עומס היום ב-Focus 10", ex:["f10"], note:"הפרוטוקול הקלאסי: פתיחה מלאה, כניסה ל-F-10 ושהייה שקטה. 15–20 דקות."},
+ {id:"sleepG", icon:"🌙", name:"שינה טובה", d:"כלי הכניסה לשינה מהמסמך", ex:["sleep"], note:"בלי שלבי חזרה — ספירה שנמסה אל תוך שינה. שים את הטלפון בצד אחרי ההפעלה."},
+ {id:"energyG", icon:"⚡", name:"אנרגיה ומיקוד", d:"טעינה מהירה + אימון המוט", ex:["energy","ebt"], note:"קצר בבוקר, מלא כשיש זמן: טעינת לבן, ואם תרצה — סשן EBT מלא לחידוד הריכוז."},
+ {id:"heal", icon:"💜", name:"ריפוי ואיזון", d:"מפות הגוף באנרגיה ירוקה וסגולה", ex:["lbm","emap","colors"], note:"רצף האיזון המלא: גוף, רגש, ונשימת צבעים. להשלמה — לא כתחליף לטיפול רפואי."},
+ {id:"solve", icon:"🧩", name:"פתרון בעיה", d:"שאלה חדה אל F-12 — ושחרור", ex:["prob"], note:"נסח את השאלה לפני שאתה שוכב. התשובות מגיעות לפעמים מיד — ולפעמים כאינטואיציה ביומיים-שלושה."},
+ {id:"goals", icon:"🌱", name:"יעדים ודפוסי חיים", d:"Patterning — בניית הדפוס הרצוי", ex:["pattern"], note:"בונה ומיטיב בלבד, בלי לכפות את הקצב — כך במקור."},
+ {id:"expand", icon:"🌌", name:"הרחבת תודעה", d:"REBAL ומעבר ל-Focus 12", ex:["rebal","f12"], note:"למתרגלים עם F-10 יציב. הבלון קודם — הוא הרכב; אחר כך המעבר ל-12."},
+ {id:"explore", icon:"🕰️", name:"חקירה וניווט", d:"תרגיל השעון ותפיסה מרחוק", ex:["clock","rv"], note:"אימוני הניווט של המודעות — כולל התרגול ההיסטורי שסביבו נבנה העניין המודיעיני."},
+ {id:"balanceG", icon:"⚖️", name:"ניקוי ואיזון יומי", d:"כוונון תהודה + איזון אנרגיה", ex:["tuning","ebal"], note:"הרצף המתחזק: זמזום התהודה מדוח 1983, ואז הסגול על המפות וניקוי הבעיות מהתיבה."},
+ {id:"advanced", icon:"⏳", name:"המסע המתקדם", d:"REBAL → תנועה חופשית → גלגל הזמן", ex:["rebal","free","f15"], note:"רק לאחר שבועות של F-10 ו-F-12 יציבים. דוח 1983: פחות מ-5% מגיעים ל-F-15 בשבוע אימון — הסבלנות היא הדרך, לא המכשול."},
+];
+
+const DAILY = [
+ {id:"morning", ic:"🌅", name:"בוקר — טעינה", d:"נשימה רזוננטית + אנרגיה לבנה · ‏5 דק'", ex:"energy"},
+ {id:"noon", ic:"🍃", name:"צהריים — איפוס", d:"פריקת מטען רגשי · ‏2 דק'", ex:"emo"},
+ {id:"evening", ic:"🌗", name:"ערב — הסשן המרכזי", d:"Focus 10 מלא (או תרגול הבחירה) + יומן · ‏15–20 דק'", ex:"f10"},
+ {id:"night", ic:"🌙", name:"לילה — כניסה לשינה", d:"כלי השינה · עד 4 דק'", ex:"sleep"},
+];
+</script>
+<script>
+/* =====================================================
+   GATEWAY — engine layer
+   ===================================================== */
+
+/* ---------- storage with fallback ---------- */
+const store = (()=>{
+  let mem = {};
+  let ok = true;
+  try { localStorage.setItem('__t','1'); localStorage.removeItem('__t'); } catch(e){ ok=false; }
+  return {
+    get(k,d){ try{ const r = ok? localStorage.getItem(k) : mem[k]; return r? JSON.parse(r) : d; }catch(e){ return d; } },
+    set(k,v){ try{ const s = JSON.stringify(v); if(ok) localStorage.setItem(k,s); else mem[k]=s; chip('saved'); }catch(e){ chip('error'); } }
+  };
+})();
+function chip(st){
+  const el = document.getElementById('saveChip');
+  if(st==='saved'){ el.textContent='✓ נשמר'; el.classList.add('saved'); setTimeout(()=>{el.textContent='שמירה אוטומטית פעילה';},1800); }
+  else if(st==='error'){ el.textContent='שגיאת שמירה'; el.classList.remove('saved'); }
+}
+
+/* ---------- starfield ---------- */
+(function(){
+  const c = document.getElementById('stars'), x = c.getContext('2d');
+  let W,H,pts=[];
+  function size(){ W=c.width=innerWidth; H=c.height=innerHeight;
+    pts = Array.from({length:Math.min(150,W/9)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.2,p:Math.random()*6.28,s:Math.random()*.5+.2}));
+  }
+  size(); addEventListener('resize',size);
+  (function draw(t){
+    x.clearRect(0,0,W,H);
+    pts.forEach(p=>{ const a = .25 + .45*Math.abs(Math.sin(t/2400*p.s + p.p));
+      x.beginPath(); x.arc(p.x,p.y,p.r,0,6.28); x.fillStyle=`rgba(180,200,255,${a})`; x.fill(); });
+    requestAnimationFrame(draw);
+  })(0);
+})();
+
+/* ---------- navigation ---------- */
+const ui = {
+  go(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('s-'+id).classList.add('active');
+    document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.s===id));
+    scrollTo({top:0,behavior:'smooth'});
+  }
+};
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>ui.go(t.dataset.s));
+
+/* ---------- דגשים לכל תרגיל — מהספר ומה-Workbook ---------- */
+const TIPS = {
+ rbx:["ישיבה או שכיבה — עיניים עצומות","נשיפה איטית דרך הפה, כמו כיבוי נר — כ-6 נשימות לדקה","הרגש את הרטט בחזה ובראש בנשיפה — זו ה'תהודה'","ללא אודיו — התרגיל עומד בפני עצמו","אם מסתחרר — האט את הקצב או חזור לנשימה רגילה"],
+ tuning:["זמזום בקול — עדיף מקום פרטי","עיניים עצומות · ישיבה או שכיבה","כוון לרטט בראש — לא לצליל 'יפה'","חוליית החיבור בין הנשימה לכניסה ל-Focus 10"],
+ f10:["שכיבה על הגב; בערב — ישיבה בזווית קלה למניעת הירדמות (פרק 10)","עיניים עצומות · אוזניות סטריאו חובה","חזור על המספר בשקט בכל נשיפה — זהו העיגון","הירדמות אינה כישלון — זה הדפוס הרגיל בהתחלה","חזרה מיידית בכל רגע: הזז אצבע או בוהן (Emergency Return מה-Workbook)"],
+ ebt:["רק מתוך F-10 יציב · עיניים עצומות · אוזניות","נתק את הנשימה ואת המילים מההדלקה/כיבוי — רק כוונה","התחושה במקלעת השמש היא הסמן שהתרגיל עובד","בסיום — אחסן את המוט במקום קבוע: שם הוא יחכה, טעון"],
+ lbm:["מתוך F-10 · עיניים עצומות · אוזניות","סרוק לאט מהראש למטה — אל תשפוט, רק סמן","צבעי המערכות מה-Workbook: כחול=עצבים · אדום=דם · כתום=שריר ושלד · צהוב=איברים ובלוטות · לבן=הכול","תרגיל דימוי וקשב — לא אבחון רפואי"],
+ emap:["לבצע אחרי היכרות טובה עם LBM — המפה הרגשית נמצאת 'מאחוריה'","אזן גם נקודות כבויות וגם נקודות בוהקות מדי — שתיהן מבקשות איזון","עיניים עצומות · מתוך F-10"],
+ ebm:["מתוך F-10 · עיניים עצומות","הרגש את השדה גם מאחוריך ומתחתיך — לא רק מלפנים","הרחבה בשאיפה, כיווץ בנשיפה — בקצב הנשימה","זה 'השריר' שממנו ייבנה ה-REBAL"],
+ rebal:["מתוך F-10 · עיניים עצומות · אוזניות","ודא שאתה חש את הבלון גם מאחוריך — היקף מלא","ה-Workbook: תרגלו לפחות פעמיים ביום — השליטה אינה מגיעה ביום או בשבוע","בסיום — תמיד לספוג את הבלון בחזרה פנימה: זו האנרגיה שלך","חזרה מיידית בכל רגע: הזז אצבע"],
+ f12:["רק אחרי F-10 יציב — 'Focus 10 הוא המפתח לכל המערכת' (Workbook)","שכיבה · עיניים עצומות · אוזניות","אל תכריח: אם 'התחושה הטעונה' לא מגיעה — חזור לתרגל F-10","יציאה תמיד בספירה מלאה: 12→10, ואז 10→1","חזרה מיידית בכל רגע: הזז אצבע"],
+ colors:["מתוך F-10 · עיניים עצומות","צבע אחד, אזור אחד — כך ביום 9 של המסע","הצבע נכנס בשאיפה ומתפשט בנשיפה","אל תדחף את הצבע — הוא 'יודע לאן לזרום'"],
+ prob:["נסח את השאלה לפני השכיבה — ככל שתהיה ספציפית יותר, כך טוב יותר","הצג — ושחרר. לא לפתור אנליטית","דוח 1983: התשובה עשויה להגיע גם כאינטואיציה תוך 2–3 ימים","רשום הכול ביומן בסיום — גם 'לא הגיע דבר' הוא נתון"],
+ clock:["מתוך F-12 · עיניים עצומות · אוזניות","התבונן היטב בכל נקודה לפני מעבר לנקודה הבאה","8–10 סבבים בסך הכול — בקצב שלך"],
+ pattern:["רק דפוס בונה ומיטיב — תנאי המקור","נסח בחיוב ובזמן הווה, כאילו כבר קיים","אזהרת המאמנים בדוח 1983: לא לכפות את הקצב","החזרתיות היא המנגנון — חזור על אותו דפוס בימים עוקבים"],
+ rv:["מוצג כתרגיל דמיון היסטורי מהמסמכים — לא כאיסוף מידע מאומת (פרק 7)","מתוך F-12 · עיניים עצומות","קלוט בלי לנתח — ורשום בלי לשפוט"],
+ ebal:["תרגיל סגירה מצוין — לסוף היום, לפני שינה","הוצא מהתיבה רק בעיות שאתה יכול לפעול לגביהן","עיניים עצומות · מתוך F-10"],
+ flow:["רק אחרי F-12 יציב — זה השלב הפחות מובנה בתוכנית","כאן מרוכזים רוב הדיווחים החריגים — גש בסקרנות ובזהירות","תעד מיד בסיום: תיאור לפני פרשנות (פרק 11)","אם לא קורה דבר — גם זה בסדר גמור","חזרה מיידית בכל רגע: הזז אצבע"],
+ free:["תרגול דמיון-תחושה היסטורי מה-Workbook — למתרגלים עם F-10 יציב בלבד","תמיד בתוך הגנת ה-REBAL — כך במקור","ללא מאמץ שרירים — תחושה ודימוי בלבד","חזרה מיידית בכל רגע: הזז אצבע"],
+ f15:["מתקדם מאוד: פחות מ-5% מגיעים לזה בשבוע אימון מלא (דוח 1983)","גש כתרגול התבוננות שקטה בזיכרון — בלי ציפיות","סבלנות של חודשים — לא של ימים"],
+ listen:["אוזניות סטריאו חובה · עוצמה נמוכה: לשמוע בבירור, לא להרגיש לחץ","עיניים עצומות · אין מה להשיג — רק להכיר את הצליל","כשמחשבה מושכת אותך — חזור בעדינות אל הצליל"],
+ box:["אפשר בישיבה, בכל מקום שקט — עצימת עיניים קצרה מספיקה","להניח בצד — לא לדחוק: התכנים ממתינים ויחזרו אליך בסיום","ככל שהתיבה מוחשית יותר (חומר, גודל, מנעול) — היא עובדת טוב יותר"],
+ openseq:["הסדר הקבוע מהספר (יום 5): הצהרה → תיבה → נשימה","העקביות הטקסית היא שמקצרת את זמן הכניסה למצב","עיניים עצומות · אוזניות לחלק ההאזנה"],
+ sleep:["במיטה, אורות כבויים — והנח את הטלפון מיד אחרי ההפעלה","אין שלבי חזרה — הכלי נועד להימס אל תוך שינה","עדיף בלי אוזניות חוטיות במיטה"],
+ emo:["כלי ערוּת — תוך כדי היום, בעצימת עיניים קצרה בלבד","לעולם לא בזמן נהיגה או הפעלת מכונות","שלוש נשיפות ירוקות — פחות מדקה"],
+ energy:["כלי ערוּת קצר — לבוקר או לפני משימה","עצימת עיניים לשניות ספורות בלבד","אינו תחליף לאוכל, לשתייה או לשינה"],
+ speed:["העיניים נפקחות בביצוע — הפעולה מגיעה מיד עם הנשיפה","לעולם לא לפני נהיגה או הפעלת מכונות"],
+ memory:["כלי ערוּת — מגע עדין של אצבעות יד ימין במרכז המצח","אל תחפור — הנח לזיכרון לעלות מעצמו, עכשיו או בדקות הקרובות"],
+ balance:["כלי הרגעה — לא אבחון: כאב חריג או מתמשך מחייב רופא","עצימת עיניים קצרה, בכל מקום שקט"],
+ pain:["כלי הקלה רגעית בלבד — כאב חדש, חד או חוזר מחייב רופא","עיניים עצומות · חזרה על 55515 בקצב רגוע ואחיד"],
+};
+
+/* ---------- binaural audio engine ---------- */
+const audioEng = {
+  ctx:null, nodes:null, on:false, vol:.25, cur:null,
+  ensure(){ if(!this.ctx) this.ctx = new (window.AudioContext||window.webkitAudioContext)(); if(this.ctx.state==='suspended') this.ctx.resume(); },
+  start(c,b){
+    this.ensure(); this.stopOsc(true);
+    const ctx=this.ctx, t=ctx.currentTime;
+    const master = ctx.createGain(); master.gain.setValueAtTime(0.0001,t); master.gain.linearRampToValueAtTime(this.vol,t+3);
+    const merger = ctx.createChannelMerger(2);
+    const mk = (freq,ch)=>{ const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=freq;
+      const g=ctx.createGain(); g.gain.value=.85; o.connect(g); g.connect(merger,0,ch); o.start(); return o; };
+    const oL = mk(c,0), oR = mk(c+b,1);
+    /* soft pink-ish noise bed */
+    const buf = ctx.createBuffer(1, ctx.sampleRate*2, ctx.sampleRate);
+    const d = buf.getChannelData(0); let b0=0,b1=0,b2=0;
+    for(let i=0;i<d.length;i++){ const w=Math.random()*2-1; b0=.997*b0+.029*w; b1=.985*b1+.055*w; b2=.95*b2+.09*w; d[i]=(b0+b1+b2)*.18; }
+    const noise = ctx.createBufferSource(); noise.buffer=buf; noise.loop=true;
+    const nf = ctx.createBiquadFilter(); nf.type='lowpass'; nf.frequency.value=1800; nf.Q.value=.3; /* ריכוך בלבד — שומר אופי ורוד */
+    const ng = ctx.createGain(); ng.gain.value=.20; /* ~-12dB מתחת לפעימה — לפי ספר המחקר */
+    noise.connect(nf); nf.connect(ng); ng.connect(master); noise.start();
+    merger.connect(master); master.connect(ctx.destination);
+    this.nodes = {oL,oR,noise,master}; this.on=true; this.cur={c,b};
+    this.badge();
+  },
+  retune(c,b){ if(!this.on){ this.cur={c,b}; this.badge(); return; }
+    const t=this.ctx.currentTime;
+    this.nodes.oL.frequency.linearRampToValueAtTime(c,t+4);
+    this.nodes.oR.frequency.linearRampToValueAtTime(c+b,t+4);
+    this.cur={c,b}; this.badge();
+  },
+  stopOsc(now){ if(!this.nodes) return; const n=this.nodes, t=this.ctx.currentTime;
+    try{ n.master.gain.cancelScheduledValues(t); n.master.gain.setValueAtTime(n.master.gain.value,t);
+      n.master.gain.linearRampToValueAtTime(0.0001, t+(now?0.05:2.5));
+      setTimeout(()=>{ try{n.oL.stop();n.oR.stop();n.noise.stop();}catch(e){} }, now?80:2600);
+    }catch(e){}
+    this.nodes=null;
+  },
+  toggle(){
+    if(this.on){ this.stopOsc(); this.on=false; }
+    else { const p = this.cur || {c:250,b:6}; this.start(p.c,p.b); }
+    this.badge();
+    document.getElementById('beatBtn').textContent = this.on ? '⏸ השתק תדר' : '🎧 הפעל תדר';
+  },
+  setVol(v){ this.vol=v;
+    if(this.nodes) this.nodes.master.gain.linearRampToValueAtTime(v, this.ctx.currentTime+.3);
+    if(this.droneNodes) this.droneNodes.g.gain.linearRampToValueAtTime(Math.min(.08, v*.28), this.ctx.currentTime+.3); /* ~-11dB מתחת לפעימה — פרק 9 */
+  },
+  /* ambient drone: pure-fifth pad (A1-E2-A2-E3), rhythm-free, heavily filtered */
+  droneNodes:null, droneOn:false,
+  toggleDrone(){
+    this.ensure();
+    const btn = document.getElementById('droneBtn');
+    if(this.droneOn){
+      const n=this.droneNodes, t=this.ctx.currentTime;
+      try{ n.g.gain.cancelScheduledValues(t); n.g.gain.setValueAtTime(n.g.gain.value,t);
+        n.g.gain.linearRampToValueAtTime(0.0001, t+2.5);
+        setTimeout(()=>{ try{ n.osc.forEach(o=>o.stop()); n.lfo.stop(); }catch(e){} }, 2600);
+      }catch(e){}
+      this.droneNodes=null; this.droneOn=false;
+      btn.classList.remove('btn-cyan'); btn.classList.add('btn-ghost'); btn.textContent='🎼 דרון';
+      return;
+    }
+    const ctx=this.ctx, t=ctx.currentTime;
+    const g=ctx.createGain(); g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(Math.min(.08, this.vol*.28), t+4);
+    const lp=ctx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=420; lp.Q.value=.4;
+    const osc=[];
+    [[55,'sine'],[82.41,'triangle'],[110,'sine'],[164.81,'triangle']].forEach(([f,ty],i)=>{
+      const o=ctx.createOscillator(); o.type=ty; o.frequency.value=f; o.detune.value=(i-1.5)*3.5;
+      const og=ctx.createGain(); og.gain.value = i<2 ? .55 : .3;
+      o.connect(og); og.connect(lp); o.start(); osc.push(o);
+    });
+    const lfo=ctx.createOscillator(); lfo.frequency.value=.05;
+    const lg=ctx.createGain(); lg.gain.value=.022;
+    lfo.connect(lg); lg.connect(g.gain); lfo.start();
+    lp.connect(g); g.connect(ctx.destination);
+    this.droneNodes={osc,lfo,g}; this.droneOn=true;
+    btn.classList.add('btn-cyan'); btn.classList.remove('btn-ghost'); btn.textContent='🎼 דרון פעיל';
+  },
+  badge(){ const el=document.getElementById('beatInfo'); if(!el) return;
+    el.textContent = this.cur ? `${this.cur.b}Hz beat · גל נושא ${this.cur.c}Hz` : ''; }
+};
+
+/* ---------- guided session player ---------- */
+const player = {
+  steps:[], idx:0, left:0, timer:null, paused:false, exName:'',
+  open(ex, extraFirstText){
+    this.steps = ex.steps.map(s=>({...s}));
+    if(extraFirstText) this.steps.unshift({ph:"הכוונה שלך", t:"«"+extraFirstText+"»", s:12});
+    this.exName = ex.name; this.exMin = ex.min; this.exLvl = ex.lvl; this.idx=0; this.paused=false; this.state='ready';
+    document.getElementById('player').classList.add('on');
+    this.pane('pReady');
+    if(ex.beat){ audioEng.cur = {c:ex.beat.c, b:ex.beat.b}; audioEng.badge(); }
+    document.getElementById('beatBtn').textContent='🎧 הפעל תדר';
+    document.getElementById('rdName').textContent = ex.name;
+    document.getElementById('rdMeta').innerHTML = `<span class="pill">${ex.lvl}</span><span class="pill">~${ex.min} דק'</span>${ex.beat?`<span class="pill">🎧 ${ex.beat.b}Hz · נשא ${ex.beat.c}Hz</span>`:'<span class="pill">ללא תדר</span>'}`;
+    document.getElementById('rdDesc').textContent = ex.desc || '';
+    const tips = TIPS[ex.id] || [];
+    const tipsBox = document.getElementById('rdTips');
+    tipsBox.style.display = tips.length ? '' : 'none';
+    tipsBox.innerHTML = tips.length ? `<b>📌 דגשים לתרגול זה</b><ul>${tips.map(t=>`<li>${t}</li>`).join('')}</ul>` : '';
+    document.getElementById('rdBeatNote').textContent = ex.beat ? 'התדר יופעל אוטומטית עם ההתחלה — כוון עוצמה נמוכה: לשמוע בבירור, לא להרגיש לחץ.' : 'תרגול זה מבוצע ללא אודיו.';
+  },
+  pane(id){ ['pReady','pSession','pDone'].forEach(p=>document.getElementById(p).classList.toggle('on', p===id)); },
+  begin(){
+    this.state='run'; this.pane('pSession');
+    if(audioEng.cur && !audioEng.on){ audioEng.start(audioEng.cur.c, audioEng.cur.b); document.getElementById('beatBtn').textContent='⏸ השתק תדר'; }
+    this.show();
+  },
+  show(){
+    const s = this.steps[this.idx];
+    document.getElementById('pPhase').textContent = `${this.exName} · ${s.ph} · שלב ${this.idx+1}/${this.steps.length}`;
+    document.getElementById('pText').textContent = s.t;
+    this.left = s.s;
+    if(s.beat && audioEng.on) audioEng.retune(s.beat.c, s.beat.b);
+    else if(s.beat){ audioEng.cur={c:s.beat.c,b:s.beat.b}; audioEng.badge(); }
+    const orb = document.getElementById('pOrb');
+    orb.classList.remove('inhale','exhale');
+    const lbl=document.getElementById('pOrbLbl');
+    if(s.br){ this.breathe(orb, s.brSec); } else { this.brTimer && clearInterval(this.brTimer); lbl.textContent=''; }
+    document.getElementById('pNext').textContent = this.idx === this.steps.length-1 ? 'סיים ✓' : 'השלב הבא ←';
+    clearInterval(this.timer);
+    this.timer = setInterval(()=>this.tick(), 1000);
+    this.tick(true);
+  },
+  breathe(orb, sec){
+    let ph=0; const lbl=document.getElementById('pOrbLbl');
+    const cyc=()=>{ if(!document.getElementById('player').classList.contains('on')) return;
+      orb.classList.toggle('inhale', ph===0); orb.classList.toggle('exhale', ph===1);
+      lbl.textContent = ph===0 ? 'שאיפה' : 'נשיפה'; ph=1-ph; };
+    cyc(); this.brTimer && clearInterval(this.brTimer);
+    this.brTimer = setInterval(cyc, (sec||4.5)*1000);
+  },
+  tick(first){
+    if(this.paused) return;
+    if(!first) this.left--;
+    const s=this.steps[this.idx];
+    document.getElementById('pTimer').textContent = `${Math.floor(Math.max(0,this.left)/60)}:${String(Math.max(0,this.left)%60).padStart(2,'0')}`;
+    document.getElementById('pBar').style.width = `${100*(1-Math.max(0,this.left)/s.s)}%`;
+    if(this.left<=0){ this.next(); }
+  },
+  next(){
+    if(this.idx < this.steps.length-1){ this.idx++; this.show(); }
+    else this.stop(true);
+  },
+  togglePause(){ this.paused=!this.paused; document.getElementById('pPause').textContent=this.paused?'המשך ▶':'השהה'; },
+  stop(finished){
+    clearInterval(this.timer); this.brTimer && clearInterval(this.brTimer);
+    audioEng.on && audioEng.toggle();
+    audioEng.droneOn && audioEng.toggleDrone();
+    if(finished && this.state!=='done'){
+      this.state='done';
+      /* תיוג יום המסע — לפני הסימון האוטומטי */
+      let jd=null; try{ const d=journey.data(); const nx=journey.nextDay();
+        if(d.start && nx<=30){ const info=JOURNEY_WEEKS.flatMap(w=>w.days).find(x=>x.d===nx);
+          if(info && info.x===this.curExId) jd=nx; } }catch(e){}
+      this.pendingJd = jd;
+      daily.autoMark(); journey.autoMark(this.curExId);
+      ['qTb','qTa','qCb','qCa','qEntry','qSleep','qActual','qInsight'].forEach(id=>document.getElementById(id).value='');
+      this.pane('pDone');
+      return;
+    }
+    this.state='idle';
+    document.getElementById('player').classList.remove('on');
+  },
+  qsave(){
+    const g=id=>document.getElementById(id).value.trim();
+    const d=new Date();
+    const e={ date:d.toISOString().slice(0,10), time:d.toTimeString().slice(0,5), ex:this.exName,
+      jd:this.pendingJd||null, tb:g('qTb'), ta:g('qTa'), cb:g('qCb'), ca:g('qCa'),
+      entry:g('qEntry'), sleep:g('qSleep'), actual:g('qActual'), insight:g('qInsight'), ts:Date.now() };
+    const l=journal.list(); l.unshift(e); store.set('gw_journal', l);
+    this.state='idle';
+    document.getElementById('player').classList.remove('on');
+    journal.render(); ui.go('journal');
+  },
+  qskip(){ this.state='idle'; document.getElementById('player').classList.remove('on'); }
+};
+
+/* ---------- modal ---------- */
+function modal(title, body, actionLabel, actionFn){
+  document.getElementById('mTitle').textContent=title;
+  document.getElementById('mBody').textContent=body;
+  const a=document.getElementById('mAction');
+  if(actionLabel){ a.style.display='inline-flex'; a.textContent=actionLabel; a.onclick=()=>{document.getElementById('modal').classList.remove('on'); actionFn&&actionFn();}; }
+  else a.style.display='none';
+  document.getElementById('modal').classList.add('on');
+}
+
+/* ---------- start exercise (with optional intention prompt) ---------- */
+function startEx(id){
+  const ex = EXERCISES.find(e=>e.id===id); if(!ex) return;
+  player.curExId = id;
+  if(ex.ask){
+    const v = prompt(ex.ask);
+    if(v===null) return;
+    player.open(ex, v.trim()||undefined);
+  } else player.open(ex);
+}
+
+/* ---------- render: focus map ---------- */
+document.getElementById('fmap').innerHTML = FOCUS.map((f,i)=>`
+ <div class="fnode" style="--nc:${f.color}">
+   <div class="fcard" onclick="this.parentElement.classList.toggle('open')">
+     <h4><span class="code">${f.code}</span> ${f.name}
+       ${f.beat?`<span class="pill" style="margin-inline-start:auto">${f.beat}Hz</span>`:''}</h4>
+     <div class="fdetail"><p>${f.desc}</p><p class="mt" style="color:var(--ink)"><b>איך:</b> ${f.how}</p></div>
+   </div>
+ </div>`).join('');
+
+/* ---------- render: library ---------- */
+(function(){
+  const groups = [...new Set(EXERCISES.map(e=>e.grp))];
+  document.getElementById('lib-groups').innerHTML = groups.map(g=>`
+    <h3 class="mt2" style="color:var(--cyan);letter-spacing:.06em">${g}</h3>
+    <div class="grid g3 mt">${EXERCISES.filter(e=>e.grp===g).map(e=>`
+      <div class="ex-card" style="--ac:${e.ac}">
+        <div class="ex-top"><h3>${e.icon} ${e.name}</h3></div>
+        <div class="meta"><span class="pill">${e.lvl}</span><span class="pill">~${e.min} דק'</span>${e.beat?`<span class="pill">🎧 ${e.beat.b}Hz</span>`:''}</div>
+        <p>${e.desc}</p>
+        <button class="btn btn-primary" onclick="startEx('${e.id}')">התחל סשן מודרך</button>
+      </div>`).join('')}</div>`).join('');
+})();
+
+/* ---------- render: goals ---------- */
+(function(){
+  document.getElementById('goalGrid').innerHTML = GOALS.map(g=>`
+    <div class="goal" onclick="showProto('${g.id}')"><div class="gi">${g.icon}</div><h3>${g.name}</h3><p>${g.d}</p></div>`).join('');
+})();
+function showProto(id){
+  document.querySelectorAll('.goal').forEach(el=>el.classList.remove('sel'));
+  event.currentTarget.classList.add('sel');
+  const g = GOALS.find(x=>x.id===id);
+  const exs = g.ex.map(i=>EXERCISES.find(e=>e.id===i));
+  const total = exs.reduce((a,e)=>a+e.min,0);
+  const box = document.getElementById('protoBox');
+  box.style.display='block';
+  box.innerHTML = `<div class="protocol-view">
+    <div class="eyebrow">הפרוטוקול שלך · ~${total} דק'</div>
+    <h3>${g.icon} ${g.name}</h3>
+    <p class="muted" style="font-size:.9rem">${g.note}</p>
+    <div class="mt">${exs.map((e,i)=>`
+      <div class="proto-step"><span class="n">${i+1}</span>
+        <div><b>${e.icon} ${e.name}</b><div class="faint">${e.lvl}${e.beat?` · תדר ${e.beat.b}Hz`:''}</div></div>
+        <span class="t">~${e.min} דק'</span></div>`).join('')}</div>
+    <div class="mt" style="display:flex;gap:10px;flex-wrap:wrap">
+      ${exs.map((e,i)=>`<button class="btn ${i===0?'btn-primary':'btn-ghost'}" onclick="startEx('${e.id}')">התחל שלב ${i+1}: ${e.name}</button>`).join('')}
+    </div></div>`;
+  box.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+
+/* ---------- 30-day journey (research book, ch. 10) ---------- */
+const JOURNEY_WEEKS = [
+ {n:1, name:"הכנה ויסודות", c:"var(--cyan)", days:[
+  {d:1, t:"בטיחות + היכרות עם הצליל", x:"listen", note:"קרא קודם את אזהרות הבטיחות בהקדמה. אוזניות סטריאו, עיניים עצומות, עוצמה נמוכה — 10 דקות האזנה בלבד, בלי תרגיל. המטרה: להתרגל לצליל."},
+  {d:2, t:"ההצהרה האישית", x:"listen", note:"נסח את ההצהרה שלך במילים שלך. כתוב אותה ביומן. אמור אותה — ואחריה 10 דקות האזנה שקטה."},
+  {d:3, t:"נשימה תהודתית", x:"rbx", note:"6 נשימות לדקה, כ-8 דקות, ללא אודיו. עיניים עצומות — שים לב לרטט בחזה בנשיפה. זה הרכיב עם הבסיס הפיזיולוגי החזק ביותר בתוכנית."},
+  {d:4, t:"קופסת המחסן", x:"box", note:"בנה את התיבה בפירוט — חומר, גודל, מנעול. הכנס שלוש דאגות. סגור."},
+  {d:5, t:"הרצף המלא", x:"openseq", note:"הצהרה → תיבה → נשימה → 10 דק' האזנה. זהו טקס הפתיחה הקבוע מעתה."},
+  {d:6, t:"מבוא ל-Focus 10", x:"f10", note:"שכיבה על הגב, עיניים עצומות; אם זה ערב — שב בזווית קלה כדי לא להירדם. הרפיה מדורגת מבהונות לראש. אין ציפייה להצלחה — הירדמות היא לא כישלון."},
+  {d:7, t:"יום סיכום", x:"f10", note:"חזרה על יום 6 — ואז קריאה חוזרת של רשומות היומן מהשבוע. מה חזר על עצמו?"}]},
+ {n:2, name:"Focus 10 לעומק", c:"var(--gold)", days:[
+  {d:8, t:"Focus 10 מלא + עיגון", x:"f10", note:"הרפיה מדורגת + עיגון המצב למספר 10. חזור על המספר בשקט בכל נשיפה — זו התניה שתאפשר גישה מהירה בעתיד."},
+  {d:9, t:"נשימת צבע", x:"colors", note:"בחר צבע אחד; מלא אזור אחד בגוף. העמקת ההרפיה דרך קישור חושי."},
+  {d:10, t:"מפת הגוף החי (LBM)", x:"lbm", note:"סריקת גוף מפורטת מהראש למטה, מתוך Focus 10."},
+  {d:11, t:"מוט האנרגיה (EBT)", x:"ebt", note:"בניית 'מוט' בין כפות הידיים והפנייתו לאזור מתוח."},
+  {d:12, t:"מנוחה פעילה", x:"rbx", note:"רק הצהרה, נשימה — ו-10 דקות שקט מלא, ללא אודיו. ימי מנוחה הם חלק מהתוכנית, לא כישלון."},
+  {d:13, t:"רצף משולב", x:"lbm", note:"F-10 ‏+ EBT ‏+ LBM ברצף. שים לב לזמן שלוקח להיכנס — הוא אמור להתקצר."},
+  {d:14, t:"בדיקת אמצע", x:null, act:"journal", note:"האם יש שינוי בשינה, בריכוז, במצב הרוח? כתוב פסקה ביומן — והשווה למדדים."}]},
+ {n:3, name:"Focus 12 והרחבה", c:"var(--violet)", days:[
+  {d:15, t:"תנועת בלון האנרגיה (EBM)", x:"ebm", note:"דימוי שדה סביב הגוף — הרחב, כווץ, הזז. הכנה ישירה ל-REBAL של מחר."},
+  {d:16, t:"REBAL — בלון האנרגיה", x:"rebal", note:"בניית הבועה השלמה. שים לב איך היא משפיעה על תחושת הביטחון — מטאפורה פעילה של גבול אישי."},
+  {d:17, t:"מבוא ל-Focus 12", x:"f12", note:"מ-Focus 10 להרחבה מעבר לגבולות העור. אל תכריח — אם המצב לא הגיע, חזור ל-F-10."},
+  {d:18, t:"תרגיל השעון", x:"clock", note:"מתוך F-12: תרגל הפניית קשב לשלוש, לשש, לתשע. מערכת קואורדינטות למרחב הפנימי."},
+  {d:19, t:"פתרון בעיות ראשון", x:"prob", note:"נסח שאלה אחת ברורה מראש. הצג אותה. אל תפתור — חכה."},
+  {d:20, t:"מנוחה", x:null, act:"tools", note:"היום — רק כלים יומיים בעיניים פתוחות: נשימה קצרה, קופסה מהירה, REBAL לפני סביבה עמוסה."},
+  {d:21, t:"REBAL + Focus 12 ברצף", x:"rebal", note:"בנה את הבלון — ותן לו לשאת אותך אל Focus 12. רצף מלא של 30 דקות. סיום השבוע השלישי."}]},
+ {n:4, name:"אינטגרציה", c:"var(--rose)", days:[
+  {d:22, t:"שינוי דפוסים", x:"pattern", note:"בחר דפוס תגובה אחד קטן. הצג אותו — ואז את הגרסה הרצויה."},
+  {d:23, t:"שינוי דפוסים — חזרה", x:"pattern", note:"אותו דפוס בדיוק. החזרתיות היא המנגנון כאן — כמו חזרה מנטלית בפסיכולוגיה של הספורט."},
+  {d:24, t:"איזון אנרגטי", x:"ebal", note:"סריקה והשוואה בין אזורים. תרגיל סגירה מלא."},
+  {d:25, t:"Free Flow ראשון", x:"flow", note:"כניסה מלאה — ואז 20 דקות ללא הדרכה. תעד הכול מיד אחר כך: תיאור לפני פרשנות."},
+  {d:26, t:"יום הכלים היומיים", x:null, act:"tools", note:"יום שלם של יישום בעיניים פתוחות, ללא מפגש ארוך. השיטה נמדדת במה שנשאר מחוץ לחדר."},
+  {d:27, t:"פתרון בעיות שני", x:"prob", note:"שאלה אחרת. השווה ביומן לתוצאה של יום 19."},
+  {d:28, t:"Free Flow שני", x:"flow", note:"ארוך יותר — 30 דקות. סמוך על המבנה שבנית."},
+  {d:29, t:"מפגש חופשי", x:null, act:"lib", note:"בחר מהספרייה את התרגיל שהכי עבד עבורך — והעמק בו."},
+  {d:30, t:"סקירה מלאה", x:null, act:"journal", note:"קרא את כל היומן מההתחלה. כתוב סיכום. החלט על ההמשך: מחזור נוסף, תחזוקה — או עצירה. גם עצירה היא תשובה לגיטימית."}]},
+];
+
+const journey = {
+  data(){ return store.get('gw_journey', {start:null, done:{}}); },
+  save(d){ store.set('gw_journey', d); },
+  nextDay(){ const d=this.data(); for(let i=1;i<=30;i++){ if(!d.done[i]) return i; } return 31; },
+  start(){ const d=this.data(); d.start = new Date().toISOString().slice(0,10); this.save(d); this.render();
+    modal('המסע התחיל 🌌','30 יום, משימה אחת בכל יום. התחל היום ביום 1 — היכרות עם הצליל. ואל תשכח: הירדמות היא לא כישלון, ועקביות גוברת על משך.'); },
+  toggle(day){ const d=this.data(); const nx=this.nextDay();
+    if(!d.done[day] && day>nx){ modal('אל תדלגו','הכלל מספר המחקר: כל תרגיל מניח מיומנות שנרכשה קודם. היום הבא שלך במסע הוא יום '+nx+'.'); return; }
+    d.done[day]=!d.done[day]; if(!d.done[day]) delete d.done[day]; this.save(d); this.render(); },
+  autoMark(exId){ const d=this.data(); if(!d.start) return; const nx=this.nextDay(); if(nx>30) return;
+    const day = JOURNEY_WEEKS.flatMap(w=>w.days).find(x=>x.d===nx);
+    if(day && day.x===exId){ d.done[nx]=true; this.save(d); this.render(); } },
+  act(day){ const info = JOURNEY_WEEKS.flatMap(w=>w.days).find(x=>x.d===day);
+    if(info.x) startEx(info.x);
+    else if(info.act==='journal') ui.go('journal');
+    else if(info.act==='lib') ui.go('lib');
+    else if(info.act==='tools'){ ui.go('lib'); setTimeout(()=>{ const h=[...document.querySelectorAll('#lib-groups h3')].find(e=>e.textContent.includes('כלים יומיים')); h&&h.scrollIntoView({behavior:'smooth'}); },150); } },
+  render(){
+    const box=document.getElementById('journeyBox'); if(!box) return;
+    const d=this.data();
+    if(!d.start){
+      box.innerHTML = `<div class="card" style="text-align:center;padding:40px">
+        <div style="font-size:2.4rem">🌌</div>
+        <h3 class="mt">30 יום · 4 שבועות · צעד אחד ביום</h3>
+        <p class="muted mt" style="max-width:560px;margin-inline:auto;font-size:.93rem">שבוע 1 — הכנה ויסודות · שבוע 2 — Focus 10 לעומק · שבוע 3 — Focus 12 והרחבה · שבוע 4 — אינטגרציה. זמן קבוע ביום (עדיף בוקר), 20–35 דקות, ויומן אחרי כל מפגש — שלוש שורות מספיקות.</p>
+        <button class="btn btn-primary mt2" onclick="journey.start()">התחל את המסע ←</button>
+      </div>`; return;
+    }
+    const doneN = Object.keys(d.done).length, nx=this.nextDay();
+    const pct = Math.round(doneN/30*100);
+    let html = `<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <h3>ההתקדמות שלך · <span style="color:var(--cyan)">${doneN}/30</span></h3>
+      <span class="pill">${nx<=30 ? 'היום הבא: יום '+nx : 'המסע הושלם 🎉'}</span></div>
+      <div class="p-progress mt" style="height:8px"><i style="width:${pct}%"></i></div>`;
+    if(nx<=30){ const info=JOURNEY_WEEKS.flatMap(w=>w.days).find(x=>x.d===nx);
+      html += `<div class="mt" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:220px"><b>יום ${nx} · ${info.t}</b><div class="faint" style="margin-top:3px">${info.note}</div></div>
+        <button class="btn btn-primary" onclick="journey.act(${nx})">${info.x?'התחל את התרגול של היום ←':'עבור למשימה ←'}</button></div>`; }
+    else html += `<p class="muted mt" style="font-size:.92rem">שלוש אפשרויות סבירות מהספר: <b style="color:var(--ink)">מחזור נוסף</b> — עם עומק גדול יותר; <b style="color:var(--ink)">תחזוקה</b> — שלושה מפגשים בשבוע של 20 דקות + כלים יומיים; או <b style="color:var(--ink)">עצירה</b> — אם אחרי 30 ימים עקביים לא הרגשת דבר, זו תשובה לגיטימית ומידע שימושי.</p>`;
+    html += `</div>`;
+    html += JOURNEY_WEEKS.map(w=>{
+      const wd = w.days.filter(x=>d.done[x.d]).length;
+      return `<details class="acc mt" ${w.days.some(x=>x.d===Math.min(nx,30))&&nx<=30?'open':''}>
+        <summary style="color:${w.c}">שבוע ${w.n} · ${w.name} <span class="pill" style="margin-inline-start:8px">${wd}/${w.days.length}</span></summary>
+        <div class="acc-body">${w.days.map(x=>{
+          const done=!!d.done[x.d], locked=!done && x.d>nx;
+          return `<div class="day-slot ${done?'done':''}" style="${locked?'opacity:.45':''}">
+            <span class="ic">${done?'✅':locked?'🔒':'⭕'}</span>
+            <div class="info"><b>יום ${x.d} · ${x.t}</b><span>${x.note}</span></div>
+            ${!locked?`<button class="btn btn-ghost" style="padding:8px 16px;font-size:.82rem" onclick="journey.act(${x.d})">${x.x?'תרגל':'למשימה'}</button>`:''}
+            ${!locked?`<button class="btn ${done?'btn-cyan':'btn-ghost'}" style="padding:8px 16px;font-size:.82rem" onclick="journey.toggle(${x.d})">${done?'✓ הושלם':'סמן'}</button>`:''}
+          </div>`;}).join('')}</div></details>`;
+    }).join('');
+    box.innerHTML = html;
+  }
+};
+
+journey.render();
+
+/* ---------- daily routine + streak ---------- */
+const daily = {
+  key(){ return 'gw_daily_'+new Date().toISOString().slice(0,10); },
+  data(){ return store.get(this.key(), {}); },
+  render(){
+    const d=this.data();
+    document.getElementById('dailySlots').innerHTML = DAILY.map(s=>`
+      <div class="day-slot ${d[s.id]?'done':''}">
+        <span class="ic">${s.ic}</span>
+        <div class="info"><b>${s.name}</b><span>${s.d}</span></div>
+        <button class="btn btn-ghost" style="padding:8px 16px;font-size:.82rem" onclick="startEx('${s.ex}')">תרגל</button>
+        <button class="btn ${d[s.id]?'btn-cyan':'btn-ghost'}" style="padding:8px 16px;font-size:.82rem" onclick="daily.mark('${s.id}')">${d[s.id]?'✓ הושלם':'סמן'}</button>
+      </div>`).join('');
+    this.streak();
+  },
+  mark(id){ const d=this.data(); d[id]=!d[id]; store.set(this.key(),d); this.render(); },
+  autoMark(){ const h=new Date().getHours();
+    const slot = h<11?'morning' : h<16?'noon' : h<22?'evening':'night';
+    const d=this.data(); if(!d[slot]){ d[slot]=true; store.set(this.key(),d); this.render(); } },
+  streak(){
+    let n=0, bar='';
+    const days=[];
+    for(let i=13;i>=0;i--){ const dt=new Date(); dt.setDate(dt.getDate()-i);
+      const k='gw_daily_'+dt.toISOString().slice(0,10);
+      const hit = Object.values(store.get(k,{})).some(Boolean);
+      days.push({d:dt.getDate(),hit});
+    }
+    for(let i=days.length-1;i>=0;i--){ if(days[i].hit) n++; else break; }
+    document.getElementById('streakCount').textContent=n;
+    document.getElementById('streakBar').innerHTML = days.map(x=>`<div class="streak-day ${x.hit?'hit':''}">${x.d}</div>`).join('');
+  }
+};
+daily.render();
+
+/* ---------- journal ---------- */
+const journal = {
+  list(){ return store.get('gw_journal', []); },
+  add(){
+    const g=id=>document.getElementById(id).value.trim();
+    const e = { date:g('jDate'), time:g('jTime'), ex:g('jEx'),
+      tb:g('jTenseB'), cb:g('jClearB'), entry:g('jEntry'), sleep:g('jSleep'),
+      plan:g('jPlan'), actual:g('jActual'), body:g('jBody'), img:g('jImg'), distract:g('jDistract'),
+      ta:g('jTenseA'), ca:g('jClearA'), insight:g('jInsight'),
+      pos:g('jPos'), meal:g('jMeal'), dir:g('jDir'), cloth:g('jCloth'), temp:g('jTemp'),
+      weather:g('jWeather'), moon:g('jMoon'), phys:g('jPhys'), ts:Date.now() };
+    if(!e.ex && !e.plan && !e.actual){ modal('רגע','מלא לפחות את שם התרגול, התוכנית או מה שקרה בפועל — כדי שיהיה מה לזכור.'); return; }
+    const l=this.list(); l.unshift(e); store.set('gw_journal', l);
+    ['jTenseB','jClearB','jEntry','jSleep','jEx','jPlan','jActual','jBody','jImg','jDistract','jTenseA','jClearA','jInsight','jPos','jMeal','jDir','jCloth','jTemp','jWeather','jMoon','jPhys'].forEach(id=>document.getElementById(id).value='');
+    this.render();
+  },
+  del(ts){ store.set('gw_journal', this.list().filter(x=>x.ts!==ts)); this.render(); },
+  filterVal(){ const el=document.getElementById('jFilter'); return el? el.value : 'all'; },
+  filtered(){ const l=this.list(), f=this.filterVal();
+    if(f==='all') return l;
+    if(f==='__journey') return l.filter(e=>e.jd);
+    return l.filter(e=>(e.ex||'')===f); },
+  renderFilter(){ const el=document.getElementById('jFilter'); if(!el) return;
+    const cur=el.value||'all';
+    const names=[...new Set(this.list().map(e=>e.ex).filter(Boolean))];
+    el.innerHTML = `<option value="all">הכל (${this.list().length})</option>
+      <option value="__journey">🌌 רק ימי המסע (${this.list().filter(e=>e.jd).length})</option>` +
+      names.map(n=>`<option value="${n.replace(/"/g,'&quot;')}">${n} (${this.list().filter(e=>e.ex===n).length})</option>`).join('');
+    el.value = [...el.options].some(o=>o.value===cur)? cur : 'all'; },
+  render(){
+    this.renderFilter();
+    const l=this.filtered();
+    this.stats(l);
+    document.getElementById('jList').innerHTML = l.length? l.map(e=>{
+      const delta = (e.tb&&e.ta)? (e.tb-e.ta) : null;
+      return `
+      <div class="j-entry">
+        <div class="j-head"><b>${e.ex||'תרגול'}</b>${e.jd?`<span class="pill" style="background:rgba(139,123,216,.16);border-color:rgba(139,123,216,.4)">🌌 מסע · יום ${e.jd}</span>`:''}<span class="faint">${e.date||''} ${e.time||''}${e.entry?' · כניסה '+e.entry+' דק\'':''}${e.sleep?' · הירדמות: '+e.sleep:''}${delta!==null?' · Δמתח '+(delta>0?'−':'+')+Math.abs(delta):''}</span>
+        <button class="btn btn-danger" style="padding:4px 12px;font-size:.75rem" onclick="journal.del(${e.ts})">מחק</button></div>
+        ${e.plan?`<p><b style="color:var(--gold)">Game Plan:</b> ${e.plan}</p>`:''}
+        ${e.actual?`<p class="mt" style="margin-top:6px"><b style="color:var(--cyan)">בפועל:</b> ${e.actual}</p>`:''}
+        ${(e.body||e.img)?`<p class="faint" style="margin-top:6px">${e.body?'גוף: '+e.body+' ':''}${e.img?'· דימויים: '+e.img:''}</p>`:''}
+        ${e.insight?`<p style="margin-top:6px"><b style="color:var(--green)">תובנה ← פעולה:</b> ${e.insight}</p>`:''}
+        ${(e.distract||e.pos||e.meal||e.dir||e.cloth||e.temp||e.weather||e.moon||e.phys)?`<p class="faint" style="margin-top:4px">${[e.distract?'הפרעות: '+e.distract:'',e.pos||'',e.meal?e.meal+' שע\' מארוחה':'',e.dir?'ראש: '+e.dir:'',e.cloth?'לבוש: '+e.cloth:'',e.temp?'חדר: '+e.temp:'',e.weather?'מזג"א: '+e.weather:'',e.moon?'ירח: '+e.moon:'',e.phys?'פיזי: '+e.phys:''].filter(Boolean).join(' · ')}</p>`:''}
+      </div>`;}).join('') : '<p class="faint">עוד אין רישומים. הרישום הראשון שלך יופיע כאן — מיד אחרי הסשן הראשון.</p>';
+  },
+  stats(l){
+    const el=document.getElementById('jStats'); if(!el) return;
+    const num=v=>{ const n=parseFloat(v); return isNaN(n)?null:n; };
+    const recent = l.slice(0,7);
+    const deltas = recent.map(e=>{ const a=num(e.tb),b=num(e.ta); return (a!==null&&b!==null)? a-b : null; }).filter(x=>x!==null);
+    const entries = recent.map(e=>num(e.entry)).filter(x=>x!==null);
+    const sleeps = l.map(e=>e.sleep).filter(Boolean);
+    const sleepScore = sleeps.length? Math.round(100*sleeps.reduce((a,v)=>a+(v==='כן'?1:v==='חלקית'?0.5:0),0)/sleeps.length) : null;
+    const avg = a=>a.length? (a.reduce((x,y)=>x+y,0)/a.length) : null;
+    const dAvg=avg(deltas), eAvg=avg(entries);
+    el.innerHTML = `<div class="grid g3" style="margin-bottom:18px">
+      <div class="card" style="text-align:center;padding:18px"><div class="eyebrow">Δ מתח ממוצע · 7 אחרונים</div>
+        <div style="font-size:1.7rem;color:var(--cyan)">${dAvg!==null? (dAvg>0?'−':'+')+Math.abs(dAvg).toFixed(1) : '—'}</div>
+        <div class="faint">ההפרש לפני←אחרי — מדד האפקט המיידי</div></div>
+      <div class="card" style="text-align:center;padding:18px"><div class="eyebrow">זמן כניסה ממוצע</div>
+        <div style="font-size:1.7rem;color:var(--gold)">${eAvg!==null? eAvg.toFixed(1)+" דק'" : '—'}</div>
+        <div class="faint">המדד שמשתפר הכי ברור עם תרגול</div></div>
+      <div class="card" style="text-align:center;padding:18px"><div class="eyebrow">אחוז הירדמות</div>
+        <div style="font-size:1.7rem;color:var(--violet)">${sleepScore!==null? sleepScore+'%' : '—'}</div>
+        <div class="faint">ירידה לאורך זמן = שליטה במצב הגבולי · ${l.length} רשומות</div></div>
+    </div>`;
+  }
+  ,
+  clearAll(){
+    const n=this.list().length;
+    if(!n){ modal('היומן ריק','אין רשומות למחיקה.'); return; }
+    modal('לנקות את היומן?', 'פעולה זו תמחק לצמיתות את כל '+n+' הרשומות. הספר ממליץ לייצא או לסכם לפני מחיקה — התיעוד הוא הדרך היחידה להבחין בין התקדמות אמיתית לבין רושם.',
+      'מחק הכל', ()=>{ store.set('gw_journal', []); this.render(); });
+  },
+  async analyze(){
+    const l=this.filtered();
+    const scope = this.filterVal()==='all' ? 'כל הרשומות' : this.filterVal()==='__journey' ? 'ימי המסע (תוכנית 30 הימים)' : 'התרגול: '+this.filterVal();
+    if(!l.length){ modal('אין עדיין מה לנתח','הניתוח עובד על רשומות היומן. השלם לפחות סשן אחד עם רישום — ונסה שוב.'); return; }
+    const btn=document.getElementById('aiBtn'), box=document.getElementById('aiBox');
+    btn.disabled=true; btn.textContent='⏳ מנתח...';
+    box.style.display='block';
+    box.innerHTML='<div class="card"><p class="muted">מנתח את '+Math.min(l.length,40)+' הרשומות האחרונות לפי מסגרת ספר המחקר...</p></div>';
+    const rows = l.slice(0,40).map(e=>{ const tag=e.jd?('[מסע יום '+e.jd+'] '):'';
+      const t=(v,max)=>v? String(v).slice(0,max):'';
+      return tag+`${e.date||''} ${e.time||''} | תרגיל: ${t(e.ex,40)} | מתח ${e.tb||'?'}→${e.ta||'?'} | בהירות ${e.cb||'?'}→${e.ca||'?'} | כניסה: ${e.entry||'?'} דק | הירדמות: ${e.sleep||'?'} | בפועל: ${t(e.actual,220)} | גוף: ${t(e.body,80)} | דימויים: ${t(e.img,80)} | הפרעות: ${t(e.distract,60)} | תובנה: ${t(e.insight,100)}`;
+    }).join('\n');
+    const sys = `אתה מנתח יומן תרגול של שיטת Gateway, לפי המסגרת של "ספר המחקר" (2026). כללי הניתוח המחייבים:
+1) שלושת המדדים המרכזיים: זמן כניסה (אמור להתקצר עם תרגול), דלתא של מתח לפני←אחרי (מדד האפקט המיידי), ואחוז הירדמות (ירידה = שליטה טובה יותר במצב הגבולי).
+2) הסקירה השבועית — ענה על שלוש השאלות: מה חזר על עצמו יותר מפעם אחת? מה היה שונה במפגשים הטובים ביותר (שעה, תרגיל, מצב לפני)? מה משתנה מחוץ למפגשים?
+3) עמדה אפיסטמית: הבחן בין תיאור לפרשנות. חוויות (דימויים, תחושות) תקפות כחוויות — לא כראיה על העולם. אל תאשר טענות על-חושיות; אל תשלול את החוויה.
+4) בטיחות: אם יש סימנים של עלייה בחרדה, קושי להבחין בין דמיון למציאות, הפרעות שינה מתמשכות, או תרגול שהפך למחויבות מלחיצה — המלץ להאט או לעצור ולהתייעץ עם איש מקצוע. השיטה אינה טיפול.
+5) ציפיות ריאליות: לא כולם מגיבים; ההתקדמות אינה ליניארית; הירדמות אינה כישלון; עקביות גוברת על משך.
+השב בעברית, עד ~350 מילים, במבנה: מגמות במדדים · דפוסים שחוזרים · מה עבד במפגשים הטובים · המלצה אחת קונקרטית לשבוע הקרוב (מתוך תרגולי התוכנית בלבד). כתוב חם, ענייני, בלי הבטחות.`;
+    try{
+      const res = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:1000, system:sys,
+          messages:[{role:'user', content:'היקף הניתוח: '+scope+'\nרשומות היומן (מהחדשה לישנה):\n'+rows}] })
+      });
+      const data = await res.json();
+      if(data.error) throw new Error(data.error.message||'API error');
+      const txt = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim();
+      if(!txt) throw new Error('empty');
+      const esc = txt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const html = esc.replace(/\*\*(.+?)\*\*/g,'<b style="color:var(--ink)">$1</b>').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h3>$1</h3>').replace(/\n/g,'<br>');
+      box.innerHTML = `<div class="card" style="border-color:rgba(94,224,206,.4)">
+        <div class="eyebrow" style="color:var(--cyan)">🤖 ניתוח · ${scope} · לפי מסגרת ספר המחקר</div>
+        <p class="muted" style="font-size:.93rem;line-height:1.9">${html}</p>
+        <p class="faint mt">הניתוח הוא כלי התבוננות — לא אבחון ולא ייעוץ. ${l.length>40?'נותחו 40 הרשומות האחרונות מתוך '+l.length+'.':''}</p></div>`;
+    }catch(err){
+      box.innerHTML = `<div class="card" style="border-color:rgba(224,120,140,.4)">
+        <b>הניתוח לא זמין כרגע.</b>
+        <p class="muted mt" style="font-size:.9rem">הניתוח דורש חיבור לרשת ופועל בסביבת Claude. אם פתחת את הקובץ מקומית ללא רשת — נסה שוב מאוחר יותר. בינתיים, הסקירה השבועית הידנית מהספר: קרא את 7 הרשומות האחרונות ושאל — מה חזר על עצמו? מה היה שונה במפגשים הטובים? מה משתנה מחוץ למפגשים?</p></div>`;
+    }
+    btn.disabled=false; btn.textContent='🤖 ניתוח AI לפי המחקר';
+  }
+};
+journal.render();
+(function(){ const d=new Date();
+  document.getElementById('jDate').value=d.toISOString().slice(0,10);
+  document.getElementById('jTime').value=d.toTimeString().slice(0,5); })();
+
+
+/* ---------- full reset ---------- */
+function appReset(){
+  modal('איפוס מלא', 'ימחק לצמיתות: יומן, התקדמות המסע, השגרה היומית וההעדפות. אין דרך לשחזר.', 'אפס הכל', ()=>{
+    try{ Object.keys(localStorage).filter(k=>k.startsWith('gw_')).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+    location.reload();
+  });
+}
+/* ---------- theme ---------- */
+const theme = {
+  apply(m){
+    document.body.classList.toggle('light', m==='light');
+    const b=document.getElementById('themeBtn');
+    if(b) b.textContent = m==='light' ? '🌙 מצב לילה' : '☀️ מצב יום';
+    try{ localStorage.setItem('gw_theme', m); }catch(e){}
+  },
+  toggle(){ this.apply(document.body.classList.contains('light') ? 'dark' : 'light'); }
+};
+(function(){ let m='dark'; try{ m = localStorage.getItem('gw_theme') || 'dark'; }catch(e){} theme.apply(m); })();
+
+/* ---------- autosave heartbeat ---------- */
+setInterval(()=>{ chip('saved'); }, 30000);
+window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getElementById('player').classList.contains('on')) player.stop(); });
+</script>
+</body>
+</html>
