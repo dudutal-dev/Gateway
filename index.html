@@ -619,6 +619,15 @@ html[dir="ltr"] footer{text-align:center}
 <p class="faint" style="font-size:.78rem;margin-bottom:12px">גרסה <b id="appVer" style="color:var(--cyan)">—</b> · אם המספר כאן שונה מהגרסה שקיבלת, הדפדפן מגיש עותק שמור.</p>
 <p class="muted" style="font-size:.86rem;margin-bottom:12px">בזמן תרגול העיניים עצומות והמכשיר לא נוגע — ובלי זה המסך ננעל, והתדר, הטיימר וההנחיה הקולית נקטעים באמצע. ההגדרה פועלת רק בזמן סשן ומשוחררת בסיומו, כדי לא לבזבז סוללה.</p>
 <button class="btn btn-cyan" id="wakeBtn" onclick="wakeLock.toggle()" style="padding:8px 16px;font-size:.82rem">☀️ המסך יישאר דלוק בסשן</button>
+<div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
+<b style="font-size:.9rem">🔊 אבחון סאונד</b>
+<p class="muted" style="font-size:.84rem;margin:6px 0 10px">שני מסלולים נפרדים. הרץ את שניהם — ההבדל ביניהם מצביע על מקור הבעיה.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn btn-cyan" onclick="soundTest.webaudio()" style="padding:8px 16px;font-size:.82rem">1 · צליל דרך מנוע התדרים</button>
+<button class="btn btn-ghost" onclick="soundTest.element()" style="padding:8px 16px;font-size:.82rem">2 · ביפ דרך נגן רגיל</button>
+</div>
+<p class="faint" id="sndDiag" style="display:none;font-size:.84rem;margin-top:12px;line-height:1.8;border-inline-start:2px solid var(--cyan);padding-inline-start:12px"></p>
+</div>
 <p class="faint" id="swStatus" style="font-size:.8rem;margin-top:12px"></p>
 <button class="btn btn-ghost" onclick="appRefresh()" style="padding:8px 16px;font-size:.82rem;margin-top:10px">♻️ נקה מטמון וטען מחדש</button>
 </div>
@@ -1556,7 +1565,30 @@ const TIPS = {
 /* ---------- binaural audio engine ---------- */
 const audioEng = {
   ctx:null, nodes:null, on:false, vol:.25, cur:null,
+  unlocked:false, silentEl:null,
   ensure(){ if(!this.ctx) this.ctx = new (window.AudioContext||window.webkitAudioContext)(); if(this.ctx.state==='suspended') this.ctx.resume(); },
+  /* שחרור אודיו ב-iOS: חייב לקרות בתוך אירוע מגע אמיתי.
+     1) יוצרים/מעירים את ההקשר  2) מנגנים באפר שקט  3) מפעילים אלמנט <audio> —
+     האחרון מעביר את ה-session למצב מדיה, ובחלק מהמכשירים גם עוקף את מתג ההשתקה. */
+  unlock(){
+    try{
+      this.ensure();
+      const ctx = this.ctx;
+      const b = ctx.createBuffer(1, 1, 22050);
+      const src = ctx.createBufferSource(); src.buffer = b;
+      src.connect(ctx.destination); src.start(0);
+      if(ctx.state === 'suspended' && ctx.resume) ctx.resume();
+      if(!this.silentEl){
+        const a = document.createElement('audio');
+        a.setAttribute('playsinline',''); a.loop = true; a.volume = 0.001;
+        /* WAV שקט קצר, מוטמע — אין תלות ברשת */
+        a.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YQAAAAA=';
+        a.play().catch(()=>{});
+        this.silentEl = a;
+      }
+      this.unlocked = true;
+    }catch(e){}
+  },
   start(c,b){
     this.ensure(); this.stopOsc(true);
     const ctx=this.ctx, t=ctx.currentTime;
@@ -3750,6 +3782,12 @@ voiceEng.init(); voiceEng.badge();
 backup.init();
 wakeLock.init(); wakeLock.rebind();
 intro.init();
+/* שחרור האודיו בנגיעה הראשונה — דרישה של iOS */
+(function(){
+  const go = ()=>{ try{ audioEng.unlock(); }catch(e){} };
+  ['pointerdown','touchend','click','keydown'].forEach(ev=>
+    document.addEventListener(ev, go, {once:false, passive:true, capture:true}));
+})();
 i18n.init();
 
 /* ---------- autosave heartbeat ---------- */
@@ -3774,7 +3812,7 @@ window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getEleme
 })();
 
 /* ---------- גרסה ורענון כפוי ---------- */
-const APP_VERSION = '2026.08.02-b18';
+const APP_VERSION = '2026.08.02-b19';
 (function(){
   const set = ()=>{ const el=document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; };
   set(); setTimeout(set, 300);
@@ -3793,6 +3831,85 @@ async function appRefresh(){
   location.reload(true);
 }
 window.appRefresh = appRefresh;
+
+/* ---------- אבחון סאונד ---------- */
+const soundTest = {
+  el(){ return document.getElementById('sndDiag'); },
+  say(html){ const e=this.el(); if(e){ e.style.display=''; e.innerHTML = html; } },
+
+  /* מסלול 1: Web Audio — המנוע שמייצר את הפעימה */
+  webaudio(){
+    const rows = [];
+    try{
+      audioEng.unlock();
+      const ctx = audioEng.ctx;
+      rows.push(`מנוע Web Audio: <b>${ctx ? 'נוצר' : 'נכשל'}</b>`);
+      if(!ctx){ this.say(rows.join('<br>')); return; }
+      const play = ()=>{
+        const t = ctx.currentTime + 0.05;
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(0.35, t+0.08);
+        g.gain.exponentialRampToValueAtTime(0.0001, t+1.6);
+        const o = ctx.createOscillator(); o.type='sine'; o.frequency.value=440;
+        o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t+1.7);
+        setTimeout(()=>{
+          rows.push(`מצב ההקשר: <b>${ctx.state}</b> · תדר דגימה: ${ctx.sampleRate}Hz`);
+          rows.push(ctx.state === 'running'
+            ? '✅ נשלח צליל בדיקה של 440Hz למשך שנייה וחצי. <b>שמעת אותו?</b> אם לא — הבעיה אינה בקוד אלא בנתיב היציאה: מתג ההשתקה בצד המכשיר, עוצמת המדיה, או אוזניות מחוברות למכשיר אחר.'
+            : '⚠️ ההקשר לא עבר למצב פעיל. זה קורה כשהדפדפן חוסם אודיו — נסה ללחוץ שוב, או לפתוח ב-Safari.');
+          rows.push('<span style="opacity:.7">טיפ: ב-iOS מתג ההשתקה משתיק את Web Audio לחלוטין — גם כשעוצמת המדיה מלאה.</span>');
+          this.say(rows.join('<br>'));
+        }, 300);
+      };
+      if(ctx.state === 'suspended' && ctx.resume) ctx.resume().then(play).catch(play);
+      else play();
+    }catch(e){
+      rows.push('❌ שגיאה בהפעלת המנוע: ' + (e && e.message ? e.message : e));
+      this.say(rows.join('<br>'));
+    }
+  },
+
+  /* מסלול 2: נגן אודיו רגיל — לבידוד הבעיה */
+  element(){
+    try{
+      const a = new Audio();
+      a.setAttribute('playsinline','');
+      /* ביפ קצר מוטמע (WAV) — 440Hz */
+      a.src = this.beepWav();
+      a.volume = 1;
+      a.play().then(()=>{
+        this.say('▶️ נשלח ביפ דרך נגן האודיו הרגיל.<br><b>אם שמעת את זה אבל לא את הצליל הקודם</b> — הבעיה ספציפית ל-Web Audio, ונסה Safari.<br><b>אם גם זה שקט</b> — הבעיה בנתיב היציאה של המכשיר: מתג ההשתקה, עוצמת המדיה, או חיבור בלוטות\' פעיל.');
+      }).catch(err=>{
+        this.say('⚠️ הדפדפן חסם את הנגן (' + (err && err.name ? err.name : 'שגיאה') + ').<br>לחץ שוב — הפעלת אודיו ב-iOS מחייבת נגיעה ישירה.');
+      });
+    }catch(e){ this.say('❌ ' + e.message); }
+  },
+
+  /* מייצר WAV של 440Hz למשך חצי שנייה, ללא תלות ברשת */
+  beepWav(){
+    const sr = 8000, len = sr/2, amp = 110;
+    const data = new Uint8Array(len);
+    for(let i=0;i<len;i++){
+      const env = Math.min(1, i/400) * Math.min(1, (len-i)/900);
+      data[i] = 128 + Math.round(Math.sin(2*Math.PI*440*i/sr) * amp * env);
+    }
+    const hdr = [];
+    const push32 = v => hdr.push(v&255,(v>>8)&255,(v>>16)&255,(v>>24)&255);
+    const push16 = v => hdr.push(v&255,(v>>8)&255);
+    'RIFF'.split('').forEach(c=>hdr.push(c.charCodeAt(0)));
+    push32(36+len);
+    'WAVEfmt '.split('').forEach(c=>hdr.push(c.charCodeAt(0)));
+    push32(16); push16(1); push16(1); push32(sr); push32(sr); push16(1); push16(8);
+    'data'.split('').forEach(c=>hdr.push(c.charCodeAt(0)));
+    push32(len);
+    const all = new Uint8Array(hdr.length + len);
+    all.set(hdr,0); all.set(data,hdr.length);
+    let bin=''; all.forEach(b=>bin+=String.fromCharCode(b));
+    return 'data:audio/wav;base64,' + btoa(bin);
+  }
+};
+window.soundTest = soundTest;
 </script>
 </body>
 </html>
