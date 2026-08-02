@@ -28,8 +28,9 @@
   --font-body:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif; --font-disp:'Frank Ruhl Libre','Times New Roman',serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;font-size:17px;-webkit-text-size-adjust:100%}
-@media(max-width:640px){html{font-size:16.5px}}
+html{scroll-behavior:smooth;font-size:18.5px;-webkit-text-size-adjust:100%}
+@media(max-width:640px){html{font-size:18px}}
+@media(max-width:400px){html{font-size:17.5px}}
 body{
   font-family:var(--font-body); background:var(--bg); color:var(--ink);
   min-height:100vh; line-height:1.65; overflow-x:hidden;
@@ -280,7 +281,7 @@ html[dir="ltr"] footer{text-align:center}
   header #gearBtn{padding:7px 10px!important}
   nav{margin:10px -14px 18px;padding:8px 10px}
   .nav-inner{flex-wrap:wrap;overflow-x:visible;justify-content:center;row-gap:5px;gap:5px;padding-inline:0}
-  .tab{font-size:.76rem;padding:6px 11px}
+  .tab{font-size:.72rem;padding:6px 10px;letter-spacing:0}
   .hero{padding:16px 0 4px;gap:18px}
   .hero h2{font-size:clamp(1.7rem,8.5vw,2.2rem);line-height:1.15}
   .hero .lead{font-size:.95rem}
@@ -542,6 +543,18 @@ html[dir="ltr"] footer{text-align:center}
 <p class="muted" data-i18n="a099" style="font-size:.92rem">חשוב על איבר גוף פיזי כלשהו והזז אותו — אצבע, כף רגל, לשון. תנועה פיזית מחזירה מיידית ל-C-1 (ערות מלאה). זהו מנגנון הבטיחות המקורי מהמסמך, והוא זמין תמיד — גם בתוך הנגן.</p>
 </div>
 <hr class="sep"/>
+<div class="card mt2" style="border-color:rgba(94,224,206,.35)">
+<div class="eyebrow">כיול התדרים · פרקים 5, 7 ו-10</div>
+<h3 style="margin-bottom:8px">אילו תדרים משמשים כאן — ולמה</h3>
+<p class="muted" style="font-size:.9rem;line-height:1.85">
+<b style="color:var(--cyan)">6Hz על נשא 250Hz</b> — ליבת התוכנית (Focus 10 וכל התרגילים שנגזרים ממנו). זהו הפרוטוקול עם התמיכה המחקרית הטובה ביותר: במחקר 2026 דווקא פעימת תטא של 6Hz שיפרה באופן מובהק גם רוגע וגם מיקוד.<br>
+<b style="color:var(--violet)">7Hz על נשא 200Hz</b> — Focus 12 והתרגילים המתקדמים, בהתאמה לתהודה של כ-7–7.5Hz שדוח 1983 מתאר כמצב היעד של הגוף.<br>
+<b style="color:var(--gold)">10–12Hz (אלפא)</b> — כוונון תהודה ופתרון בעיות. פרק 5 ממפה את פתרון הבעיות ל"אלפא עם רכיב בטא — חשיבה בהירה ללא דריכות", ולכן הוא אינו רץ בתטא: הכניסה ל-F-12 נעשית ב-7Hz, ומשם התדר עולה לאלפא.<br>
+<b style="color:var(--ink-dim)">2.5–3Hz (דלתא)</b> — כלי השינה ו-Focus 15 בלבד, כי דלתא בזמן ערות מוביל בעיקר להירדמות.<br>
+<span style="opacity:.8">כל הנשאים בטווח 200–250Hz שהספר מציין, שבו הפעימה נתפסת בבירור (Oster, 1973).</span>
+</p>
+</div>
+
 <div class="eyebrow" data-i18n="a100">מתוך ספר המחקר · פרק 7</div>
 <h2 data-i18n="a101" style="font-size:1.5rem">מה נתמך — ומה לא</h2>
 <p class="muted mb" data-i18n="a197" data-i18n-html="1" style="font-size:.92rem">שלוש רמות ודאות. העמדה המדויקת: <b data-i18n="a102" style="color:var(--ink)">הפרקטיקה עשויה להועיל; ההסברים שניתנו לה ברובם עדיין לא נבדקו או שהופרכו.</b></p>
@@ -621,7 +634,10 @@ html[dir="ltr"] footer{text-align:center}
 <p class="muted" style="font-size:.86rem;margin-bottom:12px">בזמן תרגול העיניים עצומות והמכשיר לא נוגע — ובלי זה המסך ננעל, והתדר, הטיימר וההנחיה הקולית נקטעים באמצע. ההגדרה פועלת רק בזמן סשן ומשוחררת בסיומו, כדי לא לבזבז סוללה.</p>
 <button class="btn btn-cyan" id="wakeBtn" onclick="wakeLock.toggle()" style="padding:8px 16px;font-size:.82rem">☀️ המסך יישאר דלוק בסשן</button>
 <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
-<b style="font-size:.9rem">🔊 סאונד</b>
+<b style="font-size:.9rem">🎼 שכבת הדרון</b>
+<p class="muted" style="font-size:.84rem;margin:6px 0 10px">הדרון הוא פד הרמוני סטטי — <b style="color:var(--ink)">אינו חלק מהמנגנון ואינו נדרש</b>. רעש הוורוד שכבר מובנה בפעימה הוא השכבה שהמחקר תומך בה. ההמלצה: להשאיר כבוי, ולהדליק רק אם הצליל ה"עירום" מפריע לך.</p>
+<button class="btn btn-ghost" id="droneAutoBtn" onclick="audioEng.setDroneAuto(!audioEng.droneAuto())" style="padding:8px 16px;font-size:.82rem;margin-bottom:14px">🎼 דרון כבוי כברירת מחדל</button>
+<br><b style="font-size:.9rem">🔊 סאונד</b>
 <p class="muted" style="font-size:.84rem;margin:6px 0 10px">באייפון, <b style="color:var(--ink)">מתג ההשתקה בצד המכשיר משתיק את התדר</b> — אך לא את ההקראה. אם ההנחיה נשמעת והתדר לא, זו כמעט תמיד הסיבה. מצב תאימות מנגן את הפעימה כקובץ מדיה, שעוקף את המתג ברוב המכשירים.</p>
 <button class="btn btn-ghost" id="compatBtn" onclick="beatFile.setEnabled(!beatFile.enabled())" style="padding:8px 16px;font-size:.82rem;margin-bottom:12px">🔊 מצב תאימות כבוי — הפעימה דרך Web Audio</button>
 <br><b style="font-size:.9rem">אבחון</b>
@@ -629,6 +645,7 @@ html[dir="ltr"] footer{text-align:center}
 <div style="display:flex;gap:10px;flex-wrap:wrap">
 <button class="btn btn-cyan" onclick="soundTest.webaudio()" style="padding:8px 16px;font-size:.82rem">1 · צליל דרך מנוע התדרים</button>
 <button class="btn btn-ghost" onclick="soundTest.element()" style="padding:8px 16px;font-size:.82rem">2 · ביפ דרך נגן רגיל</button>
+<button class="btn btn-ghost" onclick="soundTest.stereo()" style="padding:8px 16px;font-size:.82rem">3 · בדיקת סטריאו ופעימה</button>
 </div>
 <p class="faint" id="sndDiag" style="display:none;font-size:.84rem;margin-top:12px;line-height:1.8;border-inline-start:2px solid var(--cyan);padding-inline-start:12px"></p>
 </div>
@@ -665,6 +682,7 @@ html[dir="ltr"] footer{text-align:center}
 </div>
 <div style="margin-top:14px;display:grid;gap:10px">
 <label class="faint" style="font-size:.82rem">מיקום ההנחיה במיקס — מי מוביל, התדר או הקול</label>
+<p class="faint" style="font-size:.78rem;line-height:1.7;margin:-2px 0 4px">ℹ️ באייפון מערכת ההפעלה מתעלמת מבקשת האפליקציה להנמיך את קול ההקראה — לכן היחס נקבע מהצד השני: הבחירה כאן מכווננת את <b style="color:var(--ink)">עוצמת התדר</b> ואת מידת העמעום שלו בזמן דיבור. במצב "התדר מוביל" אין עמעום כלל.</p>
 <div style="display:flex;gap:8px;flex-wrap:wrap">
 <button class="btn btn-ghost mixbtn" id="mixBack" onclick="voiceEng.setMix('back')" style="padding:8px 14px;font-size:.8rem">🎧 התדר מוביל · הנחיה ברקע</button>
 <button class="btn btn-ghost mixbtn" id="mixMid" onclick="voiceEng.setMix('mid')" style="padding:8px 14px;font-size:.8rem">מאוזן</button>
@@ -854,7 +872,7 @@ html[dir="ltr"] footer{text-align:center}
 @media(max-width:640px){#player .p-pane{padding-top:calc(112px + env(safe-area-inset-top))}}
 
 /* ---------- layout safeguards ---------- */
-p,h1,h2,h3,h4,b,span,li,label,button,summary,td,th{overflow-wrap:anywhere;word-break:normal}
+p,h1,h2,h3,h4,b,span,li,label,button,summary,td,th{overflow-wrap:break-word;word-break:normal}
 .card,.j-entry,.day-slot,.notice,.rd-decl,.rd-tips{min-width:0}
 .day-slot .info{min-width:0;flex:1}
 .day-slot{align-items:center;gap:12px}
@@ -870,6 +888,19 @@ h2,h3{line-height:1.3}
     max-width:52vw;font-size:.62rem;opacity:.7;background:transparent;border-style:dotted}
   #player .p-pane{padding-top:calc(74px + env(safe-area-inset-top))}
   #player .p-foot{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
+}
+
+.day-slot{flex-wrap:wrap}
+.day-slot .info{flex:1 1 240px;min-width:0}
+@media(max-width:640px){
+  .day-slot{padding:14px 16px;gap:10px}
+  .day-slot .info{flex:1 1 100%}
+  .day-slot .btn{flex:1 1 auto}
+}
+
+@media(max-width:640px){
+  #pReady{padding-bottom:96px}
+  #player .emergency{max-width:46vw}
 }
 </style>
 
@@ -1209,14 +1240,14 @@ const EXERCISES = [
    {ph:"ירידה", t:"הנח את הרצון לחזור. ספור לאט: שתים-עשרה... אחת-עשרה... עשר. אתה שוב ב-Focus 10.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
 
  /* --- יישומים --- */
- {id:"prob", grp:"יישומים", name:"פתרון בעיות ב-F-12", icon:"🧩", ac:"var(--rose)", min:22, lvl:"F-12", beat:{c:200,b:7},
+ {id:"prob", grp:"יישומים", name:"פתרון בעיות ב-F-12", icon:"🧩", ac:"var(--rose)", min:22, lvl:"F-12", beat:{c:250,b:10},
   desc:"ניסוח שאלה חדה בערות, העלאתה למודעות המורחבת, שחרור — וקליטה. דוח 1983: התשובה מגיעה לעיתים מיד, ולעיתים כאינטואיציה במהלך 2–3 הימים הבאים, לפעמים כתובנה הוליסטית פתאומית.",
   ask:"מה השאלה או הבעיה? נסח אותה במדויק — ככל שתהיה ספציפית יותר, כך טוב יותר:",
   steps: seq([{ph:"ניסוח ב-C-1", t:"חשוב על השאלה שהגדרת. חדד אותה למשפט אחד ברור. זהו — הנח לה.", s:30}], OPEN_STEPS, [F10_ENTRY,
    {ph:"עלייה ל-F-12", t:"מ-Focus 10 היציב — תן לתחושה הטעונה לעלות. \"אחת-עשרה\"... \"שתים-עשרה\".", s:90, beat:{c:200,b:7}},
-   {ph:"ריכוז", t:"מלא את המודעות המורחבת בשאלה שלך וברצון העמוק לתשובה. החזק אותה — ברורה, בוערת בשקט.", s:90, beat:{c:200,b:7}},
-   {ph:"שחרור", t:"עכשיו — שחרר. הרפה מהריכוז לגמרי. אל תחפש. רק שים לב: דימויים, מילים, תחושות, צורות מחשבה שמגיעות מעצמן.", s:180, beat:{c:200,b:7}},
-   {ph:"קליטה", t:"מה שהגיע — הגיע. גם אם נדמה שלא הגיע דבר, ייתכן שהתשובה תבשיל בימים הקרובים כאינטואיציה. רשום הכל ביומן בסיום.", s:60, beat:{c:200,b:7}}], CLOSE_STEPS)},
+   {ph:"ריכוז", t:"מלא את המודעות המורחבת בשאלה שלך וברצון העמוק לתשובה. החזק אותה — ברורה, בוערת בשקט.", s:90, beat:{c:250,b:12}},
+   {ph:"שחרור", t:"עכשיו — שחרר. הרפה מהריכוז לגמרי. אל תחפש. רק שים לב: דימויים, מילים, תחושות, צורות מחשבה שמגיעות מעצמן.", s:180, beat:{c:250,b:10}},
+   {ph:"קליטה", t:"מה שהגיע — הגיע. גם אם נדמה שלא הגיע דבר, ייתכן שהתשובה תבשיל בימים הקרובים כאינטואיציה. רשום הכל ביומן בסיום.", s:60, beat:{c:250,b:10}}], CLOSE_STEPS)},
  {id:"clock", grp:"יישומים", name:"תרגיל השעון — התמצאות מרחבית", icon:"🕰️", ac:"var(--rose)", min:15, lvl:"F-12", beat:{c:200,b:7},
   desc:"אימון 'שרירי הניווט' של המודעות: שליחת תשומת הלב לכיווני שעון מדומיין, כולל סיבובו ב-90 מעלות.",
   steps: seq(OPEN_STEPS, [F10_ENTRY,
@@ -1252,10 +1283,10 @@ const EXERCISES = [
    {ph:"קיבוע", t:"ראה את האזור כולו זוהר בצבע — מלא, מאוזן, שקט. שאיפה אחרונה של הצבע... ונשיפה ארוכה.", s:60, beat:{c:250,b:6}}], CLOSE_STEPS)},
 
  /* --- כלים יומיים --- */
- {id:"sleep", grp:"כלים יומיים", name:"כניסה לשינה", icon:"😴", ac:"var(--ink-dim)", min:4, lvl:"C-1", beat:{c:150,b:2.5},
+ {id:"sleep", grp:"כלים יומיים", name:"כניסה לשינה", icon:"😴", ac:"var(--ink-dim)", min:4, lvl:"C-1", beat:{c:200,b:2.5},
   desc:"הכלי המקורי: 5 נשימות עמוקות וספירה 1–20 — 'לפני שתגיע ל-20, תיכנס לשינה טבעית ורגועה'. בלי שלב חזרה, כמובן.",
-  steps:[{ph:"הכנה", t:"שכב בתנוחת השינה שלך. חמש נשימות עמוקות ואיטיות.", s:50, br:1, beat:{c:150,b:2.5}},
-   {ph:"ספירה", t:"התחל לספור לאט בתוכך: אחת... שתיים... שלוש... כל מספר — צעד עמוק יותר אל תוך רוך. לפני שתגיע לעשרים — תהיה כבר בדרך פנימה. לילה טוב.", s:180, beat:{c:150,b:2.5}}]},
+  steps:[{ph:"הכנה", t:"שכב בתנוחת השינה שלך. חמש נשימות עמוקות ואיטיות.", s:50, br:1, beat:{c:200,b:2.5}},
+   {ph:"ספירה", t:"התחל לספור לאט בתוכך: אחת... שתיים... שלוש... כל מספר — צעד עמוק יותר אל תוך רוך. לפני שתגיע לעשרים — תהיה כבר בדרך פנימה. לילה טוב.", s:180, beat:{c:200,b:2.5}}]},
  {id:"emo", grp:"כלים יומיים", name:"פריקת מטען רגשי", icon:"🍃", ac:"var(--green)", min:3, lvl:"C-1", beat:null,
   desc:"כלי-בזק לרגעי עומס: נשימה, ירוק מרגיע, ופריקה דרך כפות הרגליים. אפשר בכל מקום — גם במשרד.",
   steps:[{ph:"עצירה", t:"עצום עיניים היכן שאתה. שאף עמוק והחזק לרגע.", s:15, br:1},
@@ -1286,7 +1317,7 @@ const EXERCISES = [
    {ph:"55515", t:"תוך כדי ההתבוננות, חזור בתוכך על המספר: חמש-חמש-חמש-אחת-חמש... 55515... שוב ושוב, בקצב רגוע.", s:120},
    {ph:"דעיכה", t:"כשאתה עושה את שני הדברים יחד, האותות פוחתים לאט — עד שהם כבר אינם חשובים. המשך עוד קצת, ופקח עיניים.", s:60},
    {ph:"תזכורת", t:"חשוב: זהו כלי להקלה רגעית. כאב הוא מידע — אם הוא חדש, חד, חוזר או מדאיג, פנה לרופא. הכלי אינו מאבחן ואינו מרפא.", s:15}]},
- {id:"tuning", grp:"היסודות", name:"כוונון תהודה (Resonant Tuning)", icon:"🎵", ac:"var(--cyan)", min:8, lvl:"C-1 → F-10", beat:{c:250,b:6},
+ {id:"tuning", grp:"היסודות", name:"כוונון תהודה (Resonant Tuning)", icon:"🎵", ac:"var(--cyan)", min:8, lvl:"C-1 → F-10", beat:{c:250,b:10},
   desc:"מדוח 1983: זמזום ממושך ומונוטוני שיוצר תחושת רטט בראש ומכין את מצב התהודה של הגוף — 'resonate tuning' במקור. חוליית החיבור בין הנשימה לכניסה ל-Focus 10.",
   steps:[{ph:"הכנה", t:"שב או שכב בנוחות. שלוש נשימות עמוקות ואיטיות.", s:25, br:1},
    {ph:"הזמזום הראשון", t:"שאף עמוק... ובנשיפה — זמזם צליל אחד, מונוטוני, ממושך: הממממ... תן לו להימשך עד סוף הנשיפה. שים לב לרטט שנוצר בראש.", s:40, br:1},
@@ -1309,14 +1340,14 @@ const EXERCISES = [
    {ph:"4 · כגז", t:"הרביעית: תחושת התפשטות קלה מעלה דרך קצה הראש — כמו אד חם ועדין... ושוב, התכנסות בחזרה.", s:90, beat:{c:250,b:6}},
    {ph:"5 · ריחוף", t:"והחמישית: פשוט ריחוף — קל, אופקי, מעט מעל נקודת המוצא. שהה... התבונן... ושוב למטה, הביתה.", s:100, beat:{c:250,b:6}},
    {ph:"ספיגת הבלון", t:"סיימת. תן ל-REBAL לנוע פנימה ולהיספג בחזרה אל תוכך. כל התחושות הללו — שלך, בשליטתך, וזמינות לך שוב מתי שתרצה.", s:45, beat:{c:250,b:6}}], CLOSE_STEPS)},
- {id:"f15", grp:"מתקדם", name:"Focus 15 — גלגל הזמן", icon:"⏳", ac:"var(--rose)", min:30, lvl:"F-15", beat:{c:150,b:3},
+ {id:"f15", grp:"מתקדם", name:"Focus 15 — גלגל הזמן", icon:"⏳", ac:"var(--rose)", min:30, lvl:"F-15", beat:{c:200,b:3},
   desc:"המצב שדוח 1983 מכנה 'מסע אל העבר': הזמן כגלגל ענק שכל חישור בו פותח פרק אחר. פחות מ-5% מגיעים לזה בשבוע אימון — גש לזה כתרגול התבוננות בזיכרון, בסבלנות אינסופית.",
   steps: seq(OPEN_STEPS, [F10_ENTRY,
    {ph:"עלייה ל-F-12", t:"מ-Focus 10 יציב — \"אחת-עשרה\"... \"שתים-עשרה\". המודעות מורחבת ושקטה.", s:90, beat:{c:200,b:7}},
    {ph:"הרכב", t:"בנה את ה-REBAL סביבך — הוא יהיה הרכב שלך. תן לו לשאת אותך עוד מעלה, קל ואיטי, אל שקט עמוק עוד יותר.", s:120, br:1, beat:{c:200,b:7}},
-   {ph:"חמש-עשרה", t:"המקום הזה שקט מאוד. כמעט ללא תנועה. אמור בתוכך: \"שלוש-עשרה... ארבע-עשרה... חמש-עשרה\". אל תצפה לדבר — רוב הערך הוא בעומק עצמו.", s:120, beat:{c:150,b:3}},
-   {ph:"גלגל הזמן", t:"דמיין גלגל ענק, שקט, תלוי בחלל. כל חישור בו — פרק מחייך. בחר חישור אחד שמושך אותך... והנח לזיכרון שהוא נושא לעלות: תמונה, ריח, תחושה. רק התבונן. בלי לערוך, בלי לשפוט.", s:210, beat:{c:150,b:3}},
-   {ph:"חישור נוסף", t:"אם תרצה — חישור אחד נוסף. זיכרון אחר, אולי רחוק יותר. התבונן בו כפי שהוא. הזיכרונות האלה שלך; המבט השקט הזה עליהם — הוא המתנה של המצב הזה.", s:180, beat:{c:150,b:3}},
+   {ph:"חמש-עשרה", t:"המקום הזה שקט מאוד. כמעט ללא תנועה. אמור בתוכך: \"שלוש-עשרה... ארבע-עשרה... חמש-עשרה\". אל תצפה לדבר — רוב הערך הוא בעומק עצמו.", s:120, beat:{c:200,b:3}},
+   {ph:"גלגל הזמן", t:"דמיין גלגל ענק, שקט, תלוי בחלל. כל חישור בו — פרק מחייך. בחר חישור אחד שמושך אותך... והנח לזיכרון שהוא נושא לעלות: תמונה, ריח, תחושה. רק התבונן. בלי לערוך, בלי לשפוט.", s:210, beat:{c:200,b:3}},
+   {ph:"חישור נוסף", t:"אם תרצה — חישור אחד נוסף. זיכרון אחר, אולי רחוק יותר. התבונן בו כפי שהוא. הזיכרונות האלה שלך; המבט השקט הזה עליהם — הוא המתנה של המצב הזה.", s:180, beat:{c:200,b:3}},
    {ph:"ירידה", t:"עזוב את הגלגל בעדינות. חמש-עשרה... ארבע-עשרה... שלוש-עשרה... שתים-עשרה. הבלון נושא אותך מטה... אחת-עשרה... עשר. אתה ב-Focus 10, בגוף, בנשימה. ספוג את הבלון פנימה.", s:90, beat:{c:250,b:6}}], CLOSE_STEPS)},
 
  /* --- תרגילי המסע (מספר המחקר) --- */
@@ -1624,6 +1655,9 @@ const audioEng = {
     const ctx=this.ctx, t=ctx.currentTime;
     const master = ctx.createGain(); master.gain.setValueAtTime(0.0001,t); master.gain.linearRampToValueAtTime(this.vol,t+3);
     const merger = ctx.createChannelMerger(2);
+    /* שמירה מפורשת על שני ערוצים נפרדים — בלי מיזוג או שכפול */
+    try{ merger.channelCount=1; merger.channelCountMode='explicit'; merger.channelInterpretation='discrete';
+         master.channelCount=2; master.channelCountMode='explicit'; }catch(e){}
     const mk = (freq,ch)=>{ const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=freq;
       const g=ctx.createGain(); g.gain.value=.85; o.connect(g); g.connect(merger,0,ch); o.start(); return o; };
     const oL = mk(c,0), oR = mk(c+b,1);
@@ -1666,6 +1700,15 @@ const audioEng = {
   },
   /* ambient drone: pure-fifth pad (A1-E2-A2-E3), rhythm-free, heavily filtered */
   droneNodes:null, droneOn:false,
+  droneAuto(){ try{ return localStorage.getItem('gw_drone_auto')==='1'; }catch(e){ return false; } },
+  setDroneAuto(v){
+    try{ localStorage.setItem('gw_drone_auto', v?'1':'0'); }catch(e){}
+    const b=document.getElementById('droneAutoBtn');
+    if(b){ b.textContent = v ? '🎼 דרון נדלק אוטומטית' : '🎼 דרון כבוי כברירת מחדל'; 
+           b.classList.toggle('btn-cyan', v); b.classList.toggle('btn-ghost', !v); }
+    if(v && audioEng.on && !audioEng.droneNodes) audioEng.toggleDrone();
+    if(!v && audioEng.droneNodes) audioEng.toggleDrone();
+  },
   toggleDrone(){
     this.ensure();
     const btn = document.getElementById('droneBtn');
@@ -3026,15 +3069,24 @@ const voiceEng = {
   /* בוחר את הקול הרך ביותר הזמין בשפה שנבחרה */
   pickedName:'', rate:.82, pitch:.95, mix:'back', vol:.40,
   /* יחס בין ההנחיה לתדר: vol = עוצמת הדיבור · duck = כמה התדר יורד בזמן דיבור */
+  /* הערה חשובה: iOS/Safari מתעלמים מ-volume של ההקראה — לכן במצב "התדר מוביל"
+     לא מנמיכים את הקול (אי אפשר) אלא מוותרים לגמרי על עמעום התדר ומחזקים אותו. */
   MIX: {
-    back:  {vol:.40, duck:.90},   /* ההנחיה מרחפת מתחת לתדר — התדר שולט */
-    mid:   {vol:.70, duck:.68},
-    front: {vol:1.0, duck:.45}
+    back:  {vol:.40, duck:1.0,  beat:.55},   /* אין עמעום כלל — התדר נשאר מלא */
+    mid:   {vol:.70, duck:.78,  beat:.40},
+    front: {vol:1.0, duck:.45,  beat:.28}
   },
   setMix(m){
     this.mix = m; const p = this.MIX[m] || this.MIX.back;
     this.vol = p.vol;
     try{ localStorage.setItem('gw_voice_mix', m); localStorage.setItem('gw_voice_vol', this.vol); }catch(e){}
+    /* מכוונים את עוצמת התדר עצמה — זו השליטה האמיתית ביחס ביניהם */
+    try{
+      if(typeof audioEng !== 'undefined' && p.beat){
+        audioEng.setVol(p.beat);
+        const sl = document.getElementById('beatVol'); if(sl) sl.value = Math.round(p.beat*100);
+      }
+    }catch(e){}
     this.badge(); this.preview();
   },
   setVol(v){
@@ -3269,6 +3321,7 @@ const player = {
     this.state='run'; this.pane('pSession');
     voiceEng.init(); voiceEng.badge(); voiceEng.prime();
     wakeLock.request();
+    if(audioEng.droneAuto() && audioEng.on && !audioEng.droneNodes) setTimeout(()=>audioEng.toggleDrone(), 900);
     if(audioEng.cur && !audioEng.on){ audioEng.start(audioEng.cur.c, audioEng.cur.b); document.getElementById('beatBtn').textContent='⏸ השתק תדר'; }
     this.show();
   },
@@ -3814,7 +3867,7 @@ const theme = {
 voiceEng.init(); voiceEng.badge();
 backup.init();
 wakeLock.init(); wakeLock.rebind();
-try{ beatFile.render(); }catch(e){}
+try{ beatFile.render(); audioEng.setDroneAuto(audioEng.droneAuto()); }catch(e){}
 intro.init();
 /* שחרור האודיו בנגיעה הראשונה — דרישה של iOS */
 (function(){
@@ -3846,7 +3899,7 @@ window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getEleme
 })();
 
 /* ---------- גרסה ורענון כפוי ---------- */
-const APP_VERSION = '2026.08.02-b21';
+const APP_VERSION = '2026.08.02-b23';
 (function(){
   const set = ()=>{ const el=document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; };
   set(); setTimeout(set, 300);
@@ -3962,6 +4015,41 @@ const soundTest = {
       rows.push('❌ שגיאה בהפעלת המנוע: ' + (e && e.message ? e.message : e));
       this.say(rows.join('<br>'));
     }
+  },
+
+  /* בדיקת סטריאו — שלושה שלבים: שמאל בלבד, ימין בלבד, ואז שניהם עם הפעימה */
+  stereo(){
+    try{
+      audioEng.unlock();
+      const ctx = audioEng.ctx;
+      const run = ()=>{
+        const t0 = ctx.currentTime;
+        const tone = (freq, ch, at, dur)=>{
+          const o = ctx.createOscillator(); o.type='sine'; o.frequency.value=freq;
+          const g = ctx.createGain();
+          g.gain.setValueAtTime(0.0001, t0+at);
+          g.gain.exponentialRampToValueAtTime(0.3, t0+at+0.08);
+          g.gain.setValueAtTime(0.3, t0+at+dur-0.15);
+          g.gain.exponentialRampToValueAtTime(0.0001, t0+at+dur);
+          const m = ctx.createChannelMerger(2);
+          try{ m.channelCount=1; m.channelCountMode='explicit'; m.channelInterpretation='discrete'; }catch(e){}
+          o.connect(g); g.connect(m, 0, ch); m.connect(ctx.destination);
+          o.start(t0+at); o.stop(t0+at+dur+0.05);
+        };
+        tone(250, 0, 0.1, 2.0);          /* שמאל */
+        tone(250, 1, 2.4, 2.0);          /* ימין */
+        tone(250, 0, 4.8, 3.0);          /* שניהם — הפרש 6Hz */
+        tone(256, 1, 4.8, 3.0);
+        const steps = [
+          [0,    '🎧 <b>שלב 1/3 — אוזן שמאל בלבד</b><br><span style="opacity:.75">אמור להישמע רק משמאל.</span>'],
+          [2400, '🎧 <b>שלב 2/3 — אוזן ימין בלבד</b><br><span style="opacity:.75">אמור להישמע רק מימין.</span>'],
+          [4800, '🎧 <b>שלב 3/3 — שני הערוצים יחד</b><br><span style="opacity:.75">250Hz משמאל · 256Hz מימין. אמורה להישמע פעימה רכה של 6 פעימות בשנייה — הצליל ה"מתנדנד" הזה הוא כל המנגנון.</span>'],
+          [8200, '✅ <b>הבדיקה הסתיימה.</b><br>שמעת את שלב 1 רק משמאל ואת שלב 2 רק מימין — הסטריאו תקין והפעימה הבינאורלית נוצרת כראוי.<br><span style="opacity:.75">אם שני השלבים הראשונים נשמעו משני הצדדים — המכשיר ממזג למונו: הגדרות ← נגישות ← שמע/חזותי ← "שמע מונו" כבוי. אם לא נשמעה פעימה בשלב 3 — בדוק שהאוזניות באוזניים הנכונות.</span>']
+        ];
+        steps.forEach(([ms, html])=> setTimeout(()=>this.say(html), ms));
+      };
+      if(ctx.state === 'suspended' && ctx.resume) ctx.resume().then(run).catch(run); else run();
+    }catch(e){ this.say('❌ ' + (e && e.message ? e.message : e)); }
   },
 
   /* מסלול 2: נגן אודיו רגיל — לבידוד הבעיה */
