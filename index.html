@@ -991,11 +991,25 @@ const GOALS = [
  {id:"advanced", icon:"⏳", name:"המסע המתקדם", d:"REBAL → תנועה חופשית → גלגל הזמן", ex:["rebal","free","f15"], note:"רק לאחר שבועות של F-10 ו-F-12 יציבים. דוח 1983: פחות מ-5% מגיעים ל-F-15 בשבוע אימון — הסבלנות היא הדרך, לא המכשול."},
 ];
 
+/* השגרה נפתחת בהדרגה: כל כלי מופיע ביום שבו המסע מלמד את המיומנות שמאחוריו.
+   unlock = יום המסע שממנו הכלי זמין · why = מה נרכש באותו יום */
 const DAILY = [
- {id:"morning", ic:"🌅", name:"בוקר — טעינה", d:"נשימה רזוננטית + אנרגיה לבנה · ‏5 דק'", ex:"energy"},
- {id:"noon", ic:"🍃", name:"צהריים — איפוס", d:"פריקת מטען רגשי · ‏2 דק'", ex:"emo"},
- {id:"evening", ic:"🌗", name:"ערב — הסשן המרכזי", d:"Focus 10 מלא (או תרגול הבחירה) + יומן · ‏15–20 דק'", ex:"f10"},
- {id:"night", ic:"🌙", name:"לילה — כניסה לשינה", d:"כלי השינה · עד 4 דק'", ex:"sleep"},
+ {id:"morning", ic:"🌅", name:"בוקר — נשימה תהודתית", d:"שש נשימות איטיות לפתיחת היום · ‏1–2 דק'", ex:"rbx", unlock:1,
+  why:"עובד מהיום הראשון — הרכיב עם הבסיס הפיזיולוגי החזק ביותר בתוכנית"},
+ {id:"box", ic:"📦", name:"קופסה מהירה", d:"הנחת דאגה בצד כדי לפנות קשב · ‏1 דק'", ex:"box", unlock:4,
+  why:"נפתח ביום 4, אחרי שבנית את התיבה בפירוט"},
+ {id:"noon", ic:"🍃", name:"צהריים — פריקת מטען", d:"נשיפה ירוקה ברגע של עומס · ‏2 דק'", ex:"emo", unlock:1,
+  why:"כלי ערוּת בסיסי — זמין מהתחלה"},
+ {id:"evening", ic:"🌗", name:"ערב — הסשן המרכזי", d:"תרגול היום מהמסע + יומן · ‏15–35 דק'", ex:"f10", unlock:1, journeyLinked:true,
+  why:"מתעדכן אוטומטית לפי היום הנוכחי במסע"},
+ {id:"f10quick", ic:"⚡", name:"גישה מהירה ל-Focus 10", d:"שימוש בעיגון להרגעה בשלוש נשימות · ‏60 שנ'", ex:"f10", unlock:8,
+  why:"נפתח ביום 8, אחרי שעיגנת את המצב למספר 10"},
+ {id:"scan", ic:"🫀", name:"סריקת גוף מהירה", d:"גרסה מקוצרת של LBM לזיהוי מתח · ‏90 שנ'", ex:"lbm", unlock:10,
+  why:"נפתח ביום 10, עם לימוד מפת הגוף"},
+ {id:"rebal", ic:"🔮", name:"REBAL יומי", d:"הפעלת דימוי הגבול לפני סביבה עמוסה · ‏2 דק'", ex:"rebal", unlock:16,
+  why:"נפתח ביום 16, אחרי בניית הבועה השלמה"},
+ {id:"night", ic:"🌙", name:"לילה — איזון סוגר וכניסה לשינה", d:"סריקה קצרה ואז כלי השינה · עד 4 דק'", ex:"sleep", unlock:1,
+  why:"תרגיל הסגירה של היום — זמין מהתחלה"},
 ];
 </script>
 <script>
@@ -3044,7 +3058,7 @@ const JOURNEY_WEEKS = [
 
 const journey = {
   data(){ return store.get('gw_journey', {start:null, done:{}}); },
-  save(d){ store.set('gw_journey', d); backup.touch(); },
+  save(d){ store.set('gw_journey', d); backup.touch(); try{ daily.render(); }catch(e){} },
   nextDay(){ const d=this.data(); for(let i=1;i<=30;i++){ if(!d.done[i]) return i; } return 31; },
   start(){ const d=this.data(); d.start = new Date().toISOString().slice(0,10); this.save(d); this.render();
     modal('המסע התחיל 🌌','30 יום, משימה אחת בכל יום. התחל היום ביום 1 — היכרות עם הצליל. ואל תשכח: הירדמות היא לא כישלון, ועקביות גוברת על משך.'); },
@@ -3106,15 +3120,51 @@ journey.render();
 const daily = {
   key(){ return 'gw_daily_'+new Date().toISOString().slice(0,10); },
   data(){ return store.get(this.key(), {}); },
+  /* היום הנוכחי במסע — 0 אם המסע טרם התחיל */
+  journeyDay(){
+    try{ const j = journey.data(); if(!j.start) return 0; return Math.max(1, journey.nextDay()); }catch(e){ return 0; }
+  },
+  /* תרגול הערב מתעדכן לפי יום המסע */
+  eveningEx(){
+    const day = this.journeyDay();
+    if(!day || day > 30) return null;
+    try{
+      for(const w of JOURNEY_WEEKS){ const hit = (w.days||[]).find(x=>x.d===day); if(hit) return hit; }
+    }catch(e){}
+    return null;
+  },
   render(){
-    const d=this.data();
-    document.getElementById('dailySlots').innerHTML = DAILY.map(s=>`
-      <div class="day-slot ${d[s.id]?'done':''}">
+    const d = this.data();
+    const day = this.journeyDay();
+    const ev = this.eveningEx();
+    const box = document.getElementById('dailySlots'); if(!box) return;
+
+    const note = !day
+      ? `<p class="faint" style="font-size:.84rem;margin-bottom:14px">המסע טרם התחיל — לכן זמינים כרגע רק הכלים שאינם דורשים מיומנות קודמת. עם ההתקדמות במסע ייפתחו כאן כלים נוספים, כל אחד ביום שבו נלמדת המיומנות שמאחוריו.</p>`
+      : `<p class="faint" style="font-size:.84rem;margin-bottom:14px">אתה ביום <b style="color:var(--cyan)">${Math.min(day,30)}</b> במסע. הכלים נפתחים בהדרגה — כל כלי מופיע ביום שבו המסע מלמד את המיומנות שמאחוריו, לפי הכלל "אל תדלגו".</p>`;
+
+    const rows = DAILY.map(s=>{
+      const locked = day ? (day < s.unlock) : (s.unlock > 1);
+      const isEv = s.journeyLinked && ev;
+      const name = isEv ? `${s.name}` : s.name;
+      const desc = isEv ? `יום ${ev.d} · ${ev.t} · + יומן` : s.d;
+      const exId = isEv ? ev.x : s.ex;
+      if(locked){
+        return `<div class="day-slot" style="opacity:.45">
+          <span class="ic">🔒</span>
+          <div class="info"><b>${name}</b><span>${s.why}</span></div>
+          <span class="pill" style="font-size:.72rem">נפתח ביום ${s.unlock}</span>
+        </div>`;
+      }
+      return `<div class="day-slot ${d[s.id]?'done':''}">
         <span class="ic">${s.ic}</span>
-        <div class="info"><b>${s.name}</b><span>${s.d}</span></div>
-        <button class="btn btn-ghost" style="padding:8px 16px;font-size:.82rem" onclick="startEx('${s.ex}')">תרגל</button>
+        <div class="info"><b>${name}</b><span>${desc}</span></div>
+        <button class="btn btn-ghost" style="padding:8px 16px;font-size:.82rem" onclick="startEx('${exId}')">תרגל</button>
         <button class="btn ${d[s.id]?'btn-cyan':'btn-ghost'}" style="padding:8px 16px;font-size:.82rem" onclick="daily.mark('${s.id}')">${d[s.id]?'✓ הושלם':'סמן'}</button>
-      </div>`).join('');
+      </div>`;
+    }).join('');
+
+    box.innerHTML = note + rows;
     this.streak();
   },
   mark(id){ const d=this.data(); d[id]=!d[id]; store.set(this.key(),d); this.render(); },
@@ -3362,7 +3412,7 @@ window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getEleme
 })();
 
 /* ---------- גרסה ורענון כפוי ---------- */
-const APP_VERSION = '2026.08.02-b13';
+const APP_VERSION = '2026.08.02-b14';
 (function(){
   const set = ()=>{ const el=document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; };
   set(); setTimeout(set, 300);
