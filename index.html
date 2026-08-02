@@ -534,6 +534,18 @@ html[dir="ltr"] footer{text-align:center}
 </select>
 <span class="beat-badge" id="setVoiceName" style="opacity:.75"></span>
 </div>
+<div style="margin-top:14px;display:grid;gap:10px">
+<label class="faint" style="font-size:.82rem">בחירת קול — ★ מסמן קול משודרג (Enhanced/Premium), שנשמע טבעי הרבה יותר</label>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+<select id="setVoicePick" onchange="voiceEng.setVoice(this.value)" style="flex:1;min-width:220px;padding:8px 12px;font-size:.82rem;border-radius:10px;background:var(--card);color:var(--ink);border:1px solid var(--line2)"></select>
+<button class="btn btn-ghost" onclick="voiceEng.preview()" style="padding:8px 16px;font-size:.82rem">▶ השמע דוגמה</button>
+</div>
+<div style="display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:.82rem" class="faint">
+<label style="display:flex;gap:8px;align-items:center">מהירות <input type="range" min="0.6" max="1.1" step="0.02" id="setRate" oninput="voiceEng.setRate(this.value)" style="width:110px;accent-color:var(--cyan)"><b id="rateVal" style="color:var(--ink)">0.82</b></label>
+<label style="display:flex;gap:8px;align-items:center">גובה <input type="range" min="0.7" max="1.2" step="0.02" id="setPitch" oninput="voiceEng.setPitch(this.value)" style="width:110px;accent-color:var(--cyan)"><b id="pitchVal" style="color:var(--ink)">0.95</b></label>
+</div>
+</div>
+<p class="faint" style="font-size:.8rem;margin-top:10px">🎙️ <b>הקול העברי נשמע רובוטי?</b> זו מגבלת הקול הבסיסי של המכשיר, לא של האפליקציה. באייפון: הגדרות ← נגישות ← תוכן מדובר ← קולות ← עברית — והורד את <b>Carmit (משופר)</b> או <b>(פרימיום)</b>. ההורדה חד-פעמית, והקול החדש יופיע ברשימה למעלה מסומן ב-★. אותו דבר באנגלית: Samantha / Ava / Zoe בגרסת Premium נשמעות אנושיות לגמרי.</p>
 <p class="faint" id="voiceDiag" style="display:none;font-size:.84rem;margin-top:12px;line-height:1.7;border-inline-start:2px solid var(--cyan);padding-inline-start:12px"></p>
 <p class="faint" style="font-size:.8rem;margin-top:10px">📱 באייפון: Chrome ו-Firefox רצים על מנוע הדפדפן של Safari, והתמיכה בהקראה שם חלקית. אם הקול שותק — פתח את האפליקציה ב-Safari. ודא גם שמתג ההשתקה בצד המכשיר אינו פעיל: הוא משתיק גם את התדר וגם את ההקראה.</p>
 </div>
@@ -2280,6 +2292,9 @@ const voiceEng = {
     try{
       this.on = (localStorage.getItem('gw_voice') ?? '1') === '1';
       this.lang = localStorage.getItem('gw_voice_lang') || 'he';
+      this.pickedName = localStorage.getItem('gw_voice_name') || '';
+      this.rate = parseFloat(localStorage.getItem('gw_voice_rate') || '0.82');
+      this.pitch = parseFloat(localStorage.getItem('gw_voice_pitch') || '0.95');
     }catch(e){}
     if(!('speechSynthesis' in window)){ this.chimeOnly = true; this.ready = true; this.badge(); return; }
     const pick = ()=>{
@@ -2290,21 +2305,67 @@ const voiceEng = {
     if(!pick()) speechSynthesis.onvoiceschanged = pick;
   },
   /* בוחר את הקול הרך ביותר הזמין בשפה שנבחרה */
-  select(){
+  pickedName:'', rate:.82, pitch:.95,
+  pool(){
     const vs = this.voices || [];
     const pref = this.lang === 'en' ? /^en/i : /^(he|iw)/i;
-    const pool = vs.filter(x=>pref.test(x.lang));
-    const soft = this.SOFT[this.lang] || [];
-    let chosen = null;
-    for(const rx of soft){ chosen = pool.find(x=>rx.test(x.name)) || vs.find(x=>rx.test(x.name) && pref.test(x.lang)); if(chosen) break; }
-    /* עדיפות משנית: קול מקומי (איכותי ולא תלוי רשת) */
-    this.v = chosen || pool.find(x=>x.localService) || pool[0] || null;
-    this.chimeOnly = !this.v;
-    this.badge();
+    return vs.filter(x=>pref.test(x.lang));
+  },
+  /* ציון איכות: קולות Enhanced/Premium נשמעים טבעיים בהרבה מברירת המחדל */
+  quality(v){
+    const n = (v.name||'');
+    if(/premium|enhanced|neural|natural|siri/i.test(n)) return 2;
+    if((this.SOFT[this.lang]||[]).some(rx=>rx.test(n))) return 1;
+    return 0;
+  },
+  select(){
+    const pool = this.pool();
+    /* בחירה ידנית של המשתמש קודמת לכל */
+    let chosen = this.pickedName ? pool.find(x=>x.name===this.pickedName) : null;
+    if(!chosen){
+      const soft = this.SOFT[this.lang] || [];
+      /* קודם קול משודרג, אחר כך קול "רך" מוכר, ואז קול מקומי */
+      chosen = pool.filter(x=>this.quality(x)===2)[0]
+            || soft.map(rx=>pool.find(x=>rx.test(x.name))).find(Boolean)
+            || pool.find(x=>x.localService) || pool[0] || null;
+    }
+    this.v = chosen; this.chimeOnly = !this.v;
+    this.badge(); this.fillPicker();
+  },
+  setVoice(name){
+    this.pickedName = name || '';
+    try{ localStorage.setItem('gw_voice_name', this.pickedName); }catch(e){}
+    this.stop(); this.select(); this.primed=false; this.prime(); this.preview();
+  },
+  setRate(v){ this.rate = parseFloat(v); try{ localStorage.setItem('gw_voice_rate', this.rate); }catch(e){}
+    const l=document.getElementById('rateVal'); if(l) l.textContent = this.rate.toFixed(2); },
+  setPitch(v){ this.pitch = parseFloat(v); try{ localStorage.setItem('gw_voice_pitch', this.pitch); }catch(e){}
+    const l=document.getElementById('pitchVal'); if(l) l.textContent = this.pitch.toFixed(2); },
+  preview(){
+    this.prime();
+    const t = this.lang==='en'
+      ? 'Let the body settle. There is nowhere to hurry to.'
+      : '\u05D4\u05E0\u05D7 \u05DC\u05D2\u05D5\u05E3 \u05DC\u05D4\u05EA\u05DE\u05E7\u05DD. \u05D0\u05D9\u05DF \u05DC\u05D0\u05DF \u05DC\u05DE\u05D4\u05E8.';
+    this.speak(t, {raw:true, volume:1});
+  },
+  /* ממלא את רשימת הקולות בהגדרות */
+  fillPicker(){
+    const sel = document.getElementById('setVoicePick'); if(!sel) return;
+    const pool = this.pool().slice().sort((a,b)=> this.quality(b)-this.quality(a) || a.name.localeCompare(b.name));
+    if(!pool.length){ sel.innerHTML = '<option value="">\u2014</option>'; sel.disabled = true; return; }
+    sel.disabled = false;
+    sel.innerHTML = pool.map(v=>{
+      const q = this.quality(v);
+      const star = q===2 ? '\u2605 ' : (q===1 ? '\u2022 ' : '');
+      const sel2 = (this.v && v.name===this.v.name) ? ' selected' : '';
+      return `<option value="${v.name.replace(/"/g,'')}"${sel2}>${star}${v.name} (${v.lang})</option>`;
+    }).join('');
   },
   setLang(l){
     this.lang = l;
     try{ localStorage.setItem('gw_voice_lang', l); }catch(e){}
+    this.pickedName = '';
+    try{ localStorage.removeItem('gw_voice_name'); }catch(e){}
     this.stop(); this.select(); this.primed=false; this.prime();
   },
   /* טקסט לפי שפת הקול — ההנחיה באנגלית מגיעה מ-EN_STEPS */
@@ -2317,6 +2378,10 @@ const voiceEng = {
       gb.classList.toggle('btn-cyan', this.on); gb.classList.toggle('btn-ghost', !this.on); }
     if(gs){ gs.value = this.lang; gs.disabled = !this.on; gs.style.opacity = this.on ? 1 : .45; }
     if(gn) gn.textContent = !this.on ? '' : (this.v ? `קול נבחר: ${this.v.name}` : 'לא נמצא קול מתאים — יושמעו צלילי מעבר בלבד');
+    const rp=document.getElementById('setRate'), pp=document.getElementById('setPitch');
+    if(rp){ rp.value=this.rate; const l=document.getElementById('rateVal'); if(l) l.textContent=Number(this.rate).toFixed(2); }
+    if(pp){ pp.value=this.pitch; const l=document.getElementById('pitchVal'); if(l) l.textContent=Number(this.pitch).toFixed(2); }
+    if(this.voices && this.voices.length) this.fillPicker();
     const b = document.getElementById('rdVoiceBtn');
     const sel = document.getElementById('rdVoiceLang');
     if(sel){ sel.value = this.lang; sel.style.display = this.on ? '' : 'none'; }
@@ -2382,8 +2447,8 @@ const voiceEng = {
       const clean = String(src).replace(/[·—•✓⏸🎧🎼📌🔔🗣️]/g,' ').replace(/"/g,'').replace(/\s+/g,' ').trim();
       const u = new SpeechSynthesisUtterance(clean);
       u.voice = this.v; u.lang = this.v.lang || (this.lang==='en'?'en-US':'he-IL');
-      u.rate = opts.rate ?? .82;      /* איטי ורגוע */
-      u.pitch = opts.pitch ?? .95;    /* מעט נמוך — רך יותר */
+      u.rate = opts.rate ?? this.rate ?? .82;      /* איטי ורגוע */
+      u.pitch = opts.pitch ?? this.pitch ?? .95;   /* מעט נמוך — רך יותר */
       u.volume = opts.volume ?? .85;
       u.onstart = ()=>{ this.speaking = true; this.duck(true); };
       u.onend = u.onerror = ()=>{ this.speaking = false; this.duck(false); };
