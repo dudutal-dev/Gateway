@@ -43,7 +43,8 @@ body{
 .app{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 20px 120px}
 
 /* ---------- header ---------- */
-header{padding:34px 0 10px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header{padding:max(28px,env(safe-area-inset-top)) 0 10px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand h1 small{display:block;font-family:var(--font-body);font-weight:400;font-size:.72rem;letter-spacing:.02em;color:var(--ink-faint);margin-top:3px;line-height:1.35}
 .brand{display:flex;align-items:center;gap:14px}
 .brand .sigil{width:46px;height:46px;position:relative;flex:none}
 .brand .sigil svg{width:100%;height:100%}
@@ -265,7 +266,45 @@ html[dir="ltr"] footer{text-align:center}
 #player .p-foot{position:sticky;bottom:0;width:100%;display:flex;flex-direction:column;align-items:center;background:var(--bg);padding:10px 0 4px;margin-top:auto;box-shadow:0 -18px 24px -12px var(--bg)}
 #player .p-timer{margin:6px 0 6px!important}
 #player .p-progress{margin-bottom:12px!important}
-@media(max-width:760px){#player .emergency{max-width:44vw;font-size:.66rem;padding:6px 9px}#player .p-pane{padding:88px 12px 16px}#player .p-orb{width:min(150px,34vw);margin-bottom:18px}#player .p-audio{gap:7px;padding:8px 11px;font-size:.75rem}}</style>
+@media(max-width:760px){#player .emergency{max-width:44vw;font-size:.66rem;padding:6px 9px}#player .p-pane{padding:88px 12px 16px}#player .p-orb{width:min(150px,34vw);margin-bottom:18px}#player .p-audio{gap:7px;padding:8px 11px;font-size:.75rem}}
+/* ---------- mobile layout ---------- */
+@media(max-width:640px){
+  header{padding:max(12px,env(safe-area-inset-top)) 0 8px;gap:10px;flex-wrap:nowrap;align-items:flex-start}
+  .brand{gap:10px;min-width:0;flex:1}
+  .sigil{width:34px;height:34px}
+  .brand h1{font-size:1.15rem;letter-spacing:.04em}
+  .brand h1 small{font-size:.63rem;margin-top:2px}
+  header .save-chip{display:none}
+  header #themeBtn{padding:7px 10px!important;font-size:.72rem!important}
+  header #gearBtn{padding:7px 10px!important}
+  nav{margin:10px -14px 18px;padding:8px 10px}
+  .nav-inner{flex-wrap:wrap;overflow-x:visible;justify-content:center;row-gap:5px;gap:5px;padding-inline:0}
+  .tab{font-size:.76rem;padding:6px 11px}
+  .hero{padding:16px 0 4px;gap:18px}
+  .hero h2{font-size:clamp(1.7rem,8.5vw,2.2rem);line-height:1.15}
+  .hero .lead{font-size:.95rem}
+  .stamp{font-size:.6rem;letter-spacing:.06em;padding:4px 9px;margin-bottom:12px;line-height:1.5}
+  .orb-wrap{order:-1}
+  .orb{width:min(140px,38vw)}
+  .sep{margin:22px 0}
+}
+@media(max-width:400px){
+  .brand h1{font-size:1.05rem}
+  .brand h1 small{display:none}
+  .tab{font-size:.72rem;padding:6px 9px}
+  .hero h2{font-size:1.6rem}
+}
+
+/* bottom safe area (home indicator) */
+@media(max-width:640px){
+  .app{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+  #player .p-pane{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+  #player .p-foot{padding-bottom:calc(6px + env(safe-area-inset-bottom))}
+  #player .emergency{top:max(10px,env(safe-area-inset-top))}
+  #player .p-close{top:max(10px,env(safe-area-inset-top))}
+  #player .p-pane{padding-top:calc(78px + env(safe-area-inset-top))}
+}
+</style>
 </head>
 <body>
 <canvas id="stars"></canvas>
@@ -535,6 +574,13 @@ html[dir="ltr"] footer{text-align:center}
 <span class="beat-badge" id="setVoiceName" style="opacity:.75"></span>
 </div>
 <div style="margin-top:14px;display:grid;gap:10px">
+<label class="faint" style="font-size:.82rem">מיקום ההנחיה במיקס — מי מוביל, התדר או הקול</label>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button class="btn btn-ghost mixbtn" id="mixBack" onclick="voiceEng.setMix('back')" style="padding:8px 14px;font-size:.8rem">🎧 התדר מוביל · הנחיה ברקע</button>
+<button class="btn btn-ghost mixbtn" id="mixMid" onclick="voiceEng.setMix('mid')" style="padding:8px 14px;font-size:.8rem">מאוזן</button>
+<button class="btn btn-ghost mixbtn" id="mixFront" onclick="voiceEng.setMix('front')" style="padding:8px 14px;font-size:.8rem">🗣️ ההנחיה מובילה</button>
+</div>
+<label class="faint" style="display:flex;gap:8px;align-items:center;font-size:.82rem">עוצמת ההנחיה <input type="range" min="0.15" max="1" step="0.05" id="setVVol" oninput="voiceEng.setVol(this.value)" style="width:130px;accent-color:var(--cyan)"><b id="vvolVal" style="color:var(--ink)">40%</b></label>
 <label class="faint" style="font-size:.82rem">בחירת קול — ★ מסמן קול משודרג (Enhanced/Premium), שנשמע טבעי הרבה יותר</label>
 <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
 <select id="setVoicePick" onchange="voiceEng.setVoice(this.value)" style="flex:1;min-width:220px;padding:8px 12px;font-size:.82rem;border-radius:10px;background:var(--card);color:var(--ink);border:1px solid var(--line2)"></select>
@@ -596,7 +642,7 @@ html[dir="ltr"] footer{text-align:center}
 <option value="en">🗣️ Soft English voice</option>
 </select>
 </div>
-<p class="faint" data-i18n="a215" data-i18n-html="1" id="rdVoiceNote" style="font-size:.84rem;max-width:560px;margin-inline:auto">🗣️ <b data-i18n="a165">הנחיה קולית פעילה</b> — אין צורך להסתכל במסך. כל שלב נפתח בצליל מעבר עדין, ואחריו ההנחיה נקראת בקול רך; רמזי "שאיפה/נשיפה" יישמעו רק במחזורים הראשונים ואז ישתתקו. עוצמת התדר יורדת אוטומטית בזמן הדיבור וחוזרת אחריו. הבחירה בשפה חלה על כל התרגולים והמסעות ונשמרת למפעם הבא; באנגלית מושמע נוסח ההנחיות המקורי של ה-Workbook. אפשר לכבות בכל רגע בכפתור הקול.</p>
+<p class="faint" data-i18n="a215" data-i18n-html="1" id="rdVoiceNote" style="font-size:.84rem;max-width:560px;margin-inline:auto">🗣️ <b data-i18n="a165">הנחיה קולית פעילה</b> — אין צורך להסתכל במסך. כל שלב נפתח בצליל מעבר עדין, ואחריו ההנחיה נקראת בקול רך; רמזי "שאיפה/נשיפה" יישמעו רק במחזורים הראשונים ואז ישתתקו. כברירת מחדל ההנחיה מרחפת מתחת לתדר — התדר הוא ששולט — ועוצמתו יורדת רק במעט בזמן הדיבור. אפשר לשנות את היחס בהגדרות. הבחירה בשפה חלה על כל התרגולים והמסעות ונשמרת למפעם הבא; באנגלית מושמע נוסח ההנחיות המקורי של ה-Workbook. אפשר לכבות בכל רגע בכפתור הקול.</p>
 <p class="faint" id="rdVoiceWarn" style="font-size:.82rem;max-width:560px;margin-inline:auto;display:none"></p>
 </div>
 <!-- הסשן עצמו -->
@@ -2295,6 +2341,9 @@ const voiceEng = {
       this.pickedName = localStorage.getItem('gw_voice_name') || '';
       this.rate = parseFloat(localStorage.getItem('gw_voice_rate') || '0.82');
       this.pitch = parseFloat(localStorage.getItem('gw_voice_pitch') || '0.95');
+      this.mix = localStorage.getItem('gw_voice_mix') || 'back';
+      const mv = localStorage.getItem('gw_voice_vol');
+      this.vol = mv !== null ? parseFloat(mv) : this.MIX[this.mix].vol;
     }catch(e){}
     if(!('speechSynthesis' in window)){ this.chimeOnly = true; this.ready = true; this.badge(); return; }
     const pick = ()=>{
@@ -2305,7 +2354,25 @@ const voiceEng = {
     if(!pick()) speechSynthesis.onvoiceschanged = pick;
   },
   /* בוחר את הקול הרך ביותר הזמין בשפה שנבחרה */
-  pickedName:'', rate:.82, pitch:.95,
+  pickedName:'', rate:.82, pitch:.95, mix:'back', vol:.40,
+  /* יחס בין ההנחיה לתדר: vol = עוצמת הדיבור · duck = כמה התדר יורד בזמן דיבור */
+  MIX: {
+    back:  {vol:.40, duck:.90},   /* ההנחיה מרחפת מתחת לתדר — התדר שולט */
+    mid:   {vol:.70, duck:.68},
+    front: {vol:1.0, duck:.45}
+  },
+  setMix(m){
+    this.mix = m; const p = this.MIX[m] || this.MIX.back;
+    this.vol = p.vol;
+    try{ localStorage.setItem('gw_voice_mix', m); localStorage.setItem('gw_voice_vol', this.vol); }catch(e){}
+    this.badge(); this.preview();
+  },
+  setVol(v){
+    this.vol = parseFloat(v);
+    try{ localStorage.setItem('gw_voice_vol', this.vol); }catch(e){}
+    const l=document.getElementById('vvolVal'); if(l) l.textContent = Math.round(this.vol*100)+'%';
+  },
+  duckAmt(){ return (this.MIX[this.mix] || this.MIX.back).duck; },
   pool(){
     const vs = this.voices || [];
     const pref = this.lang === 'en' ? /^en/i : /^(he|iw)/i;
@@ -2346,7 +2413,7 @@ const voiceEng = {
     const t = this.lang==='en'
       ? 'Let the body settle. There is nowhere to hurry to.'
       : '\u05D4\u05E0\u05D7 \u05DC\u05D2\u05D5\u05E3 \u05DC\u05D4\u05EA\u05DE\u05E7\u05DD. \u05D0\u05D9\u05DF \u05DC\u05D0\u05DF \u05DC\u05DE\u05D4\u05E8.';
-    this.speak(t, {raw:true, volume:1});
+    this.speak(t, {raw:true});
   },
   /* ממלא את רשימת הקולות בהגדרות */
   fillPicker(){
@@ -2382,6 +2449,12 @@ const voiceEng = {
     if(rp){ rp.value=this.rate; const l=document.getElementById('rateVal'); if(l) l.textContent=Number(this.rate).toFixed(2); }
     if(pp){ pp.value=this.pitch; const l=document.getElementById('pitchVal'); if(l) l.textContent=Number(this.pitch).toFixed(2); }
     if(this.voices && this.voices.length) this.fillPicker();
+    ['back','mid','front'].forEach(m=>{
+      const b=document.getElementById('mix'+m[0].toUpperCase()+m.slice(1));
+      if(b){ b.classList.toggle('btn-cyan', this.mix===m); b.classList.toggle('btn-ghost', this.mix!==m); }
+    });
+    const vv=document.getElementById('setVVol');
+    if(vv){ vv.value=this.vol; const l=document.getElementById('vvolVal'); if(l) l.textContent=Math.round(this.vol*100)+'%'; }
     const b = document.getElementById('rdVoiceBtn');
     const sel = document.getElementById('rdVoiceLang');
     if(sel){ sel.value = this.lang; sel.style.display = this.on ? '' : 'none'; }
@@ -2420,7 +2493,7 @@ const voiceEng = {
     try{
       audioEng.ensure(); const ctx = audioEng.ctx, t = ctx.currentTime;
       const g = ctx.createGain(); g.gain.setValueAtTime(0.0001,t);
-      g.gain.exponentialRampToValueAtTime(Math.max(.02, audioEng.vol*.35), t+.08);
+      g.gain.exponentialRampToValueAtTime(Math.max(.012, audioEng.vol*.35*(this.vol||.4)*2), t+.08);
       g.gain.exponentialRampToValueAtTime(0.0001, t+2.2);
       [528, 792].forEach((f,i)=>{ const o=ctx.createOscillator(); o.type='sine'; o.frequency.value=f;
         const og=ctx.createGain(); og.gain.value = i? .35 : 1; o.connect(og); og.connect(g); o.start(t); o.stop(t+2.3); });
@@ -2430,7 +2503,7 @@ const voiceEng = {
   duck(down){
     const a = audioEng;
     if(!a.ctx) return;
-    const t = a.ctx.currentTime, f = down ? .45 : 1;
+    const t = a.ctx.currentTime, f = down ? this.duckAmt() : 1;
     try{
       if(a.nodes) a.nodes.master.gain.linearRampToValueAtTime(Math.max(.0001, a.vol*f), t + (down?.5:1.6));
       if(a.droneNodes) a.droneNodes.g.gain.linearRampToValueAtTime(Math.max(.0001, Math.min(.08, a.vol*.28)*f), t + (down?.5:1.6));
@@ -2449,7 +2522,7 @@ const voiceEng = {
       u.voice = this.v; u.lang = this.v.lang || (this.lang==='en'?'en-US':'he-IL');
       u.rate = opts.rate ?? this.rate ?? .82;      /* איטי ורגוע */
       u.pitch = opts.pitch ?? this.pitch ?? .95;   /* מעט נמוך — רך יותר */
-      u.volume = opts.volume ?? .85;
+      u.volume = opts.volume ?? this.vol ?? .4;
       u.onstart = ()=>{ this.speaking = true; this.duck(true); };
       u.onend = u.onerror = ()=>{ this.speaking = false; this.duck(false); };
       speechSynthesis.speak(u);
@@ -2564,7 +2637,7 @@ const player = {
       lbl.textContent = ph===0 ? 'שאיפה' : 'נשיפה';
       /* רמז קולי רק בשלושת המחזורים הראשונים — אחר כך שקט, כדי לא להפריע לתדר */
       if(voiceEng.on && !voiceEng.speaking && cycles < 6 && !this.paused)
-        voiceEng.speak(voiceEng.lang==='en' ? (ph===0?'Inhale':'Exhale') : (ph===0?'שאיפה':'נשיפה'), {rate:.75, volume:.55, quietChime:true, raw:true});
+        voiceEng.speak(voiceEng.lang==='en' ? (ph===0?'Inhale':'Exhale') : (ph===0?'שאיפה':'נשיפה'), {rate:.75, volume:Math.max(.12, voiceEng.vol*.7), quietChime:true, raw:true});
       cycles++; ph=1-ph; };
     this.brTimer && clearInterval(this.brTimer);
     /* המחזור הוויזואלי מתחיל מיד; הרמז הקולי ממתין להנחיה המדוברת */
