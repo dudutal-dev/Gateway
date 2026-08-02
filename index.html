@@ -426,6 +426,12 @@ html[dir="ltr"] footer{text-align:center}
 <b data-i18n="a027">גילוי נאות והבהרה מדעית:</b> השפעת תדרים בינאורליים על גלי מוח והרפיה מתועדת מחקרית; לעומת זאת, הטענות המרחיקות של השיטה (חוויות חוץ-גופיות, צפייה מרחוק, השפעה על מציאות) הן חלק מהמסמכים ההיסטוריים ואינן מבוססות מדעית. האפליקציה מציגה את השיטה כפי שהיא במקור, ככלי להרפיה, מיקוד והתבוננות — והיא אינה תחליף לטיפול רפואי או נפשי. אין להאזין לתדרים בזמן נהיגה או הפעלת מכונות; במקרה של אפילפסיה, קוצב לב או הריון — יש להיוועץ ברופא. בכל רגע בתרגול, הזזת איבר גוף כלשהו מחזירה אותך מיידית לערנות מלאה.
   </div>
 
+  <div class="card mt2" style="text-align:center">
+    <div class="eyebrow" data-i18n="about.dev.eyebrow">פיתוח</div>
+    <h3 style="margin-bottom:8px" data-i18n="about.dev.by">פותח על ידי דודו טל</h3>
+    <p class="muted" style="font-size:.9rem;max-width:520px;margin-inline:auto" data-i18n="about.dev.note">האפליקציה נבנתה מהמסמכים המקוריים — חוברת העבודה של 1977 ודוח הניתוח של 1983 — במטרה להנגיש את הפרוטוקול כפי שהוא, בלי הבטחות ובלי קיצורי דרך.</p>
+  </div>
+
   <div class="card mt2">
     <div class="eyebrow" data-i18n="about.sources.eyebrow">ביבליוגרפיה</div>
     <h3 data-i18n="about.sources.title">המקורות שעליהם נשענת האפליקציה</h3>
@@ -606,6 +612,10 @@ html[dir="ltr"] footer{text-align:center}
 </div>
 <div class="card mt2" style="max-width:620px;margin-inline:auto;text-align:start">
 <h3 style="margin-bottom:6px">📱 מסך וסשן</h3>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+<button class="btn btn-cyan" id="introBtn" onclick="intro.toggle()" style="padding:8px 16px;font-size:.82rem">✨ אנימציית פתיחה פעילה</button>
+<button class="btn btn-ghost" onclick="intro.replay()" style="padding:8px 16px;font-size:.82rem">▶ נגן שוב</button>
+</div>
 <p class="faint" style="font-size:.78rem;margin-bottom:12px">גרסה <b id="appVer" style="color:var(--cyan)">—</b> · אם המספר כאן שונה מהגרסה שקיבלת, הדפדפן מגיש עותק שמור.</p>
 <p class="muted" style="font-size:.86rem;margin-bottom:12px">בזמן תרגול העיניים עצומות והמכשיר לא נוגע — ובלי זה המסך ננעל, והתדר, הטיימר וההנחיה הקולית נקטעים באמצע. ההגדרה פועלת רק בזמן סשן ומשוחררת בסיומו, כדי לא לבזבז סוללה.</p>
 <button class="btn btn-cyan" id="wakeBtn" onclick="wakeLock.toggle()" style="padding:8px 16px;font-size:.82rem">☀️ המסך יישאר דלוק בסשן</button>
@@ -779,6 +789,258 @@ html[dir="ltr"] footer{text-align:center}
     </div>
   </div>
 </div>
+<!-- ============ INTRO ============ -->
+<div id="intro" aria-hidden="true">
+  <canvas id="introCv"></canvas>
+  <div class="intro-ui">
+    <div class="intro-word" id="introWord"></div>
+    <div class="intro-tag" id="introTag" data-i18n="intro.tag">אני יותר מגופי הפיזי</div>
+    <button class="intro-enter" id="introEnter" onclick="intro.enter()" data-i18n="intro.enter">כניסה</button>
+    <button class="intro-skip" id="introSkip" onclick="intro.enter(true)" data-i18n="intro.skip">דלג</button>
+  </div>
+</div>
+
+<style>
+#intro{position:fixed;inset:0;z-index:400;background:#04060f;display:none;overflow:hidden;
+  align-items:center;justify-content:center;transition:opacity .9s ease, transform .9s ease}
+#intro.on{display:flex}
+#intro.out{opacity:0;transform:scale(1.08);pointer-events:none}
+#introCv{position:absolute;inset:0;width:100%;height:100%}
+.intro-ui{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:20px}
+.intro-word{font-family:var(--font-disp);font-weight:800;letter-spacing:.42em;
+  font-size:clamp(1.5rem,6.2vw,3rem);color:#e8ecfa;display:flex;gap:.06em;text-indent:.42em;
+  filter:drop-shadow(0 0 26px rgba(94,224,206,.35))}
+.intro-word span{opacity:0;transform:translateY(16px) scale(.94);display:inline-block;
+  animation:iLetter .9s cubic-bezier(.2,.8,.2,1) forwards}
+.intro-word span.cy{color:#5ee0ce}
+@keyframes iLetter{to{opacity:1;transform:none}}
+.intro-tag{margin-top:20px;font-size:clamp(.8rem,3.2vw,1rem);color:#7f8bb5;letter-spacing:.16em;
+  opacity:0;animation:iFade 1.4s ease 2.5s forwards}
+@keyframes iFade{to{opacity:1}}
+.intro-enter{margin-top:46px;opacity:0;pointer-events:none;
+  font-family:var(--font-body);font-size:.92rem;font-weight:600;letter-spacing:.1em;color:#04060f;
+  background:linear-gradient(135deg,#5ee0ce,#8b7bd8);border:0;border-radius:99px;padding:14px 52px;cursor:pointer;
+  box-shadow:0 0 0 0 rgba(94,224,206,.5);animation:iBtn .9s ease 3.4s forwards, iPulse 2.6s ease-in-out 4.3s infinite}
+@keyframes iBtn{to{opacity:1;pointer-events:auto}}
+@keyframes iPulse{0%,100%{box-shadow:0 0 0 0 rgba(94,224,206,.42)}50%{box-shadow:0 0 0 18px rgba(94,224,206,0)}}
+.intro-skip{position:fixed;top:max(16px,env(safe-area-inset-top));inset-inline-end:18px;
+  background:none;border:1px solid rgba(130,150,220,.28);color:#5f6b94;border-radius:99px;
+  padding:7px 16px;font-size:.74rem;font-family:var(--font-body);cursor:pointer;opacity:0;
+  animation:iFade .8s ease 1.1s forwards}
+@media(prefers-reduced-motion:reduce){
+  .intro-word span,.intro-tag,.intro-enter,.intro-skip{animation-duration:.01s;animation-delay:0s;opacity:1;transform:none;pointer-events:auto}
+}
+</style>
+
+<script>
+/* ---------- Intro — "Genesis of the Gateway" ----------
+   שלושה פרקים בתוך אנימציה אחת:
+   1. חלקיקים נודדים מהחשכה פנימה   2. שני גלי סינוס נפגשים ויוצרים פעימה
+   3. הכול מתכנס לטבעות הסיגיל — ואז נפתח השער                              */
+const intro = {
+  enabled:true, done:false, raf:null, t0:0, cv:null, x:null, W:0, H:0, DPR:1, parts:[],
+
+  init(){
+    try{ this.enabled = (localStorage.getItem('gw_intro') ?? '1') === '1'; }catch(e){}
+    const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!this.enabled){ this.render(); return; }
+    const el = document.getElementById('intro');
+    el.classList.add('on');
+    document.body.style.overflow = 'hidden';
+    this.word();
+    if(reduce){ this.showEnterNow(); this.render(); return; }
+    this.start();
+    this.render();
+  },
+
+  word(){
+    const w = 'GATEWAY', box = document.getElementById('introWord');
+    box.innerHTML = [...w].map((c,i)=>
+      `<span class="${i>3?'cy':''}" style="animation-delay:${1.55 + i*0.11}s">${c}</span>`).join('');
+  },
+  showEnterNow(){
+    const b=document.getElementById('introEnter');
+    if(b){ b.style.animation='none'; b.style.opacity=1; b.style.pointerEvents='auto'; }
+  },
+
+  start(){
+    this.cv = document.getElementById('introCv');
+    this.x  = this.cv.getContext('2d');
+    this.DPR = Math.min(window.devicePixelRatio||1, 2);
+    this.size();
+    window.addEventListener('resize', ()=>this.size());
+    /* חלקיקים — נולדים בחשכה, בכיוון אקראי, ונמשכים פנימה */
+    const N = Math.min(180, Math.round((innerWidth*innerHeight)/9000));
+    this.parts = [];
+    for(let i=0;i<N;i++){
+      const a = Math.random()*Math.PI*2;
+      const r = Math.max(this.W,this.H)*(0.55 + Math.random()*0.75);
+      this.parts.push({
+        a, r, r0:r,
+        tr: 60 + Math.random()*130,          /* רדיוס יעד בטבעת */
+        sp: 0.55 + Math.random()*0.9,        /* מהירות התכנסות */
+        w:  (Math.random()<.5?-1:1)*(0.18+Math.random()*0.5), /* סחרור */
+        sz: 0.7 + Math.random()*1.7,
+        hue: Math.random(),
+        tw: Math.random()*Math.PI*2
+      });
+    }
+    this.t0 = performance.now();
+    const loop = t => { this.frame((t-this.t0)/1000); this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+  },
+
+  size(){
+    const c=this.cv; if(!c) return;
+    this.W = c.width  = Math.floor(innerWidth  * this.DPR);
+    this.H = c.height = Math.floor(innerHeight * this.DPR);
+  },
+
+  /* עקומת האטה */
+  ease(t){ return t<0?0 : t>1?1 : 1-Math.pow(1-t,3); },
+  seg(t,a,b){ return this.ease((t-a)/(b-a)); },
+
+  frame(t){
+    const x=this.x, W=this.W, H=this.H, cx=W/2, cy=H/2, D=this.DPR;
+    /* שובל: מנקים חלקית במקום לגמרי */
+    x.globalCompositeOperation='source-over';
+    x.fillStyle='rgba(4,6,15,0.20)';
+    x.fillRect(0,0,W,H);
+    x.globalCompositeOperation='lighter';
+
+    /* --- פרק 2: שני גלי סינוס והפעימה שנוצרת ביניהם (1.0s – 2.8s) --- */
+    const wv = this.seg(t,0.9,2.0) * (1 - this.seg(t,2.6,3.6));
+    if(wv > 0.01){
+      const amp = 46*D*wv, span = W*0.46;
+      const draw = (freq, phase, color, alpha) => {
+        x.beginPath();
+        for(let i=-span;i<=span;i+=3*D){
+          const p = i/span;
+          const fade = Math.cos(p*Math.PI/2);
+          const y = cy + Math.sin(i/(22*D)*freq + phase) * amp * fade;
+          i===-span ? x.moveTo(cx+i,y) : x.lineTo(cx+i,y);
+        }
+        x.strokeStyle=color; x.globalAlpha=alpha*wv; x.lineWidth=1.6*D; x.stroke();
+      };
+      draw(1.00, t*2.2, '#5ee0ce', .55);          /* אוזן ימין */
+      draw(1.06, t*2.2*1.06, '#8b7bd8', .55);     /* אוזן שמאל — הפרש קטן */
+      /* מעטפת הפעימה — התוצאה שהמוח "שומע" */
+      x.beginPath();
+      for(let i=-span;i<=span;i+=3*D){
+        const p=i/span, fade=Math.cos(p*Math.PI/2);
+        const env = Math.abs(Math.cos(i/(22*D)*0.03 - t*0.55));
+        const y = cy - (amp*1.28)*env*fade - 4*D;
+        i===-span ? x.moveTo(cx+i,y) : x.lineTo(cx+i,y);
+      }
+      x.strokeStyle='#e0b458'; x.globalAlpha=.42*wv; x.lineWidth=1.1*D; x.stroke();
+      x.globalAlpha=1;
+    }
+
+    /* --- פרק 1+3: חלקיקים מתכנסים לטבעת ומסתחררים --- */
+    const conv = this.seg(t,0.15,3.0);
+    this.parts.forEach(p=>{
+      const r = p.r0 + (p.tr*D - p.r0) * this.ease(Math.min(1,(t*p.sp)/3.0));
+      const a = p.a + t*p.w*(0.35 + conv*1.1);
+      const px = cx + Math.cos(a)*r, py = cy + Math.sin(a)*r;
+      const tw = 0.55 + 0.45*Math.sin(t*3 + p.tw);
+      const col = p.hue<.5 ? '94,224,206' : (p.hue<.85 ? '139,123,216' : '224,180,88');
+      x.beginPath();
+      x.arc(px,py,p.sz*D*(0.7+conv*0.9),0,Math.PI*2);
+      x.fillStyle=`rgba(${col},${0.30 + 0.55*conv*tw})`;
+      x.fill();
+    });
+
+    /* --- טבעות הסיגיל נבנות (2.2s ואילך) --- */
+    const rings = [
+      {r:96,  c:'94,224,206', w:2.2, a:2.15},
+      {r:62,  c:'139,123,216', w:2.0, a:2.5},
+    ];
+    rings.forEach(rg=>{
+      const k = this.seg(t, rg.a, rg.a+1.0);
+      if(k<=0) return;
+      const breathe = 1 + 0.035*Math.sin(t*1.5);
+      x.beginPath();
+      x.arc(cx, cy, rg.r*D*breathe, -Math.PI/2, -Math.PI/2 + Math.PI*2*k);
+      x.strokeStyle=`rgba(${rg.c},${0.75*k})`; x.lineWidth=rg.w*D; x.stroke();
+    });
+
+    /* --- הגרעין הזהוב נפתח (3.0s) --- */
+    const core = this.seg(t,2.95,4.0);
+    if(core>0){
+      const rad = 26*D*core*(1+0.06*Math.sin(t*2.2));
+      const g = x.createRadialGradient(cx,cy,0,cx,cy,rad*3.4);
+      g.addColorStop(0,   `rgba(224,180,88,${0.95*core})`);
+      g.addColorStop(0.28,`rgba(224,180,88,${0.34*core})`);
+      g.addColorStop(1,   'rgba(224,180,88,0)');
+      x.beginPath(); x.arc(cx,cy,rad*3.4,0,Math.PI*2); x.fillStyle=g; x.fill();
+      x.beginPath(); x.arc(cx,cy,rad,0,Math.PI*2);
+      x.fillStyle=`rgba(255,235,190,${0.9*core})`; x.fill();
+    }
+
+    /* --- הבזק הפתיחה: גל הלם רך שיוצא החוצה (3.2s) --- */
+    const sh = this.seg(t,3.15,4.6);
+    if(sh>0 && sh<1){
+      x.beginPath();
+      x.arc(cx,cy, sh*Math.max(W,H)*0.62, 0, Math.PI*2);
+      x.strokeStyle=`rgba(94,224,206,${0.30*(1-sh)})`;
+      x.lineWidth=2.4*D*(1-sh); x.stroke();
+    }
+    x.globalCompositeOperation='source-over';
+  },
+
+  /* מעבר אל האפליקציה */
+  enter(skipped){
+    if(this.done) return; this.done = true;
+    const el = document.getElementById('intro');
+    if(!skipped) this.chime();
+    el.classList.add('out');
+    setTimeout(()=>{
+      el.classList.remove('on','out');
+      document.body.style.overflow = '';
+      if(this.raf) cancelAnimationFrame(this.raf);
+    }, 950);
+  },
+
+  /* צליל כניסה רך — קווינטה קצרה, נפתחת ונמוגה */
+  chime(){
+    try{
+      audioEng.ensure();
+      const ctx = audioEng.ctx, t = ctx.currentTime;
+      const g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.16, t+0.12);
+      g.gain.exponentialRampToValueAtTime(0.0001, t+3.2);
+      [220, 330, 440].forEach((f,i)=>{
+        const o = ctx.createOscillator(); o.type='sine'; o.frequency.value=f;
+        const og = ctx.createGain(); og.gain.value = [1,.45,.22][i];
+        o.connect(og); og.connect(g); o.start(t+i*0.06); o.stop(t+3.3);
+      });
+      g.connect(ctx.destination);
+      if(typeof voiceEng!=='undefined') voiceEng.prime();   /* משחרר הקראה באייפון */
+    }catch(e){}
+  },
+
+  toggle(){
+    this.enabled = !this.enabled;
+    try{ localStorage.setItem('gw_intro', this.enabled?'1':'0'); }catch(e){}
+    this.render();
+  },
+  replay(){
+    this.done=false;
+    const el=document.getElementById('intro');
+    el.classList.remove('out'); el.classList.add('on');
+    document.body.style.overflow='hidden';
+    this.word(); this.start();
+  },
+  render(){
+    const b=document.getElementById('introBtn'); if(!b) return;
+    b.textContent = this.enabled ? '✨ אנימציית פתיחה פעילה' : '✨ אנימציית פתיחה כבויה';
+    b.classList.toggle('btn-cyan', this.enabled); b.classList.toggle('btn-ghost', !this.enabled);
+  }
+};
+window.intro = intro;
+</script>
+
 </body><script>
 /* =====================================================
    GATEWAY — data layer
@@ -1362,6 +1624,14 @@ window.audioEng = audioEng;
 
 /* ---------- מילוני תרגום: ממשק סטטי + תוכן דינמי ---------- */
 const HTML_EN = {
+ "intro.tag": "I am more than my physical body",
+ "intro.enter": "Enter",
+ "intro.skip": "Skip",
+
+ "about.dev.eyebrow": "Development",
+ "about.dev.by": "Developed by Dudu Tal",
+ "about.dev.note": "The app was built from the original documents — the 1977 workbook and the 1983 analysis report — to make the protocol accessible exactly as it is, with no promises and no shortcuts.",
+
  "footer.short": "Based on the declassified CIA Gateway documents (1977 · 1983) and on current research · This app is for education, relaxation and self-observation — it is not a medical device and not a substitute for professional advice · Data is stored on your device only.",
  "footer.about": "About, sources and disclosures →",
 
@@ -3460,6 +3730,7 @@ const theme = {
 voiceEng.init(); voiceEng.badge();
 backup.init();
 wakeLock.init(); wakeLock.rebind();
+intro.init();
 i18n.init();
 
 /* ---------- autosave heartbeat ---------- */
@@ -3484,7 +3755,7 @@ window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getEleme
 })();
 
 /* ---------- גרסה ורענון כפוי ---------- */
-const APP_VERSION = '2026.08.02-b15';
+const APP_VERSION = '2026.08.02-b17';
 (function(){
   const set = ()=>{ const el=document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; };
   set(); setTimeout(set, 300);
