@@ -28,7 +28,8 @@
   --font-body:'Heebo',-apple-system,'Segoe UI',Arial,sans-serif; --font-disp:'Frank Ruhl Libre','Times New Roman',serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;font-size:17px;-webkit-text-size-adjust:100%}
+@media(max-width:640px){html{font-size:16.5px}}
 body{
   font-family:var(--font-body); background:var(--bg); color:var(--ink);
   min-height:100vh; line-height:1.65; overflow-x:hidden;
@@ -620,7 +621,10 @@ html[dir="ltr"] footer{text-align:center}
 <p class="muted" style="font-size:.86rem;margin-bottom:12px">בזמן תרגול העיניים עצומות והמכשיר לא נוגע — ובלי זה המסך ננעל, והתדר, הטיימר וההנחיה הקולית נקטעים באמצע. ההגדרה פועלת רק בזמן סשן ומשוחררת בסיומו, כדי לא לבזבז סוללה.</p>
 <button class="btn btn-cyan" id="wakeBtn" onclick="wakeLock.toggle()" style="padding:8px 16px;font-size:.82rem">☀️ המסך יישאר דלוק בסשן</button>
 <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
-<b style="font-size:.9rem">🔊 אבחון סאונד</b>
+<b style="font-size:.9rem">🔊 סאונד</b>
+<p class="muted" style="font-size:.84rem;margin:6px 0 10px">באייפון, <b style="color:var(--ink)">מתג ההשתקה בצד המכשיר משתיק את התדר</b> — אך לא את ההקראה. אם ההנחיה נשמעת והתדר לא, זו כמעט תמיד הסיבה. מצב תאימות מנגן את הפעימה כקובץ מדיה, שעוקף את המתג ברוב המכשירים.</p>
+<button class="btn btn-ghost" id="compatBtn" onclick="beatFile.setEnabled(!beatFile.enabled())" style="padding:8px 16px;font-size:.82rem;margin-bottom:12px">🔊 מצב תאימות כבוי — הפעימה דרך Web Audio</button>
+<br><b style="font-size:.9rem">אבחון</b>
 <p class="muted" style="font-size:.84rem;margin:6px 0 10px">שני מסלולים נפרדים. הרץ את שניהם — ההבדל ביניהם מצביע על מקור הבעיה.</p>
 <div style="display:flex;gap:10px;flex-wrap:wrap">
 <button class="btn btn-cyan" onclick="soundTest.webaudio()" style="padding:8px 16px;font-size:.82rem">1 · צליל דרך מנוע התדרים</button>
@@ -677,7 +681,7 @@ html[dir="ltr"] footer{text-align:center}
 <label style="display:flex;gap:8px;align-items:center">גובה <input type="range" min="0.7" max="1.2" step="0.02" id="setPitch" oninput="voiceEng.setPitch(this.value)" style="width:110px;accent-color:var(--cyan)"><b id="pitchVal" style="color:var(--ink)">0.95</b></label>
 </div>
 </div>
-<p class="faint" style="font-size:.8rem;margin-top:10px">🎙️ <b>הקול העברי נשמע רובוטי?</b> זו מגבלת הקול הבסיסי של המכשיר, לא של האפליקציה. באייפון: הגדרות ← נגישות ← תוכן מדובר ← קולות ← עברית — והורד את <b>Carmit (משופר)</b> או <b>(פרימיום)</b>. ההורדה חד-פעמית, והקול החדש יופיע ברשימה למעלה מסומן ב-★. אותו דבר באנגלית: Samantha / Ava / Zoe בגרסת Premium נשמעות אנושיות לגמרי.</p>
+<p class="faint" style="font-size:.8rem;margin-top:10px">🎙️ <b>הקול העברי נשמע רובוטי?</b> זו מגבלת הקול הבסיסי של המכשיר, לא של האפליקציה. באייפון: הגדרות ← נגישות ← תוכן מדובר ← קולות ← עברית — והורד את <b>Carmit בגרסת "משופר" או "פרימיום"</b>. ההורדה חד-פעמית, והקול החדש יופיע ברשימה למעלה מסומן ב-★. אותו דבר באנגלית: Samantha / Ava / Zoe בגרסת Premium נשמעות אנושיות לגמרי.</p>
 <p class="faint" id="voiceDiag" style="display:none;font-size:.84rem;margin-top:12px;line-height:1.7;border-inline-start:2px solid var(--cyan);padding-inline-start:12px"></p>
 <p class="faint" style="font-size:.8rem;margin-top:10px">📱 באייפון: Chrome ו-Firefox רצים על מנוע הדפדפן של Safari, והתמיכה בהקראה שם חלקית. אם הקול שותק — פתח את האפליקציה ב-Safari. ודא גם שמתג ההשתקה בצד המכשיר אינו פעיל: הוא משתיק גם את התדר וגם את ההקראה.</p>
 </div>
@@ -703,8 +707,7 @@ html[dir="ltr"] footer{text-align:center}
 <div class="rd-meta" id="rdMeta"></div>
 <p class="rd-desc" id="rdDesc"></p>
 <div class="rd-tips" id="rdTips"></div>
-<p class="muted mt" data-i18n="a153" style="font-size:.9rem;max-width:560px">🎧 אוזניות סטריאו · מקום שקט ל-20–45 דקות · שמיכה קלה (הגוף מתקרר בהרפיה) · הטלפון על שקט</p>
-<p class="faint" data-i18n="a212" data-i18n-html="1" style="font-size:.8rem;max-width:560px;margin-inline:auto">⚠️ שתי מלכודות טכניות (ספר המחקר, פרק 9): ודא שהמכשיר <b data-i18n="a154">אינו ממזג לְמוֹנוֹ</b> (בהגדרות הנגישות) — מיזוג מבטל את הפעימה הבינאורלית לחלוטין; והימנע מרמקולי בלוטות' חלשים או דחיסה אבדנית שפוגעים ביחסי הפאזה. המחולל כאן חי ולא-דחוס — חבר אוזניות ישירות.</p>
+<p class="muted mt" data-i18n="a153" style="font-size:.9rem;max-width:560px">🎧 אוזניות סטריאו · מקום שקט · הטלפון על שקט</p>
 <div class="rd-decl">
 <b data-i18n="a155">ההצהרה הראשונה — הנוסח המלא (First Affirmation · Workbook 1977):</b>
 <p class="d" data-i18n="a213" data-i18n-html="1" style="margin-top:8px;line-height:1.75">„אני יותר מגופי הפיזי. מפני שאני יותר מחומר פיזי, ביכולתי לתפוס את מה שגדול מן העולם הפיזי. לכן, בתרגולים אלה, אני חפץ עמוקות <b data-i18n="a156" style="color:var(--ink)">להתרחב, להתנסות; לדעת, להבין; לשלוט, להשתמש</b> — באנרגיות ובמערכות אנרגיה גדולות יותר אלה, ככל שיהיו מיטיבות ובונות עבורי ועבור הבאים אחריי. כמו כן, במהלך תרגולים אלה, אני חפץ עמוקות בעזרתם ובשיתוף פעולתם, בסיועם ובהבנתם של אותם יחידים אשר חוכמתם, התפתחותם וניסיונם שווים לשלי או גדולים משלי. אני מבקש את הדרכתם ואת הגנתם מפני כל השפעה או כל מקור שעלולים לספק לי פחות ממשאלותיי המוצהרות. אני מגן כעת על עצמי, ככל שיידרש, מפני השפעה כזו — ודוחה כל מקור שעלול לרסן אותי ממשאלותיי המוצהרות.“</p>
@@ -729,7 +732,6 @@ html[dir="ltr"] footer{text-align:center}
 <option value="en">🗣️ Soft English voice</option>
 </select>
 </div>
-<p class="faint" data-i18n="a215" data-i18n-html="1" id="rdVoiceNote" style="font-size:.84rem;max-width:560px;margin-inline:auto">🗣️ <b data-i18n="a165">הנחיה קולית פעילה</b> — אין צורך להסתכל במסך. כל שלב נפתח בצליל מעבר עדין, ואחריו ההנחיה נקראת בקול רך; רמזי "שאיפה/נשיפה" יישמעו רק במחזורים הראשונים ואז ישתתקו. כברירת מחדל ההנחיה מרחפת מתחת לתדר — התדר הוא ששולט — ועוצמתו יורדת רק במעט בזמן הדיבור. אפשר לשנות את היחס בהגדרות. הבחירה בשפה חלה על כל התרגולים והמסעות ונשמרת למפעם הבא; באנגלית מושמע נוסח ההנחיות המקורי של ה-Workbook. אפשר לכבות בכל רגע בכפתור הקול.</p>
 <p class="faint" id="rdVoiceWarn" style="font-size:.82rem;max-width:560px;margin-inline:auto;display:none"></p>
 </div>
 <!-- הסשן עצמו -->
@@ -750,7 +752,6 @@ html[dir="ltr"] footer{text-align:center}
 <button class="btn btn-cyan" data-i18n="a170" id="voiceBtn" onclick="voiceEng.cycle()" oncontextmenu="event.preventDefault();voiceEng.toggle()" style="padding:7px 16px;font-size:.8rem">🗣️ עב</button>
 <span class="beat-badge" id="beatInfo"></span>
 <input id="beatVol" max="100" min="0" oninput="audioEng.setVol(this.value/100)" type="range" value="25"/>
-<span class="beat-badge" data-i18n="a171" style="opacity:.7;flex-basis:100%;text-align:center">🎧 אוזניות סטריאו בלבד · ודא ש"מיזוג למונו" כבוי בנגישות</span>
 </div>
 </div><!-- /p-foot -->
 </div>
@@ -844,6 +845,31 @@ html[dir="ltr"] footer{text-align:center}
   font-size:.72rem;color:#5f6b94;letter-spacing:.02em;opacity:0;animation:iFade 1.2s ease 4.2s forwards;padding:0 20px}
 @media(prefers-reduced-motion:reduce){
   .intro-word span,.intro-tag,.intro-enter,.intro-skip{animation-duration:.01s;animation-delay:0s;opacity:1;transform:none;pointer-events:auto}
+}
+
+/* פריטי הסשן לא מתכווצים — מניעת חפיפת טקסטים */
+#player .p-orb,#player .p-phase,#player .p-text,#player .p-foot{flex:none}
+#player .p-phase{line-height:1.9;padding:0 6px}
+#player .p-pane{padding-top:calc(104px + env(safe-area-inset-top))}
+@media(max-width:640px){#player .p-pane{padding-top:calc(112px + env(safe-area-inset-top))}}
+
+/* ---------- layout safeguards ---------- */
+p,h1,h2,h3,h4,b,span,li,label,button,summary,td,th{overflow-wrap:anywhere;word-break:normal}
+.card,.j-entry,.day-slot,.notice,.rd-decl,.rd-tips{min-width:0}
+.day-slot .info{min-width:0;flex:1}
+.day-slot{align-items:center;gap:12px}
+.grid>*{min-width:0}
+.eyebrow{line-height:1.7}
+h2,h3{line-height:1.3}
+.j-form label{line-height:1.5;display:block;margin-bottom:4px}
+#player .p-phase{white-space:normal}
+.fmap b,.pill,.beat-badge{white-space:normal}
+
+@media(max-width:640px){
+  #player .emergency{top:auto;bottom:calc(8px + env(safe-area-inset-bottom));inset-inline-start:12px;
+    max-width:52vw;font-size:.62rem;opacity:.7;background:transparent;border-style:dotted}
+  #player .p-pane{padding-top:calc(74px + env(safe-area-inset-top))}
+  #player .p-foot{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
 }
 </style>
 
@@ -1590,6 +1616,10 @@ const audioEng = {
     }catch(e){}
   },
   start(c,b){
+    this.cur = {c,b};
+    if(typeof beatFile !== 'undefined' && beatFile.enabled()){
+      this.stopOsc(true); this.on = true; beatFile.play(c,b); this.badge(); return;
+    }
     this.ensure(); this.stopOsc(true);
     const ctx=this.ctx, t=ctx.currentTime;
     const master = ctx.createGain(); master.gain.setValueAtTime(0.0001,t); master.gain.linearRampToValueAtTime(this.vol,t+3);
@@ -1610,6 +1640,7 @@ const audioEng = {
     this.badge();
   },
   retune(c,b){ if(!this.on){ this.cur={c,b}; this.badge(); return; }
+    if(typeof beatFile !== 'undefined' && beatFile.enabled()){ this.cur={c,b}; beatFile.play(c,b); this.badge(); return; }
     const t=this.ctx.currentTime;
     this.nodes.oL.frequency.linearRampToValueAtTime(c,t+4);
     this.nodes.oR.frequency.linearRampToValueAtTime(c+b,t+4);
@@ -1623,7 +1654,7 @@ const audioEng = {
     this.nodes=null;
   },
   toggle(){
-    if(this.on){ this.stopOsc(); this.on=false; }
+    if(this.on){ this.stopOsc(); if(typeof beatFile !== 'undefined') beatFile.stop(); this.on=false; }
     else { const p = this.cur || {c:250,b:6}; this.start(p.c,p.b); }
     this.badge();
     document.getElementById('beatBtn').textContent = this.on ? '⏸ השתק תדר' : '🎧 הפעל תדר';
@@ -1631,6 +1662,7 @@ const audioEng = {
   setVol(v){ this.vol=v;
     if(this.nodes) this.nodes.master.gain.linearRampToValueAtTime(v, this.ctx.currentTime+.3);
     if(this.droneNodes) this.droneNodes.g.gain.linearRampToValueAtTime(Math.min(.08, v*.28), this.ctx.currentTime+.3); /* ~-11dB מתחת לפעימה — פרק 9 */
+    if(typeof beatFile !== 'undefined' && beatFile.on) beatFile.setVol(v);
   },
   /* ambient drone: pure-fifth pad (A1-E2-A2-E3), rhythm-free, heavily filtered */
   droneNodes:null, droneOn:false,
@@ -3306,6 +3338,7 @@ const player = {
     if(!finished) voiceEng.stop();  /* בסיום מרצון — נותנים למשפט הסגירה להסתיים */
     wakeLock.release();
     audioEng.on && audioEng.toggle();
+    if(typeof beatFile !== 'undefined') beatFile.stop();
     audioEng.droneOn && audioEng.toggleDrone();
     if(finished && this.state!=='done'){
       this.state='done';
@@ -3781,6 +3814,7 @@ const theme = {
 voiceEng.init(); voiceEng.badge();
 backup.init();
 wakeLock.init(); wakeLock.rebind();
+try{ beatFile.render(); }catch(e){}
 intro.init();
 /* שחרור האודיו בנגיעה הראשונה — דרישה של iOS */
 (function(){
@@ -3812,7 +3846,7 @@ window.addEventListener('keydown', e=>{ if(e.key==='Escape' && document.getEleme
 })();
 
 /* ---------- גרסה ורענון כפוי ---------- */
-const APP_VERSION = '2026.08.02-b19';
+const APP_VERSION = '2026.08.02-b21';
 (function(){
   const set = ()=>{ const el=document.getElementById('appVer'); if(el) el.textContent = APP_VERSION; };
   set(); setTimeout(set, 300);
@@ -3832,6 +3866,66 @@ async function appRefresh(){
 }
 window.appRefresh = appRefresh;
 
+
+/* ---------- מצב תאימות: הפעימה כקובץ מדיה ----------
+   ב-iOS מתג ההשתקה בצד המכשיר משתיק את Web Audio לחלוטין — אבל לא נגן מדיה.
+   כאן מייצרים WAV סטריאו בלולאה מושלמת (תדרים שלמים ⇒ שנייה אחת נסגרת בדיוק)
+   ומנגנים אותו דרך <audio>, כך שהצליל עובר בערוץ המדיה. */
+const beatFile = {
+  el:null, on:false, cur:null,
+  enabled(){ try{ return localStorage.getItem('gw_compat_audio')==='1'; }catch(e){ return false; } },
+  setEnabled(v){
+    try{ localStorage.setItem('gw_compat_audio', v?'1':'0'); }catch(e){}
+    if(!v) this.stop();
+    else if(audioEng.on && audioEng.cur){ audioEng.stopOsc(true); this.play(audioEng.cur.c, audioEng.cur.b); }
+    this.render();
+  },
+  /* WAV סטריאו 16-bit — ערוץ שמאל בנשא, ערוץ ימין בנשא+פעימה */
+  wav(carrier, beat, secs){
+    const SR = 16000, N = Math.round(SR*secs);
+    const bytes = new Uint8Array(44 + N*4);
+    const dv = new DataView(bytes.buffer);
+    const str = (o,t)=>{ for(let i=0;i<t.length;i++) dv.setUint8(o+i, t.charCodeAt(i)); };
+    str(0,'RIFF'); dv.setUint32(4, 36+N*4, true); str(8,'WAVE'); str(12,'fmt ');
+    dv.setUint32(16,16,true); dv.setUint16(20,1,true); dv.setUint16(22,2,true);
+    dv.setUint32(24,SR,true); dv.setUint32(28,SR*4,true); dv.setUint16(32,4,true); dv.setUint16(34,16,true);
+    str(36,'data'); dv.setUint32(40, N*4, true);
+    /* רעש ורוד רך, זהה בשני הערוצים */
+    let b0=0,b1=0,b2=0;
+    for(let i=0;i<N;i++){
+      const w = Math.random()*2-1;
+      b0=.997*b0+.029*w; b1=.985*b1+.055*w; b2=.95*b2+.09*w;
+      const noise = (b0+b1+b2)*0.055;
+      const L = Math.sin(2*Math.PI*carrier*i/SR)*0.55 + noise;
+      const R = Math.sin(2*Math.PI*(carrier+beat)*i/SR)*0.55 + noise;
+      dv.setInt16(44+i*4,   Math.max(-1,Math.min(1,L))*32000, true);
+      dv.setInt16(44+i*4+2, Math.max(-1,Math.min(1,R))*32000, true);
+    }
+    let bin=''; const chunk=8192;
+    for(let i=0;i<bytes.length;i+=chunk) bin += String.fromCharCode.apply(null, bytes.subarray(i,i+chunk));
+    return 'data:audio/wav;base64,' + btoa(bin);
+  },
+  play(carrier, beat){
+    try{
+      this.stop();
+      const a = document.createElement('audio');
+      a.setAttribute('playsinline',''); a.loop = true;
+      a.src = this.wav(Math.round(carrier), Math.round(beat), 2);
+      a.volume = Math.min(1, audioEng.vol*2.2);
+      a.play().catch(()=>{});
+      this.el = a; this.on = true; this.cur = {c:carrier,b:beat};
+    }catch(e){}
+  },
+  setVol(v){ if(this.el) this.el.volume = Math.min(1, v*2.2); },
+  stop(){ try{ if(this.el){ this.el.pause(); this.el.src=''; } }catch(e){} this.el=null; this.on=false; },
+  render(){
+    const b=document.getElementById('compatBtn'); if(!b) return;
+    const on=this.enabled();
+    b.textContent = on ? '🔊 מצב תאימות פעיל — הפעימה דרך נגן מדיה' : '🔊 מצב תאימות כבוי — הפעימה דרך Web Audio';
+    b.classList.toggle('btn-cyan', on); b.classList.toggle('btn-ghost', !on);
+  }
+};
+window.beatFile = beatFile;
 /* ---------- אבחון סאונד ---------- */
 const soundTest = {
   el(){ return document.getElementById('sndDiag'); },
