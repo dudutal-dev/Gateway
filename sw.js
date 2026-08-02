@@ -2,7 +2,7 @@
    מטרה: שהאפליקציה תיפתח ותעבוד במלואה גם בלי חיבור לרשת.
    אסטרטגיה: network-first לדף עצמו (כדי לקבל עדכונים), cache-first לגופנים. */
 
-const VERSION = 'gateway-2026.08.03-b26';
+const VERSION = 'gateway-2026.08.03-b30';
 const CORE = ['./', './index.html'];
 
 self.addEventListener('install', e => {
